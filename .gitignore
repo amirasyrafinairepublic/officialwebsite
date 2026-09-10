@@ -1,0 +1,19 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Large video files — store via Git LFS or CDN instead
+# Uncomment below if you don't want to track the video in git
+# assets/videos/*.mp4

@@ -1,0 +1,670 @@
+/* ==========================================================================
+   INAI REPUBLIC — TIKTOK LIVE FLOATING POPUP STYLES
+   Format: 9:16 Vertical, Draggable, Glassmorphism, Luxury TikTok UI
+   ========================================================================== */
+
+/* --- Floating Live Popup Main Container --- */
+.live-popup-wrapper {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 236px;
+  aspect-ratio: 9 / 16;
+  max-height: min(440px, 80vh);
+  background: var(--color-surface-card, #541226);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.7),
+    0 0 0 1.5px rgba(255, 255, 255, 0.15),
+    0 0 25px rgba(138, 28, 39, 0.35); /* Subtle Henna glow */
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(40px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  touch-action: none; /* Crucial for smooth touch dragging */
+}
+
+.live-popup-wrapper.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.live-popup-wrapper.is-dragging {
+  cursor: grabbing !important;
+  box-shadow: 
+    0 24px 50px rgba(0, 0, 0, 0.85),
+    0 0 0 2px var(--color-accent-gold, #c5a880),
+    0 0 35px rgba(197, 168, 128, 0.4);
+  transform: scale(1.02);
+  transition: none !important;
+}
+
+.live-popup-wrapper.is-closing {
+  opacity: 0;
+  transform: translateY(30px) scale(0.85);
+  pointer-events: none;
+}
+
+/* --- Video Element --- */
+.live-video-element {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000000;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* --- Countdown Progress Bar --- */
+.live-countdown-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 25;
+}
+
+.live-countdown-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #8a1c27, #c5a880);
+  transform-origin: left;
+  transition: width 0.1s linear;
+}
+
+/* --- Top Drag Header --- */
+.live-drag-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px 12px 10px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: grab;
+}
+
+.live-drag-header:active {
+  cursor: grabbing;
+}
+
+.live-drag-pill-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2px;
+}
+
+.live-drag-pill {
+  width: 34px;
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 99px;
+  transition: background 0.2s ease, width 0.2s ease;
+}
+
+.live-drag-header:hover .live-drag-pill {
+  background: rgba(255, 255, 255, 0.8);
+  width: 42px;
+}
+
+/* --- Top Navigation & Host Bar --- */
+.live-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Left Host Card */
+.live-host-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 3px 8px 3px 3px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  max-width: 145px;
+}
+
+.live-host-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8a1c27, #c5a880);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(197, 168, 128, 0.5);
+}
+
+.live-host-meta {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.live-host-name {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.live-viewers-count {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  line-height: 1.1;
+}
+
+.live-viewers-count svg {
+  width: 10px;
+  height: 10px;
+  opacity: 0.8;
+}
+
+/* Follow Button */
+.live-follow-btn {
+  background: #ff2a54;
+  color: #ffffff;
+  border: none;
+  font-size: 9px;
+  font-weight: 600;
+  border-radius: 99px;
+  padding: 3px 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.live-follow-btn:hover {
+  background: #e01e44;
+  transform: scale(1.04);
+}
+
+.live-follow-btn.is-following {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Top Action Controls (Sound, Minimize, Close) */
+.live-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.live-action-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 0;
+}
+
+.live-action-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+}
+
+.live-action-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Live Badge with Pulse */
+.live-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 42, 84, 0.9);
+  color: #ffffff;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  width: fit-content;
+  box-shadow: 0 0 10px rgba(255, 42, 84, 0.6);
+}
+
+.live-pulse-dot {
+  width: 5px;
+  height: 5px;
+  background: #ffffff;
+  border-radius: 50%;
+  animation: livePulse 1.2s infinite ease-in-out;
+}
+
+@keyframes livePulse {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.85); opacity: 0.6; }
+}
+
+/* --- Unmute Callout Banner --- */
+.live-unmute-callout {
+  position: absolute;
+  top: 54px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 22;
+  cursor: pointer;
+  animation: calloutBounce 2s infinite ease-in-out;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.live-unmute-callout svg {
+  width: 12px;
+  height: 12px;
+  color: #ff2a54;
+}
+
+.live-unmute-callout.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+@keyframes calloutBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(3px); }
+}
+
+/* --- Bottom Overlay (Comments, Showcase Beg Kuning, Action Stack) --- */
+.live-bottom-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 10px 10px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.65) 60%, transparent 100%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.live-bottom-overlay > * {
+  pointer-events: auto;
+}
+
+/* Simulated Live Comment Stream */
+.live-chat-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 52px;
+  overflow: hidden;
+}
+
+.live-chat-bubble {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 8px;
+  padding: 3px 7px;
+  font-size: 9.5px;
+  color: #ffffff;
+  line-height: 1.25;
+  width: fit-content;
+  max-width: 90%;
+  animation: chatFadeUp 0.35s ease forwards;
+}
+
+.live-chat-author {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  margin-right: 3px;
+}
+
+.live-chat-text {
+  font-weight: 400;
+}
+
+@keyframes chatFadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- TikTok Beg Kuning (Yellow Showcase Card) --- */
+.live-beg-kuning-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 204, 0, 0.4);
+  border-radius: 10px;
+  padding: 5px 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.live-beg-kuning-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 204, 0, 0.8);
+}
+
+.live-product-preview {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.live-bag-tag {
+  background: #ffcc00;
+  color: #000000;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(255, 204, 0, 0.4);
+}
+
+.live-product-details {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.live-product-title {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.15;
+}
+
+.live-product-price {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffcc00;
+  line-height: 1.15;
+}
+
+.live-buy-btn {
+  background: linear-gradient(135deg, #ff2a54, #8a1c27);
+  color: #ffffff;
+  border: none;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.live-buy-btn:hover {
+  transform: scale(1.06);
+  background: linear-gradient(135deg, #ff4065, #a32230);
+}
+
+/* --- Floating Hearts Container --- */
+.live-hearts-canvas {
+  position: absolute;
+  right: 12px;
+  bottom: 60px;
+  width: 60px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 21;
+  overflow: visible;
+}
+
+.live-heart-particle {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  font-size: 18px;
+  user-select: none;
+  pointer-events: none;
+  animation: floatHeartUp 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes floatHeartUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-80px) translateX(var(--drift, 12px)) scale(1.1) rotate(var(--rot, 15deg));
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-160px) translateX(var(--drift-end, -10px)) scale(1.3) rotate(var(--rot-end, -20deg));
+  }
+}
+
+/* Bottom Bar Interactive Buttons */
+.live-bottom-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.live-comment-input-fake {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 99px;
+  padding: 5px 10px;
+  font-size: 9.5px;
+  color: rgba(255, 255, 255, 0.7);
+  flex-grow: 1;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.live-reaction-stack {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.live-heart-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 42, 84, 0.2);
+  border: 1.5px solid rgba(255, 42, 84, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #ff2a54;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  padding: 0;
+}
+
+.live-heart-btn:active {
+  transform: scale(0.85);
+}
+
+.live-heart-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: #ff2a54;
+}
+
+.live-likes-counter {
+  position: absolute;
+  bottom: -13px;
+  font-size: 7.5px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+}
+
+/* --- Minimized Floating Pill Bubble --- */
+.live-minimized-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--color-surface-elevated, #4e1023);
+  border: 1.5px solid var(--color-accent-gold, #c5a880);
+  border-radius: 99px;
+  padding: 6px 14px 6px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 9998;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(197, 168, 128, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+  animation: miniBubblePulse 2.5s infinite ease-in-out;
+}
+
+.live-minimized-bubble:hover {
+  transform: scale(1.06);
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.8),
+    0 0 22px rgba(197, 168, 128, 0.5);
+}
+
+.live-minimized-bubble.hidden {
+  display: none !important;
+}
+
+.live-mini-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8a1c27, #c5a880);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.live-mini-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.live-mini-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: 0.3px;
+}
+
+.live-mini-tag {
+  font-size: 8px;
+  color: #ffcc00;
+  font-weight: 600;
+}
+
+@keyframes miniBubblePulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(197, 168, 128, 0.35); }
+  50% { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 42, 84, 0.5); }
+}
+
+/* --- Responsive Adaptations for Mobile --- */
+@media (max-width: 640px) {
+  .live-popup-wrapper {
+    width: 196px;
+    max-height: 350px;
+    bottom: 20px;
+    right: 16px;
+    border-radius: 16px;
+  }
+
+  .live-host-name {
+    max-width: 60px;
+  }
+
+  .live-chat-stream {
+    max-height: 38px;
+  }
+
+  .live-product-title {
+    max-width: 65px;
+  }
+
+  .live-comment-input-fake {
+    display: none;
+  }
+}
