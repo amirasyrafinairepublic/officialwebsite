@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ------------------------------------------------------------------------
-     9. Mobile Navigation Menu Toggle
+     9. Mobile Navigation Menu Toggle + Koleksi Dropdown
      ------------------------------------------------------------------------ */
   if (mobileMenuBtn && navMenu) {
     mobileMenuBtn.addEventListener("click", () => {
@@ -329,6 +329,38 @@ document.addEventListener("DOMContentLoaded", () => {
       navMenu.style.backgroundColor = "var(--color-surface-elevated, #4e1023)";
       navMenu.style.padding = "20px";
       navMenu.style.borderBottom = "1px solid var(--color-border-subtle)";
+    });
+  }
+
+  // Koleksi dropdown (klik untuk buka/tutup — mesra sentuhan & keyboard)
+  const koleksiDropdown = document.getElementById("koleksi-dropdown");
+  const koleksiToggle = document.getElementById("koleksi-toggle");
+
+  if (koleksiDropdown && koleksiToggle) {
+    koleksiToggle.addEventListener("click", (e) => {
+      // Klik pertama: buka dropdown sahaja (tidak lompat ke #katalog)
+      if (!koleksiDropdown.classList.contains("dropdown-open")) {
+        e.preventDefault();
+        koleksiDropdown.classList.add("dropdown-open");
+        koleksiToggle.setAttribute("aria-expanded", "true");
+      }
+      // Klik kedua (semasa dropdown sudah terbuka): ikut href ke #katalog seperti biasa
+    });
+
+    // Tutup dropdown bila klik di luar kawasan
+    document.addEventListener("click", (e) => {
+      if (!koleksiDropdown.contains(e.target)) {
+        koleksiDropdown.classList.remove("dropdown-open");
+        koleksiToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Tutup dropdown dengan kekunci Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        koleksiDropdown.classList.remove("dropdown-open");
+        koleksiToggle.setAttribute("aria-expanded", "false");
+      }
     });
   }
 
