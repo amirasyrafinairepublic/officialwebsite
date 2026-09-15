@@ -509,7 +509,7 @@ a {
   color: var(--color-accent-gold-light);
   margin-bottom: var(--space-5);
   font-weight: var(--font-weight-bold);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
 }
 
 .hero-tag::before {
@@ -529,7 +529,7 @@ a {
   color: #ffffff;
   max-width: 900px;
   margin-bottom: var(--space-6);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 4px 24px rgba(0, 0, 0, 0.9), 0 0 48px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 2px 14px rgba(0, 0, 0, 0.4);
 }
 
 .hero-subtitle {
@@ -539,7 +539,12 @@ a {
   max-width: 580px;
   margin-bottom: var(--space-9);
   font-weight: var(--font-weight-regular);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 24px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hero-subtitle strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-gold-light);
 }
 
 .hero-actions {
@@ -716,6 +721,192 @@ a {
   line-height: 1.35;
 }
 
+/* Certification logos row (HALVEC, SIRIM, KKM, UMT) */
+.cert-section {
+  padding: var(--space-16) 0 var(--space-12);
+}
+
+.cert-section-header {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-7) var(--space-10);
+  text-align: center;
+}
+
+.cert-eyebrow {
+  display: inline-block;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  padding: 8px 20px;
+  margin-bottom: var(--space-6);
+}
+
+.cert-heading {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  line-height: 1.25;
+  margin-bottom: var(--space-4);
+}
+
+.cert-subheading {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--font-line-height-relaxed);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+.cert-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-8) var(--space-6) var(--space-7);
+  transition: border-color var(--motion-duration-instant) ease, transform var(--motion-duration-instant) ease, box-shadow var(--motion-duration-instant) ease;
+}
+
+.cert-item:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Fixed-height logo stage: every logo is optically centered
+   regardless of its raw aspect ratio — this stops the
+   "tenggelam" (sunk) look on mixed-dimension logos. */
+.cert-logo-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  width: 100%;
+  padding: var(--space-4) var(--space-3);
+  margin-bottom: var(--space-6);
+  flex-shrink: 0;
+}
+
+.cert-logo {
+  max-width: 150px;
+  max-height: 96px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform var(--motion-duration-instant) ease;
+}
+
+.cert-item:hover .cert-logo {
+  transform: scale(1.05);
+}
+
+.cert-label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+  min-height: 2.4em;
+}
+
+.cert-desc {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Awards marquee strip: compact band below the cert grid that
+   scrolls continuously right-to-left in a seamless loop. */
+.awards-marquee {
+  max-width: var(--container-max-width);
+  margin: var(--space-12) auto 0;
+  padding: 0 var(--space-7);
+}
+
+.awards-marquee-title {
+  text-align: center;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: var(--space-6);
+}
+
+.awards-marquee-viewport {
+  overflow: hidden;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: var(--space-5) 0;
+  /* Soft fade on both edges so logos slide in/out gracefully */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.awards-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  width: max-content;
+  animation: awards-scroll 32s linear infinite;
+}
+
+.awards-marquee:hover .awards-marquee-track {
+  animation-play-state: paused;
+}
+
+.award-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.award-logo {
+  max-width: 170px;
+  max-height: 88px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes awards-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Shift by exactly half the track (one full logo set incl. gap) */
+    transform: translateX(calc(-50% - (var(--space-10) / 2)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .awards-marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+}
+
 /* --------------------------------------------------------------------------
    8. Section Headers (YSL Haute Editorial)
    -------------------------------------------------------------------------- */
@@ -784,6 +975,104 @@ a {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-8);
+}
+
+/* --------------------------------------------------------------------------
+   9b. Home Category Showcase (3 tiles linking to dedicated category pages)
+   -------------------------------------------------------------------------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-luxury),
+              box-shadow var(--motion-duration-fast) var(--motion-ease-luxury),
+              border-color var(--motion-duration-fast) ease;
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--color-border-default);
+}
+
+.category-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--color-surface-elevated);
+}
+
+.category-card-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--motion-duration-slow) var(--motion-ease-luxury);
+}
+
+.category-card:hover .category-card-img {
+  transform: scale(1.05);
+}
+
+.category-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-7) var(--space-9);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.category-card-index {
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.category-card-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.category-card-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--font-line-height-relaxed);
+  max-width: 34ch;
+}
+
+.category-card-cta {
+  margin-top: var(--space-2);
+  padding-bottom: 4px;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-accent-gold);
+  transition: color var(--motion-duration-instant) ease, border-color var(--motion-duration-instant) ease;
+}
+
+.category-card:hover .category-card-cta {
+  color: var(--color-accent-gold);
+  border-bottom-color: var(--color-accent-gold-light);
 }
 
 .product-card {
@@ -1541,8 +1830,22 @@ a {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-6);
   }
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+  /* Keep 3 tiles balanced: the odd one out spans the full row */
+  .category-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
   .trust-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .cert-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .cert-logo-frame {
+    height: 110px;
   }
   .trust-item:nth-child(2) {
     border-right: none;
@@ -1576,8 +1879,49 @@ a {
   .product-grid {
     grid-template-columns: 1fr;
   }
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .category-card-body {
+    padding: var(--space-7) var(--space-6) var(--space-8);
+  }
   .trust-grid {
     grid-template-columns: 1fr;
+  }
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+  .cert-logo-frame {
+    height: 100px;
+    margin-bottom: var(--space-5);
+  }
+  .cert-logo {
+    max-width: 130px;
+    max-height: 84px;
+  }
+  .awards-marquee {
+    margin-top: var(--space-10);
+    padding: 0 var(--space-6);
+  }
+  .awards-marquee-track {
+    gap: var(--space-8);
+  }
+  .award-logo {
+    max-width: 130px;
+    max-height: 68px;
+  }
+  @keyframes awards-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-50% - (var(--space-8) / 2)));
+    }
+  }
+  .cert-section-header {
+    padding-bottom: var(--space-8);
   }
   .trust-item {
     border-right: none;

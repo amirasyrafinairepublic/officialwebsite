@@ -30,6 +30,7 @@
 <ul class="dropdown-menu" aria-labelledby="koleksi-toggle">
 <li><a href="henna-hair-colour.html" class="dropdown-link">Henna Hair Colour</a></li>
 <li><a href="henna-hair-care.html" class="dropdown-link">Henna Hair Care</a></li>
+<li><a href="nail-henna.html" class="dropdown-link">Nail Henna</a></li>
 <li><a href="henna-soap.html" class="dropdown-link">Henna Soap</a></li>
 </ul>
 </li>
@@ -104,6 +105,7 @@
 <span class="collection-cross-label">TEROKAI KOLEKSI LAIN</span>
 <div class="collection-cross-grid">
 <a href="henna-hair-care.html" class="btn btn-secondary">HENNA HAIR CARE</a>
+<a href="nail-henna.html" class="btn btn-secondary">NAIL HENNA</a>
 <a href="henna-soap.html" class="btn btn-secondary">HENNA SOAP</a>
 </div>
 </div>
@@ -126,6 +128,7 @@
 <ul class="footer-links-list">
 <li><a href="henna-hair-colour.html" class="footer-link">Henna Hair Colour</a></li>
 <li><a href="henna-hair-care.html" class="footer-link">Henna Hair Care</a></li>
+<li><a href="nail-henna.html" class="footer-link">Nail Henna</a></li>
 <li><a href="henna-soap.html" class="footer-link">Henna Soap</a></li>
 </ul>
 </div>
@@ -153,16 +156,28 @@
 </div>
 </div>
 </footer>
-<div class="cart-backdrop" id="cart-backdrop"></div>
-<aside class="cart-sidebar" id="cart-sidebar" role="dialog" aria-modal="true" aria-label="Troli Beli-belah">
-<div class="cart-header"><div><h3>TROLI ANDA</h3><p id="cart-items-count">2 ITEM — PENGHANTARAN PERCUMA</p></div>
-<button class="icon-btn" id="cart-close-btn" aria-label="Tutup Troli"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
-<div class="cart-progress" aria-hidden="true"><div class="cart-progress-bar" style="width: 100%;"></div></div>
-<div class="cart-items" id="cart-items-container"></div>
-<div class="cart-footer"><div class="cart-total"><span>JUMLAH KESELURUHAN</span><span id="cart-total-display">RM 104.00</span></div>
-<button class="btn btn-primary btn-full-width" id="checkout-btn">TERUSKAN KE PEMBAYARAN</button>
-<p class="cart-secure-note">PEMBAYARAN SELAMAT • CASHLESS • POSTAGE SELURUH MALAYSIA</p></div>
+<div class="cart-backdrop" id="cart-backdrop" aria-hidden="true">
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title">
+<div class="cart-header">
+<h3 id="cart-drawer-title">TROLI MEMBELI-BELAH (<span id="cart-items-count">2</span>)</h3>
+<button class="icon-btn" id="cart-close-btn" aria-label="Tutup Troli">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="cart-items-body" id="cart-items-container"></div>
+<div class="cart-footer">
+<div class="cart-subtotal-row">
+<span>JUMLAH KESELURUHAN</span>
+<span class="cart-subtotal-price" id="cart-total-display">RM 104.00</span>
+</div>
+<p class="cart-shipping-note">✓ Anda layak menerima <strong>Penghantaran Percuma</strong> ke seluruh negara!</p>
+<button class="btn btn-primary" style="width: 100%;" id="checkout-btn">TERUSKAN KE PEMBAYARAN (CHECKOUT)</button>
+</div>
 </aside>
+</div>
 <script src="js/app.js"></script>
 </body>
 </html>
