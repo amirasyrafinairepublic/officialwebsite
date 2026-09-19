@@ -26,12 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         qty: 1,
         img: "https://inairepublic.com/wp-content/uploads/2023/11/couple-edition-inai-republic-1-300x300.jpg"
       }
-    ],
-    selectedStudioShade: {
-      name: "Persian Red",
-      hex: "#8e1822",
-      desc: "Tona merah delima pekat & berkilau bak permata. Pilihan paling viral dan diminati ramai."
-    }
+    ]
   };
 
   /* ------------------------------------------------------------------------
@@ -47,12 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartTotalDisplay = document.getElementById("cart-total-display");
   const checkoutBtn = document.getElementById("checkout-btn");
 
-  // Studio Elements
-  const nailSwatches = document.querySelectorAll(".nail-swatch");
-  const studioShadeName = document.getElementById("studio-shade-name");
-  const studioShadeDesc = document.getElementById("studio-shade-desc");
-  const studioAddBtn = document.getElementById("studio-add-btn");
-  const shadeSelectButtons = document.querySelectorAll(".shade-select-btn");
+  // Shade Studio (previu kamera) dikendalikan oleh scripts/shade-studio.js.
+  // Di sini kita hanya mendedahkan hook troli kepada modul tersebut.
 
   // Tabs
   const tabButtons = document.querySelectorAll(".tab-btn");
@@ -67,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
      3. Header Scroll Effect
      ------------------------------------------------------------------------ */
   window.addEventListener("scroll", () => {
+    if (!header) return;
     if (window.scrollY > 20) {
       header.classList.add("scrolled");
     } else {
@@ -130,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function openCart() {
+    if (!cartBackdrop) return;
     previousActiveElement = document.activeElement;
     cartBackdrop.classList.add("open");
     cartBackdrop.setAttribute("aria-hidden", "false");
@@ -138,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function closeCart() {
+    if (!cartBackdrop) return;
     cartBackdrop.classList.remove("open");
     cartBackdrop.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
@@ -210,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
      5. Accessibility: Keyboard Trap & Escape Listener (WCAG 2.2 AA)
      ------------------------------------------------------------------------ */
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && cartBackdrop.classList.contains("open")) {
+    if (e.key === "Escape" && cartBackdrop && cartBackdrop.classList.contains("open")) {
       closeCart();
     }
   });
@@ -254,50 +248,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ------------------------------------------------------------------------
-     7. Interactive Shade Studio Live Preview
+     7. Shade Studio bridge — scripts/shade-studio.js memanggil hook ini
+        untuk menambah tona yang sedang dipilih ke dalam troli.
      ------------------------------------------------------------------------ */
-  shadeSelectButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      shadeSelectButtons.forEach(b => {
-        b.classList.remove("active");
-        b.setAttribute("aria-checked", "false");
-      });
-      btn.classList.add("active");
-      btn.setAttribute("aria-checked", "true");
-
-      const shadeName = btn.getAttribute("data-shade");
-      const shadeHex = btn.getAttribute("data-hex");
-      const shadeDesc = btn.getAttribute("data-desc");
-
-      state.selectedStudioShade = {
-        name: shadeName,
-        hex: shadeHex,
-        desc: shadeDesc
-      };
-
-      // Animate nail swatches color
-      nailSwatches.forEach(swatch => {
-        swatch.style.backgroundColor = shadeHex;
-        swatch.style.boxShadow = `0 8px 30px ${shadeHex}66`;
-      });
-
-      if (studioShadeName) studioShadeName.textContent = shadeName;
-      if (studioShadeDesc) studioShadeDesc.textContent = shadeDesc;
-    });
-  });
-
-  // Studio Add Button
-  if (studioAddBtn) {
-    studioAddBtn.addEventListener("click", () => {
-      addToCart({
-        id: `studio-${state.selectedStudioShade.name.toLowerCase().replace(/\s+/g, "-")}`,
-        name: `Inai Kuku Edisi Khas — ${state.selectedStudioShade.name}`,
-        shade: `Tona Studio: ${state.selectedStudioShade.name} • 10ml`,
-        price: 39.0,
-        img: "https://inairepublic.com/wp-content/uploads/2023/11/couple-edition-inai-republic-1-300x300.jpg"
-      });
-    });
-  }
+  window.inaiRepublicAddToCart = addToCart;
 
   /* ------------------------------------------------------------------------
      8. Category Navigation Tabs
