@@ -576,15 +576,40 @@ function bootstrap() {
   function cameraErrorMessage(err) {
     const name = err && err.name ? err.name : "";
     if (name === "NotAllowedError" || name === "SecurityError") {
-      return "Akses kamera ditolak. Benarkan kamera dalam tetapan pelayar, atau guna \"MUAT NAIK GAMBAR\" untuk previu daripada gambar.";
+      return "Akses kamera DISEKAT. 1) Klik ikon kamera/mangga di bar alamat → Benarkan → muat semula. 2) Semak Windows: Tetapan > Privasi & keselamatan > Kamera > benarkan aplikasi desktop & pelayar. Atau guna \"MUAT NAIK GAMBAR\".";
     }
     if (name === "NotFoundError" || name === "DevicesNotFoundError" || name === "OverconstrainedError") {
-      return "Tiada kamera dikesan pada peranti ini. Guna \"MUAT NAIK GAMBAR\" untuk melihat simulasi.";
+      return "Tiada kamera dikesan pada peranti ini. Pastikan webcam tidak dilindungi/dilumpuhkan (Fn + kekunci kamera, atau Device Manager). Guna \"MUAT NAIK GAMBAR\" sebagai ganti.";
     }
     if (name === "NotReadableError" || name === "TrackStartError") {
-      return "Kamera sedang digunakan oleh aplikasi lain. Tutup aplikasi itu dan cuba lagi, atau guna \"MUAT NAIK GAMBAR\".";
+      return "Kamera sedang digunakan aplikasi lain (Zoom/Teams/Webcam utility). Tutup aplikasi itu dan cuba lagi, atau guna \"MUAT NAIK GAMBAR\".";
+    }
+    if (name === "AbortError" || name === "InternalServerError") {
+      return "Kamera gagal dimulakan (ralat perkakasan/pemandu). Restart laptop, atau guna \"MUAT NAIK GAMBAR\".";
     }
     return "Kamera tidak dapat dimulakan. Guna \"MUAT NAIK GAMBAR\" sebagai ganti — gambar tetap diproses dalam peranti anda.";
+  }
+
+  // Diagnostik: tunjuk punca teknikal di console + status kebenaran pelayar.
+  async function logCameraDiagnostics(err) {
+    console.warn("[ShadeStudio] Kamera gagal:", err && err.name, "-", err && err.message, err);
+    try {
+      if (navigator.permissions && navigator.permissions.query) {
+        const perm = await navigator.permissions.query({ name: "camera" });
+        console.warn("[ShadeStudio] Status kebenaran kamera pelayar:", perm.state);
+      }
+    } catch (permErr) {
+      console.warn("[ShadeStudio] Tidak dapat membaca status kebenaran:", permErr);
+    }
+    try {
+      if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const cams = devices.filter(function (d) { return d.kind === "videoinput"; });
+        console.warn("[ShadeStudio] Kamera dikesan:", cams.length, cams.map(function (d) { return d.label || "(label tersembunyi — izin belum diberi)"; }));
+      }
+    } catch (listErr) {
+      console.warn("[ShadeStudio] enumerateDevices gagal:", listErr);
+    }
   }
 
   async function refreshDeviceCount() {
@@ -671,7 +696,7 @@ function bootstrap() {
 
       await refreshDeviceCount();
     } catch (err) {
-      console.warn("[ShadeStudio] Kamera gagal dimulakan:", err);
+      await logCameraDiagnostics(err);
       stopCamera();
       setStatus(cameraErrorMessage(err));
       setPlaceholderVisible(true);
