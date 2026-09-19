@@ -613,16 +613,32 @@ function bootstrap() {
       await loadSegmenter("VIDEO");
 
       state.mode = "video";
-      const constraints = {
-        audio: false,
-        video: {
-          facingMode: state.facingMode,
-          width: { ideal: CAPTURE_WIDTH_IDEAL },
-          height: { ideal: CAPTURE_HEIGHT_IDEAL }
-        }
+      // NOTA DESKTOP: webcam biasanya TIDAK melaporkan facingMode, jadi
+      // constraint wajib "facingMode: 'user'" akan gagal OverconstrainedError.
+      // Guna "ideal" (lembut) + fallback tanpa facingMode.
+      const baseVideo = {
+        width: { ideal: CAPTURE_WIDTH_IDEAL },
+        height: { ideal: CAPTURE_HEIGHT_IDEAL }
       };
+      const attempts = [
+        { audio: false, video: Object.assign({ facingMode: { ideal: state.facingMode } }, baseVideo) },
+        { audio: false, video: baseVideo },                 // tanpa facingMode langsung
+        { audio: false, video: true }                       // kamera lalai apa sahaja
+      ];
 
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      let stream = null;
+      let lastErr = null;
+      for (const attempt of attempts) {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia(attempt);
+          break;
+        } catch (err) {
+          lastErr = err;
+          console.warn("[ShadeStudio] getUserMedia cubaan gagal:", err && err.name, err);
+        }
+      }
+      if (!stream) throw lastErr || new Error("Kamera tidak dapat dimulakan.");
+
       state.stream = stream;
       el.video.srcObject = stream;
       const playPromise = el.video.play();
