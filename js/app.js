@@ -42,9 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartTotalDisplay = document.getElementById("cart-total-display");
   const checkoutBtn = document.getElementById("checkout-btn");
 
-  // Shade Studio (previu kamera) dikendalikan oleh scripts/shade-studio.js.
-  // Di sini kita hanya mendedahkan hook troli kepada modul tersebut.
-
   // Tabs
   const tabButtons = document.querySelectorAll(".tab-btn");
 
