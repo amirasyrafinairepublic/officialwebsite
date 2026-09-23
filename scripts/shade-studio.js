@@ -164,6 +164,8 @@ function bootstrap() {
     fps: 0,
     shadeIndex: 9,           // Persian Red (lalai)
     strength: 0.80,
+    modelReady: false,
+    modelUnavailable: false,
     imageCache: null,        // { mask, source, w, h } untuk mod gambar
     statusTimer: null
   };
@@ -439,7 +441,13 @@ function bootstrap() {
     setButtonBusy(true);
     try {
       stopCamera();
-      await loadSegmenter("IMAGE");
+      let modelOk = true;
+      try {
+        await loadSegmenter("IMAGE");
+      } catch (modelErr) {
+        modelOk = false;
+        console.warn("[ShadeStudio] Model gagal dimuat — simulasi penuh digunakan:", modelErr);
+      }
 
       const objectUrl = URL.createObjectURL(file);
       try {
@@ -457,7 +465,10 @@ function bootstrap() {
       setStatus("Menganalisis gambar anda dalam peranti...", true);
 
       state.mode = "image";
-      segmentUploadedImage();
+      state.modelUnavailable = !modelOk;
+      if (modelOk) {
+        segmentUploadedImage();
+      }
       redrawImage();
 
       if (el.captureBtn) el.captureBtn.disabled = false;
@@ -466,7 +477,9 @@ function bootstrap() {
         el.startBtn.textContent = "MULA KAMERA";
         el.startBtn.setAttribute("aria-pressed", "false");
       }
-      setStatus("Gambar diproses dalam peranti ini sahaja. Pilih tona lain untuk bandingkan.");
+      setStatus(modelOk
+        ? "Gambar diproses dalam peranti ini sahaja. Pilih tona lain untuk bandingkan."
+        : "Simulasi penuh keseluruhan gambar (segmentasi rambut tiada — model/CDN gagal). Pilih tona lain untuk bandingkan.");
     } catch (err) {
       console.warn("[ShadeStudio] Muat naik gambar gagal:", err);
       setStatus("Gambar tidak dapat diproses. Sila cuba gambar lain, atau guna kamera.");
@@ -566,8 +579,32 @@ function bootstrap() {
     ctx.globalCompositeOperation = "source-over";
     ctx.filter = "none";
     ctx.drawImage(imageCanvas, 0, 0, size, size);
-    paintOverlay(ctx, size, size, currentShade(), state.strength);
+    if (state.modelUnavailable) {
+      // Fallback tanpa segmentasi — tonakan penuh yang lembut supaya
+      // "MUAT NAIK GAMBAR" tetap berfungsi walau model/CDN gagal.
+      paintFullTint(ctx, size, size, currentShade(), state.strength);
+    } else {
+      paintOverlay(ctx, size, size, currentShade(), state.strength);
+    }
     ctx.restore();
+  }
+
+  /* Tonakan penuh (soft-light) — fallback bila segmentasi tidak tersedia. */
+  function paintFullTint(targetCtx, w, h, shade, strength) {
+    if (strength <= 0) return;
+    const dark = hexToRgb(shade.shadow);
+    const light = hexToRgb(shade.highlight);
+    const mid = hexToRgb(shade.hex);
+    const grad = targetCtx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, "rgb(" + light.r + "," + light.g + "," + light.b + ")");
+    grad.addColorStop(0.5, "rgb(" + mid.r + "," + mid.g + "," + mid.b + ")");
+    grad.addColorStop(1, "rgb(" + dark.r + "," + dark.g + "," + dark.b + ")");
+    targetCtx.save();
+    targetCtx.globalAlpha = clamp01(strength);
+    targetCtx.globalCompositeOperation = "soft-light";
+    targetCtx.fillStyle = grad;
+    targetCtx.fillRect(0, 0, w, h);
+    targetCtx.restore();
   }
 
 /* ------------------------------------------------------------------------
@@ -634,9 +671,6 @@ function bootstrap() {
     state.loading = true;
     setButtonBusy(true);
     try {
-      // Model 16 MB — hanya dimuatkan sekarang, bukan semasa page dibuka.
-      await loadSegmenter("VIDEO");
-
       state.mode = "video";
       // NOTA DESKTOP: webcam biasanya TIDAK melaporkan facingMode, jadi
       // constraint wajib "facingMode: 'user'" akan gagal OverconstrainedError.
@@ -693,6 +727,24 @@ function bootstrap() {
 
       if (state.rafId) cancelAnimationFrame(state.rafId);
       state.rafId = requestAnimationFrame(renderLoop);
+
+      // Model 16 MB dimuat SECARA BERLATAR — previu kamera hidup dahulu,
+      // warna mula dilaksanakan sebaik model siap. Kalau CDN/rangkaian disekat,
+      // kamera TETAP berjalan (tanpa warna) dan mesej jelas diberi.
+      state.modelReady = false;
+      state.modelUnavailable = false;
+      loadSegmenter("VIDEO")
+        .then(function () {
+          state.modelReady = true;
+          state.modelUnavailable = false;
+          state.lastSegmentTs = -Infinity;
+          setStatus("Model siap — simulasi warna kini aktif pada rambut anda.");
+        })
+        .catch(function (modelErr) {
+          state.modelUnavailable = true;
+          console.warn("[ShadeStudio] Model gagal dimuat:", modelErr);
+          setStatus("Previu kamera berjalan, tetapi model simulasi tidak dapat dimuat (CDN/rangkaian disekat) — warna tiada buat sementara. Cuba rangkaian/pelayar lain.");
+        });
 
       await refreshDeviceCount();
     } catch (err) {
