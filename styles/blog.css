@@ -1,0 +1,507 @@
+/* ==========================================================================
+   INAI REPUBLIC x SAINT LAURENT DESIGN SYSTEM
+   Blog System Stylesheet — styles/blog.css
+   Homepage Blog Preview Carousel • Blog Index Grid • Article Reading View
+   Loaded after styles/tokens.css and styles/main.css. No protected file was
+   modified to add these rules.
+   ========================================================================== */
+
+/* -----------------------------------------------------------------------------
+   1. Shared Blog Cards (homepage carousel + blog index grid)
+   -------------------------------------------------------------------------- */
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  transition:
+    transform var(--motion-duration-fast) var(--motion-ease-luxury),
+    border-color var(--motion-duration-fast) var(--motion-ease-luxury);
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-hover);
+}
+
+.blog-card-link {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  color: inherit;
+}
+
+.blog-card-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--color-surface-muted);
+}
+
+.blog-card-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--motion-duration-slow) var(--motion-ease-luxury);
+}
+
+.blog-card:hover .blog-card-img {
+  transform: scale(1.04);
+}
+
+.blog-card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--space-3);
+  padding: var(--space-7);
+}
+
+.blog-card-date {
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.blog-card-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.blog-card-excerpt {
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-relaxed);
+  color: var(--color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card-cta {
+  margin-top: auto;
+  padding-top: var(--space-5);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold-light);
+}
+
+/* -----------------------------------------------------------------------------
+   2. Homepage Blog Preview + Accessible Carousel
+   -------------------------------------------------------------------------- */
+
+.blog-preview-section,
+.blog-legacy-anchor {
+  scroll-margin-top: calc(var(--header-height) + var(--space-6));
+}
+
+.blog-legacy-anchor {
+  display: block;
+  position: relative;
+}
+
+.blog-carousel {
+  margin-top: var(--space-8);
+}
+
+.blog-carousel-track {
+  display: flex;
+  gap: var(--space-8);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: var(--space-6);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-default) var(--color-surface-muted);
+}
+
+.blog-carousel-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.blog-carousel-track::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+  border-radius: var(--radius-pill);
+}
+
+.blog-carousel-slide {
+  display: flex;
+  flex: 0 0 clamp(260px, 30%, 360px);
+  scroll-snap-align: start;
+}
+
+.blog-carousel-slide .blog-card {
+  width: 100%;
+}
+
+.blog-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-top: var(--space-4);
+}
+
+.blog-carousel-status {
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.blog-carousel-buttons {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.blog-carousel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--color-accent-gold);
+  background-color: transparent;
+  border: 1px solid var(--color-border-default);
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-duration-instant) var(--motion-ease-luxury),
+    border-color var(--motion-duration-instant) var(--motion-ease-luxury);
+}
+
+.blog-carousel-btn:hover:not(:disabled) {
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-border-hover);
+}
+
+.blog-carousel-btn:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--color-accent-gold);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.blog-carousel-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.blog-noscript-list {
+  margin-top: var(--space-8);
+  padding-left: var(--space-8);
+  color: var(--color-text-secondary);
+}
+
+.blog-noscript-list li {
+  margin-bottom: var(--space-4);
+}
+
+.blog-noscript-list a {
+  color: var(--color-accent-gold-light);
+}
+
+/* -----------------------------------------------------------------------------
+   3. Blog Index Grid (blog.html)
+   -------------------------------------------------------------------------- */
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-8);
+}
+
+/* -----------------------------------------------------------------------------
+   4. Article Reading View (blog/*.html)
+   -------------------------------------------------------------------------- */
+
+.blog-article-hero .page-hero-title {
+  font-size: clamp(26px, 4.5vw, 52px);
+  line-height: var(--font-line-height-tight);
+}
+
+.blog-article-hero .breadcrumb span[aria-current="page"] {
+  max-width: 40ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blog-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.blog-article {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-article-figure {
+  margin: 0 0 var(--space-10);
+  overflow: hidden;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+}
+
+.blog-article-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.blog-article-body {
+  font-size: var(--font-size-md);
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.blog-article-body > *:first-child {
+  margin-top: 0;
+}
+
+.blog-article-body p {
+  margin: 0 0 var(--space-8);
+}
+
+.blog-article-body h2,
+.blog-article-body h3,
+.blog-article-body h4,
+.blog-article-body h5 {
+  margin: var(--space-10) 0 var(--space-6);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.05em;
+  line-height: var(--font-line-height-tight);
+  text-transform: uppercase;
+}
+
+.blog-article-body h2 {
+  padding-bottom: var(--space-4);
+  font-size: var(--font-size-2xl);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.blog-article-body h3 {
+  font-size: var(--font-size-xl);
+}
+
+.blog-article-body h4 {
+  font-size: var(--font-size-lg);
+}
+
+.blog-article-body h5 {
+  font-size: var(--font-size-md);
+  color: var(--color-accent-gold-light);
+}
+
+.blog-article-body ul,
+.blog-article-body ol {
+  margin: 0 0 var(--space-8);
+  padding-left: var(--space-8);
+}
+
+.blog-article-body li {
+  margin-bottom: var(--space-4);
+}
+
+.blog-article-body a {
+  color: var(--color-accent-gold-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.blog-article-body strong,
+.blog-article-body b {
+  color: var(--color-text-primary);
+}
+
+.blog-article-body blockquote {
+  margin: var(--space-8) 0;
+  padding: var(--space-7) var(--space-8);
+  background-color: var(--color-surface-elevated);
+  border-left: 3px solid var(--color-accent-gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.blog-article-body figure {
+  margin: var(--space-8) 0;
+}
+
+.blog-article-body figcaption {
+  margin-top: var(--space-3);
+  font-size: var(--font-size-xs);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.blog-article-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+.blog-article-body hr {
+  margin: var(--space-10) 0;
+  border: 0;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.blog-article-source {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.blog-article-source a {
+  color: var(--color-accent-gold-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* -----------------------------------------------------------------------------
+   5. Article prev/next navigation + back link
+   -------------------------------------------------------------------------- */
+
+.blog-article-nav:empty {
+  display: none;
+}
+
+.blog-article-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.blog-article-nav .is-prev {
+  grid-column: 1;
+}
+
+.blog-article-nav .is-next {
+  grid-column: 2;
+}
+
+.blog-article-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-7);
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+  transition:
+    border-color var(--motion-duration-fast) var(--motion-ease-luxury),
+    background-color var(--motion-duration-fast) var(--motion-ease-luxury);
+}
+
+.blog-article-nav-link:hover {
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-border-hover);
+}
+
+.blog-article-nav-label {
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.blog-article-nav-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.blog-article-back {
+  display: flex;
+  justify-content: center;
+  padding-bottom: var(--space-6);
+}
+
+/* -----------------------------------------------------------------------------
+   6. Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-carousel-slide {
+    flex-basis: 82%;
+  }
+
+  .blog-article-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-article-nav .is-next {
+    grid-column: 1;
+  }
+
+  .blog-preview-section .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   7. Reduced motion (WCAG 2.3.3)
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-carousel-track {
+    scroll-behavior: auto;
+  }
+
+  .blog-card,
+  .blog-card-img,
+  .blog-carousel-btn,
+  .blog-article-nav-link {
+    transition: none;
+  }
+
+  .blog-card:hover {
+    transform: none;
+  }
+
+  .blog-card:hover .blog-card-img {
+    transform: none;
+  }
+}

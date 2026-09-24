@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Artikel, panduan hukum dan renungan kecantikan Islam daripada Inai Republic.">
+  <meta name="theme-color" content="#61162d">
+  <title>Blog | INAI REPUBLIC</title>
+
+  <!-- Typography: Montserrat Family (Inai Republic Preference) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/blog.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content" id="skip-link">Langkau ke kandungan utama</a>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+<div class="header-container">
+<nav class="nav-left" aria-label="Navigasi Utama">
+<button class="icon-btn mobile-toggle" id="mobile-menu-btn" aria-label="Buka Menu" aria-expanded="false">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</button>
+<ul class="nav-menu" id="nav-menu">
+<li><a href="index.html" class="nav-link">Utama</a></li>
+<li class="nav-item-has-dropdown" id="koleksi-dropdown">
+<a href="index.html#katalog" class="nav-link dropdown-toggle" id="koleksi-toggle" aria-haspopup="true" aria-expanded="false">Koleksi
+<svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</a>
+<ul class="dropdown-menu" aria-labelledby="koleksi-toggle">
+<li><a href="henna-hair-colour.html" class="dropdown-link">Henna Hair Colour</a></li>
+<li><a href="henna-hair-care.html" class="dropdown-link">Henna Hair Care</a></li>
+<li><a href="nail-henna.html" class="dropdown-link">Nail Henna</a></li>
+<li><a href="henna-soap.html" class="dropdown-link">Henna Soap</a></li>
+</ul>
+</li>
+<li><a href="shop.html" class="nav-link nav-shop-btn">SHOP</a></li>
+<li><a href="blog.html" class="nav-link active">Blog</a></li>
+<li><a href="index.html#maison" class="nav-link">Hubungi Kami</a></li>
+</ul>
+</nav>
+<div class="brand-logo-wrap">
+<a href="index.html" class="brand-logo" aria-label="Inai Republic Laman Utama">
+<img src="https://inairepublic.com/wp-content/uploads/2023/11/logo-inai_d2-02.png" alt="Inai Republic Official Logo" style="height: 38px; width: auto; object-fit: contain; filter: brightness(1.2);">
+</a>
+</div>
+<div class="header-actions">
+<button class="icon-btn" id="search-btn" aria-label="Cari Produk">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+</button>
+<button class="icon-btn" id="cart-toggle-btn" aria-label="Troli Beli-belah" aria-haspopup="dialog">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+<span class="cart-counter" id="cart-counter" aria-live="polite">2</span>
+</button>
+</div>
+</div>
+</header>
+
+  <main id="main-content">
+    <section class="page-hero" aria-label="Blog Inai Republic">
+      <div class="page-hero-container">
+        <nav class="breadcrumb" aria-label="Laluan navigasi">
+          <a href="index.html">Utama</a><span aria-hidden="true">/</span>
+          <span aria-current="page">Blog</span>
+        </nav>
+        <span class="hero-tag">JURNAL INAI REPUBLIC</span>
+        <h1 class="page-hero-title">BLOG</h1>
+        <p class="page-hero-subtitle">Artikel, panduan hukum dan renungan kecantikan Islam daripada Inai Republic.</p>
+      </div>
+    </section>
+
+    <section class="section-wrapper" aria-labelledby="blog-index-heading">
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="section-sub">SEMUA ARTIKAL &bull; 8</span>
+          <h2 class="section-title" id="blog-index-heading">KOLEKSI ARTIKEL</h2>
+        </div>
+      </div>
+
+      <div class="blog-grid" id="blog-grid"></div>
+
+      <noscript>
+        <ul class="blog-noscript-list">
+          <li><a href="blog/jangan-putus-asa.html">Jangan Putus Asa</a></li>
+          <li><a href="blog/hijrah-diri.html">Hijrah Diri</a></li>
+          <li><a href="blog/kecantikan-menurut-islam.html">Kecantikkan Ciptaan Dan Tuturkata</a></li>
+          <li><a href="blog/kecantikan-adalah-ibadah.html">Kecantikan Adalah Ibadah</a></li>
+          <li><a href="blog/berhias-ketika-hari-raya-menurut-islam.html">Mencantikkan Diri Dan Berhias Ketika Berhari Raya Dalam Islam</a></li>
+          <li><a href="blog/konsep-kecantikan-dalam-islam.html">Konsep Kecantikan Dalam Islam</a></li>
+          <li><a href="blog/hukum-mewarnakan-rambut-dengan-warna-hitam.html">Hukum Mewarnakan Rambut Dengan Warna Hitam</a></li>
+          <li><a href="blog/inai-republic-tak-halal-betul-ke.html">Inai Republic tak halal? Betul ke?</a></li>
+        </ul>
+      </noscript>
+    </section>
+  </main>
+
+<!-- FOOTER -->
+<footer class="site-footer" id="maison">
+<div class="section-wrapper footer-container">
+<div class="footer-top-grid">
+<div>
+<div class="footer-brand-name">INAI REPUBLIC<span class="sub-tag">HAUTE BOTANIQUE MALAYSIA</span></div>
+<p>Menerajui revolusi inai moden bertaraf antarabangsa. Menggabungkan kemewahan estetik, ketelusan sains makmal, dan pematuhan hukum syarak.</p>
+<form class="footer-newsletter-form" onsubmit="event.preventDefault(); alert('Terima kasih kerana menyertai senarai VIP Inai Republic.');">
+<label class="sr-only">Alamat E-mel</label>
+<div class="footer-input-group"><input type="email" class="footer-input" placeholder="MASUKKAN E-MEL VIP ANDA" required><button type="submit" class="footer-submit-btn">LANGGAN</button></div>
+</form>
+</div>
+<div>
+<h4 class="footer-col-title">KOLEKSI</h4>
+<ul class="footer-links-list">
+<li><a href="henna-hair-colour.html" class="footer-link">Henna Hair Colour</a></li>
+<li><a href="henna-hair-care.html" class="footer-link">Henna Hair Care</a></li>
+<li><a href="nail-henna.html" class="footer-link">Nail Henna</a></li>
+<li><a href="henna-soap.html" class="footer-link">Henna Soap</a></li>
+</ul>
+</div>
+<div>
+<h4 class="footer-col-title">MAISON</h4>
+<ul class="footer-links-list">
+<li><a href="index.html" class="footer-link">Kisah Inai Republic</a></li>
+<li><a href="index.html#sains-wuduk" class="footer-link">Kajian Ketelapan Air</a></li>
+<li><a href="index.html#maison" class="footer-link">Hubungi Kami</a></li>
+</ul>
+</div>
+<div>
+<h4 class="footer-col-title">PERKHIDMATAN PELANGGAN</h4>
+<ul class="footer-links-list">
+<li><a href="#" class="footer-link">Jejak Pesanan (Tracking)</a></li>
+<li><a href="#" class="footer-link">Dasar Penghantaran dan Pulangan</a></li>
+<li><a href="#" class="footer-link">Panduan Pemakaian Inai</a></li>
+<li><a href="index.html#maison" class="footer-link">Hubungi Khidmat Pelanggan VIP</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom-bar">
+<div><p>© 2026 INAI REPUBLIC ENTERPRISE. HAK CIPTA TERPELIHARA.</p></div>
+<div class="footer-legal-links"><a href="#" class="footer-link">Dasar Privasi</a><a href="#" class="footer-link">Terma dan Syarat</a></div>
+</div>
+</div>
+</footer>
+<div class="cart-backdrop" id="cart-backdrop" aria-hidden="true">
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title">
+<div class="cart-header">
+<h3 id="cart-drawer-title">TROLI MEMBELI-BELAH (<span id="cart-items-count">2</span>)</h3>
+<button class="icon-btn" id="cart-close-btn" aria-label="Tutup Troli">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="cart-items-body" id="cart-items-container"></div>
+<div class="cart-footer">
+<div class="cart-subtotal-row">
+<span>JUMLAH KESELURUHAN</span>
+<span class="cart-subtotal-price" id="cart-total-display">RM 104.00</span>
+</div>
+<p class="cart-shipping-note">✓ Anda layak menerima <strong>Penghantaran Percuma</strong> ke seluruh negara!</p>
+<button class="btn btn-primary" style="width: 100%;" id="checkout-btn">TERUSKAN KE PEMBAYARAN (CHECKOUT)</button>
+</div>
+</aside>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/blog-data.js"></script>
+<script src="js/blog.js"></script>
+</body>
+</html>
+
+
+

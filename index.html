@@ -15,7 +15,9 @@
   <!-- Core Stylesheets -->
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/colour-studio.css">
   <link rel="stylesheet" href="styles/live-popup.css">
+  <link rel="stylesheet" href="styles/blog.css">
 </head>
 <body>
 
@@ -264,51 +266,99 @@
       </div>
     </section>
 
-    <!-- 5. Editorial Story & Halal Science Section -->
-    <section class="editorial-story-section" id="sains-wuduk" aria-labelledby="sains-wuduk-title">
-      <div class="editorial-layout">
-        <div class="editorial-media-card">
-          <img src="https://inairepublic.com/wp-content/uploads/2025/05/photo_6147422103226401940_y-e1748590390685.jpg" alt="Ujian makmal klinikal ketelapan air Inai Republic" style="width: 100%; height: 500px; object-fit: cover;">
+    <!-- 4. Colour Studio (12 Tona Rasmi — Colour-First Shade Explorer) -->
+    <section class="section-wrapper colour-studio" id="colour-studio" aria-labelledby="colour-studio-heading">
+      <div class="colour-studio-layout">
+
+        <!-- Copy: eyebrow, heading, supporting copy -->
+        <div class="colour-studio-copy">
+          <span class="colour-studio-eyebrow">Colour Studio</span>
+          <h2 class="colour-studio-heading" id="colour-studio-heading">Try Your Hair Colour</h2>
+          <p class="colour-studio-lead">Explore our shades and discover the colour that suits you best.</p>
         </div>
-        <div class="editorial-copy">
-          <span class="editorial-tag">INOVASI KECANTIKAN HALAL</span>
-          <h2 class="editorial-headline" id="sains-wuduk-title">SAINS KETELAPAN AIR & KESUCIAN IBADAH</h2>
-          <p class="editorial-lead">
-            Inai Republic memecahkan tradisi dengan menggabungkan ekstrak inai botani tradisional bersama teknologi molekul telap air mikro.
-          </p>
-          <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); line-height: 1.7;">
-            Tidak seperti pengilat kuku kimia biasa yang membentuk lapisan plastik penghalang air (impermeable barrier), formula inai kami meresap ke dalam keratin kuku tanpa menghalang aliran air wuduk ke permukaan kuku asli.
-          </p>
 
-          <div class="science-points">
-            <div class="science-point-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              <div>
-                <h5>Lulus Ujian Makmal Kimia SIRIM / KKM</h5>
-                <p>Formula berdaftar secara rasmi di bawah Bahagian Regulatori Farmasi Negara (NPRA).</p>
-              </div>
-            </div>
-
-            <div class="science-point-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              <div>
-                <h5>Bebas Bahan Kimia Merbahaya</h5>
-                <p>0% Paraben, 0% Ammonia, dan bebas bahan perosak struktur kuku (anti-brittle).</p>
-              </div>
-            </div>
+        <!-- Main preview: follows the selected shade -->
+        <figure class="colour-studio-preview">
+          <div class="colour-studio-preview-media" id="colour-studio-preview-media">
+            <img src="https://inairepublic.com/wp-content/uploads/2026/09/NEW-HONEY-BROWN.png" alt="Pratonton warna rambut tona Honey Brown" id="colour-studio-preview-img" data-shade-id="honey-brown" fetchpriority="high">
+            <span class="colour-studio-preview-index" id="colour-studio-preview-index">Tona 01 / 12</span>
           </div>
+        </figure>
 
-          <div style="margin-top: var(--space-4);">
-            <a href="#katalog" class="btn btn-secondary">LIHAT LAPORAN UJIAN MAKMAL</a>
+        <!-- Selected shade readout -->
+        <div class="colour-studio-selected">
+          <span class="colour-studio-selected-label">Tona Dipilih</span>
+          <p class="colour-studio-selected-name" id="colour-studio-selected-name">Honey Brown</p>
+          <p class="colour-studio-chip" id="colour-studio-selected-chip">Best Selling</p>
+        </div>
+
+        <!-- 12 official shades — order is FINAL, rendered from js/colour-studio.js -->
+        <div class="colour-studio-selector-block">
+          <div class="colour-studio-selector-head">
+            <h3 class="colour-studio-selector-title" id="colour-studio-selector-title">12 Tona Rasmi Inai Republic</h3>
+            <span class="colour-studio-selector-hint">Skrol untuk lihat semua tona</span>
+          </div>
+          <ul class="colour-studio-selector" id="colour-studio-selector" role="list" aria-labelledby="colour-studio-selector-title"></ul>
+          <noscript>
+            <p class="colour-studio-noscript">Aktifkan JavaScript untuk memilih tona. Tona rasmi: Honey Brown, Chocolate Brown, Coco Black, Mocha Milk Tea, Hazelnut, Royal Chestnut, Persian Red, Caramel Gold, Olive Jade, Burgundy, Ash Brown, Ash Grey.</p>
+          </noscript>
+        </div>
+
+        <!-- Try-on CTA: Inai Republic hair colour filter on TikTok -->
+        <div class="colour-studio-cta">
+          <span class="colour-studio-cta-eyebrow">Try It Yourself</span>
+          <h3 class="colour-studio-cta-title">Cuba Warna Rambut Anda</h3>
+          <p class="colour-studio-cta-text">Lihat bagaimana warna Inai Republic kelihatan pada rambut anda melalui TikTok.</p>
+          <a class="btn btn-primary colour-studio-cta-btn" href="https://vt.tiktok.com/ZS9A9VPb3W9TC-nV2bh/" target="_blank" rel="noopener noreferrer">
+            Try Hair Colour on TikTok
+            <span aria-hidden="true">&#8594;</span>
+          </a>
+          <p class="colour-studio-status" id="colour-studio-status" role="status"></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. Blog Preview Section -->
+    <section class="section-wrapper blog-preview-section" id="blog" aria-labelledby="blog-preview-heading">
+      <!-- Legacy anchor: keeps existing #sains-wuduk nav/footer links working -->
+      <span id="sains-wuduk" class="blog-legacy-anchor" aria-hidden="true"></span>
+
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="section-sub">JURNAL INAI REPUBLIC</span>
+          <h2 class="section-title" id="blog-preview-heading">ARTIKEL &amp; PANDUAN KECANTIKAN HALAL</h2>
+        </div>
+        <a href="blog.html" class="btn btn-secondary">LIHAT SEMUA ARTIKEL</a>
+      </div>
+
+      <div class="blog-carousel" role="region" aria-roledescription="carousel" aria-label="Artikel blog terkini">
+        <div class="blog-carousel-track" id="blog-carousel-track" tabindex="0"></div>
+        <div class="blog-carousel-controls">
+          <p class="blog-carousel-status" id="blog-carousel-status" aria-live="polite"></p>
+          <div class="blog-carousel-buttons">
+            <button type="button" class="blog-carousel-btn" id="blog-carousel-prev" aria-label="Artikel sebelumnya" aria-controls="blog-carousel-track">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button type="button" class="blog-carousel-btn" id="blog-carousel-next" aria-label="Artikel seterusnya" aria-controls="blog-carousel-track">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
           </div>
         </div>
       </div>
+
+      <noscript>
+        <ul class="blog-noscript-list">
+          <li><a href="blog/jangan-putus-asa.html">Jangan Putus Asa</a></li>
+          <li><a href="blog/hijrah-diri.html">Hijrah Diri</a></li>
+          <li><a href="blog/kecantikan-menurut-islam.html">Kecantikkan Ciptaan Dan Tuturkata</a></li>
+          <li><a href="blog/kecantikan-adalah-ibadah.html">Kecantikan Adalah Ibadah</a></li>
+          <li><a href="blog/berhias-ketika-hari-raya-menurut-islam.html">Mencantikkan Diri Dan Berhias Ketika Berhari Raya Dalam Islam</a></li>
+          <li><a href="blog/konsep-kecantikan-dalam-islam.html">Konsep Kecantikan Dalam Islam</a></li>
+          <li><a href="blog/hukum-mewarnakan-rambut-dengan-warna-hitam.html">Hukum Mewarnakan Rambut Dengan Warna Hitam</a></li>
+          <li><a href="blog/inai-republic-tak-halal-betul-ke.html">Inai Republic tak halal? Betul ke?</a></li>
+        </ul>
+      </noscript>
     </section>
 
   </main>
@@ -586,5 +636,8 @@
   <!-- Interactive JavaScript Logic -->
   <script src="js/app.js"></script>
   <script src="js/live-popup.js"></script>
+  <script src="js/colour-studio.js"></script>
+  <script src="js/blog-data.js"></script>
+  <script src="js/blog.js"></script>
 </body>
 </html>
