@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../styles/tokens.css">
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/blog.css">
+  <link rel="stylesheet" href="../styles/footer.css">
 </head>
 <body data-base="..">
   <a href="#main-content" class="skip-to-content" id="skip-link">Langkau ke kandungan utama</a>
@@ -288,51 +289,87 @@
     </div>
   </main>
 
-<!-- FOOTER -->
-<footer class="site-footer" id="maison">
-<div class="section-wrapper footer-container">
-<div class="footer-top-grid">
-<div>
-<div class="footer-brand-name">INAI REPUBLIC<span class="sub-tag">HAUTE BOTANIQUE MALAYSIA</span></div>
-<p>Menerajui revolusi inai moden bertaraf antarabangsa. Menggabungkan kemewahan estetik, ketelusan sains makmal, dan pematuhan hukum syarak.</p>
-<form class="footer-newsletter-form" onsubmit="event.preventDefault(); alert('Terima kasih kerana menyertai senarai VIP Inai Republic.');">
-<label class="sr-only">Alamat E-mel</label>
-<div class="footer-input-group"><input type="email" class="footer-input" placeholder="MASUKKAN E-MEL VIP ANDA" required><button type="submit" class="footer-submit-btn">LANGGAN</button></div>
-</form>
-</div>
-<div>
-<h4 class="footer-col-title">KOLEKSI</h4>
-<ul class="footer-links-list">
-<li><a href="../henna-hair-colour.html" class="footer-link">Henna Hair Colour</a></li>
-<li><a href="../henna-hair-care.html" class="footer-link">Henna Hair Care</a></li>
-<li><a href="../nail-henna.html" class="footer-link">Nail Henna</a></li>
-<li><a href="../henna-soap.html" class="footer-link">Henna Soap</a></li>
-</ul>
-</div>
-<div>
-<h4 class="footer-col-title">MAISON</h4>
-<ul class="footer-links-list">
-<li><a href="../index.html" class="footer-link">Kisah Inai Republic</a></li>
-<li><a href="../index.html#sains-wuduk" class="footer-link">Kajian Ketelapan Air</a></li>
-<li><a href="../index.html#maison" class="footer-link">Hubungi Kami</a></li>
-</ul>
-</div>
-<div>
-<h4 class="footer-col-title">PERKHIDMATAN PELANGGAN</h4>
-<ul class="footer-links-list">
-<li><a href="#" class="footer-link">Jejak Pesanan (Tracking)</a></li>
-<li><a href="#" class="footer-link">Dasar Penghantaran dan Pulangan</a></li>
-<li><a href="#" class="footer-link">Panduan Pemakaian Inai</a></li>
-<li><a href="../index.html#maison" class="footer-link">Hubungi Khidmat Pelanggan VIP</a></li>
-</ul>
-</div>
-</div>
-<div class="footer-bottom-bar">
-<div><p>© 2026 INAI REPUBLIC ENTERPRISE. HAK CIPTA TERPELIHARA.</p></div>
-<div class="footer-legal-links"><a href="#" class="footer-link">Dasar Privasi</a><a href="#" class="footer-link">Terma dan Syarat</a></div>
-</div>
-</div>
-</footer>
+  <!-- Premium Four-Column Footer (Inai Republic) -->
+  <footer class="site-footer" id="maison">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+
+        <!-- Column 1 — Brand & VIP Subscription -->
+        <div class="footer-brand-col">
+          <div class="footer-brand-name">INAI REPUBLIC</div>
+          <p class="footer-brand-tagline">Beauty Rooted in Confidence</p>
+          <p class="footer-brand-description">Menerajui revolusi inai moden bertaraf antarabangsa. Menggabungkan kemewahan estetik, ketelusan sains makmal, dan pematuhan hukum syarak.</p>
+          <form class="footer-newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); alert('Terima kasih kerana menyertai senarai VIP Inai Republic.');">
+            <label for="newsletter-email" class="sr-only">Alamat E-mel</label>
+            <div class="footer-input-group">
+              <input type="email" id="newsletter-email" name="email" class="footer-input" placeholder="MASUKKAN E-MEL ANDA" autocomplete="email" required>
+              <button type="submit" class="footer-submit-btn">LANGGAN</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Column 2 — KOLEKSI -->
+        <div class="footer-column">
+          <h4 class="footer-col-title">KOLEKSI</h4>
+          <ul class="footer-links-list">
+            <li><a href="../henna-hair-colour.html" class="footer-link">Henna Hair Colour</a></li>
+            <li><a href="../henna-hair-care.html" class="footer-link">Henna Hair Care</a></li>
+            <li><a href="../nail-henna.html" class="footer-link">Nail Henna</a></li>
+            <li><a href="../henna-soap.html" class="footer-link">Henna Soap</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 — INAI REPUBLIC -->
+        <div class="footer-column">
+          <h4 class="footer-col-title">INAI REPUBLIC</h4>
+          <ul class="footer-links-list">
+            <li><a href="../our-story.html" class="footer-link">Our Story</a></li>
+            <li><a href="../halal-assurance.html" class="footer-link">Halal Assurance</a></li>
+            <li><a href="../laboratory-quality-testing.html" class="footer-link">Laboratory &amp; Quality Testing</a></li>
+            <li><a href="../sirim-qas-certification.html" class="footer-link">SIRIM QAS Certification</a></li>
+            <li><a href="../sirim-certification.html" class="footer-link">SIRIM Certification</a></li>
+            <li><a href="../research-development.html" class="footer-link">Research &amp; Development</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4 — CUSTOMER CARE -->
+        <div class="footer-column">
+          <h4 class="footer-col-title">CUSTOMER CARE</h4>
+          <div class="footer-contact-block">
+            <p class="footer-contact-item">
+              <span class="footer-contact-label">Inai Republic HQ</span>
+              <a class="footer-address-link" href="https://www.google.com/maps/dir//INAI+REPUBLIC+HQ,+Inai+Republic+HQ,+60-2,+Jalan+Prima+SG+2,+Prima+Seri+Gombak,+68100+Batu+Caves,+Selangor/@3.2401354,101.6954442,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x31cc476d866aa637:0x8dcf04e58968ff14!2m2!1d101.7011351!2d3.2392347?entry=ttu&amp;g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">60-2, Jalan Prima SG 2<br>Prima Seri Gombak<br>68100 Batu Caves, Selangor</a>
+            </p>
+            <p class="footer-contact-item">
+              <span class="footer-contact-label">Telefon</span>
+              <a class="footer-contact-link" href="tel:+601158912223">+60 11 589 12223</a>
+            </p>
+            <p class="footer-contact-item">
+              <span class="footer-contact-label">E-mel</span>
+              <a class="footer-contact-link" href="mailto:info@inairepublic.com">info@inairepublic.com</a>
+            </p>
+            <p class="footer-contact-item footer-contact-static">
+              <span class="footer-contact-label">Syarikat</span>
+              <span class="footer-company-name">Furaiha Legacy Sdn Bhd</span><br>
+              <span class="footer-company-reg">SSM 1187225-K</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          <p>© 2026 INAI REPUBLIC ENTERPRISE. HAK CIPTA TERPELIHARA.</p>
+          <img src="https://inairepublic.com/wp-content/uploads/2023/11/bank.png" alt="Rakan Perbankan &amp; Pembayaran Sah" class="footer-payment-image">
+        </div>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-link">Dasar Privasi</a>
+          <a href="#" class="footer-link">Terma &amp; Syarat</a>
+          <a href="#" class="footer-link">WCAG 2.2 AA Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true">
 <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title">
 <div class="cart-header">

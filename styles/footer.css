@@ -1,0 +1,592 @@
+/* ==========================================================================
+   INAI REPUBLIC — PREMIUM FOOTER
+   Four-column global footer and reusable internal-page shell.
+   Relies on the existing token and type systems; no global tokens are changed.
+   ========================================================================== */
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(56px, 7vw, 92px) 0 28px;
+  background:
+    radial-gradient(circle at 16% 0%, rgba(197, 168, 128, 0.10), transparent 30%),
+    var(--color-surface-muted);
+  border-top: 1px solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: max(24px, calc((100% - var(--container-max-width)) / 2 + var(--space-7)));
+  width: 72px;
+  height: 2px;
+  background: var(--color-accent-gold);
+}
+
+.footer-container {
+  width: min(100% - 40px, var(--container-max-width));
+  margin-inline: auto;
+}
+
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(150px, 0.9fr) minmax(190px, 1.1fr) minmax(210px, 1.15fr);
+  gap: clamp(30px, 4vw, 64px);
+  align-items: start;
+}
+
+.footer-brand-col,
+.footer-column {
+  min-width: 0;
+}
+
+.footer-brand-col {
+  max-width: 470px;
+}
+
+.footer-brand-name {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  line-height: var(--font-line-height-tight);
+}
+
+.footer-brand-tagline {
+  margin: 10px 0 20px;
+  color: var(--color-accent-gold-light);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.035em;
+}
+
+.footer-brand-description {
+  max-width: 430px;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  line-height: 1.85;
+}
+
+.footer-col-title {
+  position: relative;
+  margin: 3px 0 22px;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  line-height: var(--font-line-height-tight);
+}
+
+.footer-col-title::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 1px;
+  margin-top: 10px;
+  background: var(--color-accent-gold);
+  opacity: 0.8;
+}
+
+.footer-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-link,
+.footer-contact-link {
+  display: inline;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: 1.65;
+  text-decoration: none;
+  text-underline-offset: 4px;
+  transition: color var(--motion-duration-instant) ease;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible,
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible {
+  color: var(--color-accent-gold-light);
+  text-decoration: underline;
+}
+
+.footer-newsletter-form {
+  max-width: 430px;
+  margin-top: 24px;
+}
+
+.footer-input-group {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  border: 1px solid rgba(197, 168, 128, 0.42);
+  background: rgba(0, 0, 0, 0.10);
+  transition: border-color var(--motion-duration-instant) ease;
+}
+
+.footer-input-group:focus-within {
+  border-color: var(--color-accent-gold);
+}
+
+.footer-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  padding: 14px 15px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--color-text-primary);
+  font-size: 10px;
+  letter-spacing: var(--font-letter-spacing-caps);
+  line-height: 1.4;
+}
+
+.footer-input:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.footer-input::placeholder {
+  color: rgba(229, 218, 218, 0.66);
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  opacity: 1;
+}
+
+.footer-submit-btn {
+  flex: 0 0 auto;
+  padding: 0 18px;
+  border: 0;
+  border-left: 1px solid rgba(197, 168, 128, 0.42);
+  background: var(--color-accent-gold);
+  color: var(--color-surface-muted);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  transition: background-color var(--motion-duration-instant) ease, color var(--motion-duration-instant) ease;
+}
+
+.footer-submit-btn:hover,
+.footer-submit-btn:focus-visible {
+  background: var(--color-accent-gold-light);
+  color: var(--color-surface-muted);
+}
+
+/* --- Column 4: Customer Care contact block --- */
+.footer-contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-contact-item {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  line-height: 1.7;
+}
+
+.footer-contact-label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--color-text-muted);
+  font-size: 9px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.footer-address-link {
+  display: inline-block;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: 1.7;
+  text-decoration: none;
+  text-underline-offset: 4px;
+  transition: color var(--motion-duration-instant) ease;
+}
+
+.footer-address-link:hover,
+.footer-address-link:focus-visible {
+  color: var(--color-accent-gold-light);
+  text-decoration: underline;
+}
+
+.footer-contact-static {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: 1.7;
+}
+
+.footer-company-name {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.footer-company-reg {
+  color: var(--color-text-muted);
+}
+
+/* --- Bottom bar --- */
+
+/* ==========================================================================
+   INTERNAL PAGE SHELL
+   Shared editorial layout for the six new support pages.
+   Uses existing tokens only — no global tokens are modified.
+   ========================================================================== */
+
+.ir-page-hero {
+  position: relative;
+  padding: clamp(56px, 8vw, 108px) 0 clamp(34px, 5vw, 58px);
+  background:
+    radial-gradient(circle at 82% 12%, rgba(197, 168, 128, 0.12), transparent 34%),
+    var(--color-surface-elevated);
+  border-bottom: 1px solid var(--color-border-subtle);
+  text-align: center;
+}
+
+.ir-page-container {
+  width: min(100% - 40px, var(--container-max-width));
+  margin-inline: auto;
+}
+
+.ir-page-eyebrow {
+  display: block;
+  margin: 0 0 16px;
+  color: var(--color-accent-gold);
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+.ir-page-hero-title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: clamp(30px, 5vw, 52px);
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.ir-page-hero-rule {
+  width: 58px;
+  height: 1px;
+  margin: 26px auto 0;
+  background: var(--color-accent-gold);
+}
+
+.ir-page-hero-intro {
+  max-width: 700px;
+  margin: 26px auto 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.9;
+}
+
+.ir-page-section {
+  padding: clamp(44px, 6vw, 86px) 0;
+}
+
+.ir-page-section-alt {
+  background: var(--color-surface-muted);
+}
+
+.ir-page-prose {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.ir-page-prose p {
+  margin: 0 0 20px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.95;
+}
+
+.ir-page-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.ir-page-section-title {
+  margin: 0 0 22px;
+  color: var(--color-text-primary);
+  font-size: clamp(19px, 2.4vw, 26px);
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0.05em;
+  line-height: 1.25;
+}
+
+.ir-page-lede {
+  max-width: 720px;
+  margin: 0 0 clamp(30px, 4vw, 48px);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+  line-height: 1.9;
+}
+
+/* --- Vision / Mission paired panels --- */
+.ir-page-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(20px, 3vw, 36px);
+}
+
+.ir-page-panel {
+  padding: clamp(26px, 3vw, 38px);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.ir-page-panel-label {
+  margin: 0 0 14px;
+  color: var(--color-accent-gold);
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+.ir-page-panel p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.9;
+}
+
+/* --- Editorial story layout --- */
+.ir-page-story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(28px, 4vw, 58px);
+  align-items: center;
+}
+
+.ir-page-figure {
+  margin: 0;
+}
+
+.ir-page-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border-subtle);
+  object-fit: cover;
+}
+
+.ir-page-figure figcaption {
+  margin-top: 12px;
+  color: var(--color-text-muted);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* --- Premium certificate presentation --- */
+.ir-certificate-frame {
+  max-width: 940px;
+  margin-inline: auto;
+  padding: clamp(18px, 3vw, 42px);
+  background: var(--color-surface-light);
+  border: 1px solid var(--color-accent-gold);
+  box-shadow: var(--shadow-elevated);
+}
+
+.ir-certificate-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   RESPONSIVE — Mobile footer stacks into a single clean vertical order:
+   1) Brand + subscription  2) KOLEKSI  3) INAI REPUBLIC  4) CUSTOMER CARE
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .footer-top-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 38px 32px;
+  }
+
+  .footer-brand-col {
+    max-width: none;
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    padding: clamp(44px, 10vw, 64px) 0 24px;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .footer-brand-col {
+    max-width: none;
+  }
+
+  .footer-col-title {
+    margin-bottom: 18px;
+  }
+
+  .footer-links-list {
+    gap: 14px;
+  }
+
+  /* Comfortable tap targets for every footer link on small screens */
+  .footer-link,
+  .footer-contact-link,
+  .footer-address-link {
+    display: inline-block;
+    padding-block: 4px;
+    font-size: var(--font-size-sm);
+  }
+
+  .footer-newsletter-form {
+    margin-top: 20px;
+  }
+
+  .footer-input-group {
+    flex-direction: column;
+    border: 0;
+    background: transparent;
+    gap: 10px;
+  }
+
+  .footer-input {
+    width: 100%;
+    border: 1px solid rgba(197, 168, 128, 0.42);
+    font-size: 10px;
+  }
+
+  .footer-submit-btn {
+    width: 100%;
+    min-height: 46px;
+    border: 1px solid var(--color-accent-gold);
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footer-legal-links {
+    gap: 10px 18px;
+  }
+
+  .ir-page-hero {
+    padding: clamp(40px, 12vw, 64px) 0 clamp(28px, 7vw, 44px);
+  }
+
+  .ir-page-hero-intro {
+    font-size: var(--font-size-xs);
+  }
+
+  .ir-certificate-frame {
+    padding: 12px;
+  }
+
+  .ir-certificate-caption {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+}
+
+.ir-certificate-caption {
+  margin: 18px 0 0;
+  color: var(--color-text-muted);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.ir-certificate-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(20px, 3vw, 34px);
+}
+
+.ir-certificate-pair .ir-certificate-frame {
+  max-width: none;
+}
+
+.ir-certificate-note {
+  max-width: 760px;
+  margin: 30px auto 0;
+  padding: 18px 22px;
+  background: var(--color-surface-card);
+  border-left: 2px solid var(--color-accent-gold);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: 1.85;
+}
+
+/* --- Back-to-collection link --- */
+.ir-page-backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  color: var(--color-accent-gold);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color var(--motion-duration-instant) ease;
+}
+
+.ir-page-backlink:hover,
+.ir-page-backlink:focus-visible {
+  color: var(--color-accent-gold-light);
+  text-decoration: underline;
+}
+
+.footer-bottom-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 40px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: clamp(40px, 5vw, 64px);
+  padding-top: 26px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.footer-bottom-bar p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 9px;
+  letter-spacing: 0.11em;
+  line-height: 1.7;
+}
+
+.footer-payment-image {
+  display: block;
+  max-width: 220px;
+  height: auto;
+  margin-top: 12px;
+  opacity: 0.8;
+}
+
+.footer-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+}
