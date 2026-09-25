@@ -11,12 +11,13 @@
 .featured-in-section {
   position: relative;
   width: 100%;
-  /* Warm off-white surface matching editorial luxury aesthetic */
-  background-color: #faf7f2;
-  color: #1a1a1a;
+  /* Reuses the exact same warm cream background used by Colour Studio preview media */
+  background-color: #fcfaf6;
+  background-color: color-mix(in srgb, var(--color-surface-light) 90%, var(--color-accent-gold-light) 10%);
+  color: var(--color-surface-base);
   padding: var(--space-16) 0;
-  border-top: 1px solid rgba(197, 168, 128, 0.22);
-  border-bottom: 1px solid rgba(197, 168, 128, 0.22);
+  border-top: 1px solid var(--color-border-default);
+  border-bottom: 1px solid var(--color-border-default);
   overflow: hidden;
 }
 
@@ -91,7 +92,12 @@
 }
 
 /* -----------------------------------------------------------------------------
-   4. Logo Item & Image Styling (Proportional, Grayscale -> Color Hover)
+   4. Logo Item & Image Styling (ALWAYS Full Colour, Original Appearance)
+   - Original full colours at all times
+   - No grayscale, no filter, no opacity reduction
+   - No hover colour transition
+   - No borders, no shadows, no background boxes behind logos
+   - Proportional, object-fit: contain, generous breathing room
    -------------------------------------------------------------------------- */
 .featured-in-logo {
   display: flex;
@@ -100,6 +106,9 @@
   flex-shrink: 0;
   width: clamp(120px, 14vw, 170px);
   height: clamp(48px, 6vw, 64px);
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
 .featured-in-img {
@@ -108,21 +117,12 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.78;
-  transition:
-    filter var(--motion-duration-fast) var(--motion-ease-luxury),
-    opacity var(--motion-duration-fast) var(--motion-ease-luxury),
-    transform var(--motion-duration-fast) var(--motion-ease-luxury);
-  backface-visibility: hidden;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .featured-in-logo:hover .featured-in-img {
-    filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.05);
-  }
+  filter: none;
+  opacity: 1;
+  display: block;
+  border: none;
+  box-shadow: none;
+  background: transparent;
 }
 
 /* -----------------------------------------------------------------------------
@@ -150,7 +150,6 @@
   .featured-in-logo { width: clamp(96px, 26vw, 120px); height: 44px; }
   .featured-in-group { gap: 28px; padding-right: 28px; }
   .featured-in-track { animation-duration: 26s; }
-  .featured-in-img { opacity: 0.82; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -175,9 +174,5 @@
     width: 100%;
     max-width: var(--container-max-width);
     margin: 0 auto;
-  }
-  .featured-in-img {
-    filter: grayscale(0%);
-    opacity: 0.9;
   }
 }
