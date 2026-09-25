@@ -4,8 +4,8 @@
    ========================================================================== */
 
 :root {
-  /* --- Brand & Surface Colors (Inai Republic Pantone 7421 C Foundation) --- */
-  --color-surface-base: #61162d;          /* Inai Republic Pantone 7421 C */
+  /* --- Brand & Surface Colors (Inai Republic Pantone 7421 C) --- */
+  --color-surface-base: #651D32;          /* Inai Republic Pantone 7421 C */
   --color-surface-elevated: #4e1023;      /* Deep Velvet Wine for Header & Drawers */
   --color-surface-card: #541226;          /* Luxurious Card Surface */
   --color-surface-hover: #731a35;         /* Subtle Lightened Wine Hover */
@@ -16,7 +16,7 @@
   --color-text-primary: #ffffff;
   --color-text-secondary: #e5dada;
   --color-text-muted: #bfaab1;
-  --color-text-inverse: #61162d;
+  --color-text-inverse: #651D32;
 
   /* --- Inai Republic Accent Colors --- */
   --color-accent-henna: #8a1c27;          /* Signature Henna Crimson */
