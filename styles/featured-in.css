@@ -11,13 +11,12 @@
 .featured-in-section {
   position: relative;
   width: 100%;
-  /* Reuses the exact same warm cream background used by Colour Studio preview media */
-  background-color: #fcfaf6;
-  background-color: color-mix(in srgb, var(--color-surface-light) 90%, var(--color-accent-gold-light) 10%);
-  color: var(--color-surface-base);
+  /* Reuses the exact same background colour as Colour Studio section */
+  background-color: var(--color-surface-base);
+  color: var(--color-text-primary);
   padding: var(--space-16) 0;
-  border-top: 1px solid var(--color-border-default);
-  border-bottom: 1px solid var(--color-border-default);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
   overflow: hidden;
 }
 
