@@ -1,0 +1,265 @@
+/* ==========================================================================
+   INAI REPUBLIC x SAINT LAURENT DESIGN SYSTEM
+   Henna Hair Colour - Hero (Panorama Editorial)
+   Page-scoped stylesheet. Loaded only by henna-hair-colour.html and only adds
+   layout for this page's hero; no shared class from main.css is redefined.
+   Reuses: .breadcrumb, .hero-tag, .hero-title, .hero-subtitle, .hero-actions,
+   .btn / .btn-primary plus the colour, spacing, motion and type tokens.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Hero Shell
+   -------------------------------------------------------------------------- */
+.henna-hero {
+  position: relative;
+  background-color: var(--color-surface-base);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.henna-hero-frame {
+  position: relative;
+  width: 100%;
+}
+
+/* Approved artwork 1961 x 802. It is kept at its intrinsic ratio and never
+   cropped or stretched, so both the 200ml applicator and the 300ml pump pack
+   stay fully visible at every screen width. */
+.henna-hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Legibility scrim. It darkens only the empty maroon negative space on the
+   left of the artwork and fades out before the products begin. It stays
+   hidden while the copy is stacked below the artwork, because no text sits
+   over the image at those widths. */
+.henna-hero-scrim {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Copy Block (stacked layout: copy under the artwork)
+   -------------------------------------------------------------------------- */
+.henna-hero-copy {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-7);
+}
+
+/* --------------------------------------------------------------------------
+   3. Desktop & Large Tablet - copy overlaid on the artwork's negative space
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .henna-hero-scrim {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    /* rgba values equal --color-surface-muted (#3c0919) at decreasing opacity */
+    background: linear-gradient(
+      90deg,
+      rgba(60, 9, 25, 0.88) 0%,
+      rgba(60, 9, 25, 0.64) 22%,
+      rgba(60, 9, 25, 0.24) 37%,
+      rgba(60, 9, 25, 0) 47%
+    );
+  }
+
+  .henna-hero-copy {
+    position: absolute;
+    inset-block: 0;
+    inset-inline: 0;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-block: var(--space-8);
+  }
+
+  /* Keeps every line of copy inside the artwork's clean left margin, so no
+     text ever overlaps the products. */
+  .henna-hero-copy > * {
+    max-width: min(34vw, 580px);
+  }
+
+  /* Scaled to the overlay width rather than the full viewport, so the title
+     always fits on two lines next to the artwork. */
+  .henna-hero .hero-title {
+    font-size: clamp(30px, 3.1vw, 54px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Section 02 - Two Sizes (200ml / 300ml)
+   Reference-matched editorial banner: one horizontal band where the text block
+   sits on the left and the two packs are introduced on the right, separated by
+   a hairline rule. No card chrome, no badges, no pricing and no buttons - it
+   only introduces the two available sizes on the brand's maroon.
+   Type treatments mirror .section-header-content .section-sub (eyebrow),
+   .section-title (heading) and .category-card-index (micro caption), so the
+   section still reads as part of the existing system.
+   -------------------------------------------------------------------------- */
+.sizes-banner {
+  /* Visible height of the reference's 200ml pack: 16.4% of the container
+     width. Both approved PNGs keep their own transparent trim, so the two
+     packs scale from this single value and stay optically paired. */
+  --pack-h: clamp(118px, 16.4vw, 230px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(var(--space-12), 6vw, var(--space-20));
+  align-items: center;
+}
+
+/* Left column. The cap keeps the heading on two lines while the banner is
+   stacked; from 1280px the grid track takes over. */
+.sizes-intro {
+  max-width: min(100%, 620px);
+}
+
+/* Eyebrow - .section-header-content .section-sub treatment */
+.sizes-eyebrow {
+  display: block;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: var(--space-3);
+}
+
+/* Heading - .section-title treatment with the reference's two-tier lockup:
+   the second line steps down so the block closes on the long line. */
+.sizes-title {
+  font-size: clamp(22px, 2.9vw, 42px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+}
+
+.sizes-title-line {
+  display: block;
+}
+
+.sizes-title-line-alt {
+  font-size: 0.84em;
+}
+
+.sizes-note {
+  margin-top: var(--space-6);
+  font-size: var(--font-size-md);
+  line-height: var(--font-line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+/* Right column - the two packs. Mobile first: stacked, hairline between them. */
+.sizes-units {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  row-gap: clamp(var(--space-8), 6vw, var(--space-12));
+}
+
+.size-figure {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: clamp(var(--space-5), 1.8vw, var(--space-8));
+}
+
+/* Size marker (200ML. / 300ML.) - the unit's heading, sized against the
+   reference's marker-to-heading ratio. */
+.size-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.size-label {
+  font-size: clamp(18px, 1.62vw, 23px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+/* Product line caption - .category-card-index treatment. It never wraps, so
+   every pack keeps the same distance from its marker. */
+.size-caption {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+}
+
+/* Hairline between the packs: horizontal while the units are stacked,
+   upright once they share a row. */
+.sizes-rule {
+  align-self: center;
+  width: clamp(72px, 26%, 140px);
+  height: 1px;
+  background-color: var(--color-border-default);
+}
+
+/* Pack artwork. Both approved PNGs are 2560px tall but carry different
+   transparent margins, so each one is scaled from --pack-h to keep the same
+   optical height on the page (the 300ml reads ~5% taller, as in the reference)
+   while never cropping, stretching or distorting either file. */
+.size-img {
+  display: block;
+  width: auto;
+  height: calc(var(--pack-h) * 1.04);
+}
+
+.size-figure-300 .size-img {
+  height: calc(var(--pack-h) * 1.30);
+}
+
+/* 560px and up: the packs share one row with the hairline standing upright
+   between them. While the banner is still stacked the pair stays a centred
+   group, which reads as one compact lockup under the text block. */
+@media (min-width: 560px) {
+  .sizes-units {
+    grid-template-columns: auto 1px auto;
+    justify-content: center;
+    column-gap: clamp(var(--space-8), 4vw, var(--space-16));
+  }
+
+  .sizes-rule {
+    width: 1px;
+    height: clamp(64px, 10.5vw, 150px);
+  }
+}
+
+/* 1340px and up: the reference banner - text block left, packs right, and the
+   hairline spread to the midpoint of the two packs. Inside the banner the packs
+   share 51.1% of the container, where the two markers, the hairline and a 24px
+   clearance either side of it claim 385px, and the pair of packs is 1.371x
+   taller than it is wide: --pack-h keeps the reference scale but never grows
+   past the room that is actually left for it. */
+@media (min-width: 1340px) {
+  .sizes-banner {
+    --pack-h: clamp(118px, min(16.4vw, calc(37.3vw - 296px)), 230px);
+    grid-template-columns: 42.5% minmax(0, 1fr);
+    column-gap: 6.4%;
+  }
+
+  .sizes-intro {
+    max-width: none;
+  }
+
+  .sizes-units {
+    justify-content: space-between;
+    column-gap: clamp(var(--space-6), 2.6vw, var(--space-10));
+  }
+}

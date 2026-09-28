@@ -1,0 +1,493 @@
+/* ==========================================================================
+   INAI REPUBLIC — COLOUR STUDIO  (Homepage Section 4)
+   Standalone component stylesheet, used ONLY by #colour-studio.
+
+   - Loaded AFTER styles/main.css. main.css and tokens.css are NOT modified.
+   - Built purely from existing design tokens: Inai Republic maroon,
+     cream/off-white, champagne gold, Montserrat, existing spacing, radius,
+     shadows and the .btn button system.
+   - No new palette, no dark mode, no glassmorphism, no decorative gradients.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CS.1  Section shell
+   -------------------------------------------------------------------------- */
+.colour-studio {
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   CS.2  Layout
+   Desktop : preview (left) | copy + shade name + controls (right)
+             | 12-shade selector strip (full width, underneath)
+   The source order already matches the required mobile sequence
+   (copy -> preview -> shade name -> selector -> CTA block), so the
+   visual order never conflicts with reading / tab order.
+   -------------------------------------------------------------------------- */
+.colour-studio-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-areas:
+    "preview copy"
+    "preview selected"
+    "preview cta"
+    "selector selector";
+  column-gap: var(--space-16);
+  row-gap: var(--space-8);
+  align-items: start;
+}
+
+.colour-studio-preview { grid-area: preview; }
+
+.colour-studio-copy { grid-area: copy; }
+
+.colour-studio-selected { grid-area: selected; }
+
+.colour-studio-selector-block { grid-area: selector; }
+
+/* --------------------------------------------------------------------------
+   CS.3  Copy column — eyebrow, heading, supporting copy
+   -------------------------------------------------------------------------- */
+.colour-studio-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 48ch;
+}
+
+.colour-studio-eyebrow {
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.colour-studio-heading {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+.colour-studio-lead {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-light);
+  color: var(--color-text-secondary);
+  line-height: var(--font-line-height-relaxed);
+}
+
+/* --------------------------------------------------------------------------
+   CS.4  Main preview
+   The preview surface is LIGHT on purpose: hair colour must read clearly, so
+   the frame is a warm off-white derived from existing tokens only
+   (white surface + champagne gold light). The maroon page background is
+   untouched, and object-fit: contain keeps every official shade image fully
+   visible (never cropped).
+   -------------------------------------------------------------------------- */
+.colour-studio-preview {
+  margin: 0;
+}
+
+.colour-studio-preview-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 560px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-surface-light);
+  /* Warm cream studio surface derived from brand tokens (no new palette). */
+  background-color: color-mix(in srgb, var(--color-surface-light) 90%, var(--color-accent-gold-light) 10%);
+  box-shadow: var(--shadow-subtle);
+}
+
+.colour-studio-preview-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity var(--motion-duration-fast) var(--motion-ease-smooth);
+}
+
+.colour-studio-preview-media.is-swapping img {
+  opacity: 0;
+}
+
+.colour-studio-preview-index {
+  position: absolute;
+  bottom: var(--space-6);
+  left: var(--space-6);
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface-muted);
+  color: var(--color-accent-gold);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   CS.5  Selected shade readout
+   -------------------------------------------------------------------------- */
+.colour-studio-selected {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.colour-studio-selected-label {
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.colour-studio-selected-name {
+  font-size: clamp(20px, 2.2vw, var(--font-size-3xl));
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--color-text-primary);
+}
+
+.colour-studio-chip {
+  align-self: flex-start;
+  padding: 4px var(--space-3);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-elevated);
+  color: var(--color-accent-gold);
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.colour-studio-chip[hidden] {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   CS.6  Try-on CTA — Inai Republic hair colour filter on TikTok
+   The try-on step is a TikTok link in the markup. Built on the shared .btn
+   design system, so no extra button styles or icon library are introduced.
+   -------------------------------------------------------------------------- */
+.colour-studio-cta {
+  grid-area: cta;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.colour-studio-cta-eyebrow {
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.colour-studio-cta-title {
+  font-size: clamp(18px, 1.6vw, var(--font-size-2xl));
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+.colour-studio-cta-text {
+  max-width: 46ch;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--font-line-height-relaxed);
+}
+
+/* Prominent call to action, but it never competes with the shade preview. */
+.colour-studio-cta-btn {
+  width: 100%;
+  max-width: 460px;
+  min-height: 46px;
+  margin-top: var(--space-3);
+}
+
+.colour-studio-status {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--font-line-height-relaxed);
+}
+
+.colour-studio-status:empty {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   CS.7  Selector block
+   -------------------------------------------------------------------------- */
+.colour-studio-selector-block {
+  margin-top: var(--space-6);
+}
+
+.colour-studio-selector-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.colour-studio-selector-title {
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.colour-studio-selector-hint {
+  display: none;
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* Horizontal strip — never a 3-column grid.
+   Desktop: all 12 tiles share the row. Mobile: swipe/scroll with snap. */
+.colour-studio-selector {
+  list-style: none;
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+  padding: var(--space-2) var(--space-1) var(--space-6);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-default) transparent;
+}
+
+.colour-studio-selector::-webkit-scrollbar {
+  height: 6px;
+}
+
+.colour-studio-selector::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.colour-studio-selector::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-default);
+  border-radius: var(--radius-pill);
+}
+
+.colour-studio-swatch-item {
+  flex: 1 1 0;
+  min-width: 88px;
+  max-width: 148px;
+  display: flex;
+  scroll-snap-align: start;
+}
+
+.colour-studio-swatch {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-surface-card);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--motion-duration-instant) ease,
+              background-color var(--motion-duration-instant) ease,
+              box-shadow var(--motion-duration-fast) var(--motion-ease-luxury);
+}
+
+.colour-studio-swatch:hover {
+  border-color: var(--color-border-hover);
+  background-color: var(--color-surface-hover);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Inset outline stays fully visible inside the scroll strip. */
+.colour-studio-swatch:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: -2px;
+}
+
+/* Active state = gold border + inset ring + check mark + gold label,
+   so the selection is never signalled by colour alone. */
+.colour-studio-swatch[aria-pressed="true"] {
+  border-color: var(--color-accent-gold);
+  box-shadow: inset 0 0 0 1px var(--color-accent-gold), var(--shadow-elevated);
+}
+
+.colour-studio-swatch-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-elevated);
+}
+
+.colour-studio-swatch-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.colour-studio-swatch-badge {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 4px var(--space-2);
+  border-top: 1px solid var(--color-border-default);
+  background-color: var(--color-surface-muted);
+  color: var(--color-accent-gold);
+  font-size: 9px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.colour-studio-swatch-check {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent-gold);
+  color: var(--color-surface-muted);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+.colour-studio-swatch[aria-pressed="true"] .colour-studio-swatch-check {
+  display: flex;
+}
+
+/* Two reserved lines keep every tile exactly the same height. */
+.colour-studio-swatch-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.6em;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.colour-studio-swatch[aria-pressed="true"] .colour-studio-swatch-name {
+  color: var(--color-accent-gold);
+}
+
+.colour-studio-noscript {
+  margin-top: var(--space-5);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--font-line-height-relaxed);
+}
+
+/* --------------------------------------------------------------------------
+   CS.8  Responsive — single column.
+   Source order is already the required mobile sequence, so the layout only
+   has to stack: copy -> preview -> shade name -> selector -> CTA block.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .colour-studio-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: none;
+    row-gap: var(--space-8);
+  }
+
+  .colour-studio-preview,
+  .colour-studio-copy,
+  .colour-studio-selected,
+  .colour-studio-cta,
+  .colour-studio-selector-block {
+    grid-area: auto;
+  }
+
+  .colour-studio-preview-media {
+    max-height: 520px;
+  }
+
+  /* The strip starts scrolling from here, so the hint becomes relevant. */
+  .colour-studio-selector-hint {
+    display: inline;
+  }
+}
+
+@media (max-width: 768px) {
+  .colour-studio-layout {
+    row-gap: var(--space-6);
+  }
+
+  .colour-studio-preview-media {
+    aspect-ratio: 3 / 4;
+    max-height: none;
+  }
+
+  .colour-studio-preview-index {
+    bottom: var(--space-5);
+    left: var(--space-5);
+  }
+
+  /* Edge-to-edge swipe area, aligned with the section padding. */
+  .colour-studio-selector {
+    margin-left: calc(var(--space-7) * -1);
+    margin-right: calc(var(--space-7) * -1);
+    padding-left: var(--space-7);
+    padding-right: var(--space-7);
+    scroll-snap-type: x mandatory;
+  }
+
+  .colour-studio-swatch-item {
+    flex: 0 0 96px;
+    min-width: 0;
+    max-width: none;
+  }
+
+  /* Touch-friendly CTA: full width, comfortable target, never overflows. */
+  .colour-studio-cta-btn {
+    max-width: none;
+    min-height: 52px;
+    padding: var(--space-5) var(--space-6);
+    white-space: normal;
+    line-height: 1.4;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colour-studio-preview-media img,
+  .colour-studio-swatch {
+    transition: none;
+  }
+}
