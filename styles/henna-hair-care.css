@@ -1,0 +1,606 @@
+/* ==========================================================================
+   INAI REPUBLIC x SAINT LAURENT DESIGN SYSTEM
+   Henna Hair Care - Hero (Panorama Editorial)
+   Page-scoped stylesheet. Loaded only by henna-hair-care.html and only adds
+   layout for this page's hero; no shared class from main.css is redefined.
+   Reuses: .breadcrumb, .hero-tag, .hero-title, .hero-subtitle, .hero-actions,
+   .btn / .btn-primary plus the colour, spacing, motion and type tokens.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Hero Shell
+   -------------------------------------------------------------------------- */
+.haircare-hero {
+  position: relative;
+  background-color: var(--color-surface-base);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.haircare-hero-frame {
+  position: relative;
+  width: 100%;
+}
+
+/* Approved artwork 1672 x 941 (16:9). Kept at its intrinsic ratio and never
+   cropped or stretched, so the model, hair and every product stay intact at
+   every screen width. */
+.haircare-hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Legibility scrim. It only deepens the empty burgundy negative space on the
+   left of the artwork and fades out by 40%, so no model or product is ever
+   covered. It stays hidden while the copy is stacked below the artwork,
+   because no text sits over the image at those widths. */
+.haircare-hero-scrim {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Copy Block (stacked layout: copy under the artwork)
+   -------------------------------------------------------------------------- */
+.haircare-hero-copy {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-7);
+}
+
+/* --------------------------------------------------------------------------
+   3. Desktop & Large Tablet - copy overlaid on the artwork's empty left space
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .haircare-hero-scrim {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    /* rgba values equal --color-surface-muted (#3c0919) at decreasing opacity.
+       A light touch only, so the burgundy negative space keeps its colour. */
+    background: linear-gradient(
+      90deg,
+      rgba(60, 9, 25, 0.7) 0%,
+      rgba(60, 9, 25, 0.5) 16%,
+      rgba(60, 9, 25, 0.28) 28%,
+      rgba(60, 9, 25, 0.08) 36%,
+      rgba(60, 9, 25, 0) 42%
+    );
+  }
+
+  /* Upper-left composition: the copy is pinned into the artwork's clean
+     burgundy negative space, inset from the edges and held above the product
+     lineup, instead of being vertically centred. Anchoring to the artwork
+     itself (rather than the centred container) keeps it in that space on very
+     wide screens too. */
+  .haircare-hero-copy {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-inline-start: clamp(var(--space-7), 5.5vw, 112px);
+    padding-inline-end: var(--space-7);
+    padding-block-start: clamp(var(--space-6), 7.5vw, 118px);
+    padding-block-end: var(--space-8);
+  }
+
+  /* Keeps every line inside the artwork's empty left margin, well clear of the
+     model, her hair and the products, at every desktop width. */
+  .haircare-hero-copy > * {
+    max-width: min(26vw, 400px);
+  }
+
+  /* Scaled to the available copy column rather than the full viewport, so the
+     two-line headline always sits beside the artwork. */
+  .haircare-hero .hero-title {
+    font-size: clamp(28px, 3.1vw, 52px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Headline Hierarchy - HENNA carries the weight, HAIR CARE steps back
+   -------------------------------------------------------------------------- */
+.haircare-hero-title {
+  display: block;
+}
+
+.haircare-hero-title-lead {
+  display: block;
+  font-weight: var(--font-weight-bold);
+}
+
+.haircare-hero-title-sub {
+  display: block;
+  font-size: 0.72em;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.16em;
+}
+
+/* --------------------------------------------------------------------------
+   5. Restrained Entrance Motion
+   A soft fade on the artwork, then a gentle rise for the copy - nothing more.
+   -------------------------------------------------------------------------- */
+@keyframes haircare-hero-img-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes haircare-hero-copy-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.haircare-hero-img {
+  animation: haircare-hero-img-in var(--motion-duration-slow) var(--motion-ease-luxury) both;
+}
+
+.haircare-hero-copy .breadcrumb {
+  animation: haircare-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) both;
+}
+
+.haircare-hero-copy .hero-tag {
+  animation: haircare-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) 60ms both;
+}
+
+.haircare-hero-title {
+  animation: haircare-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) 120ms both;
+}
+
+.haircare-hero-copy .hero-subtitle {
+  animation: haircare-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) 200ms both;
+}
+
+.haircare-hero-copy .hero-actions {
+  animation: haircare-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) 280ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haircare-hero-img,
+  .haircare-hero-copy .breadcrumb,
+  .haircare-hero-copy .hero-tag,
+  .haircare-hero-title,
+  .haircare-hero-copy .hero-subtitle,
+  .haircare-hero-copy .hero-actions {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Section 2 - The Hair Care Collection
+   One editorial composition: a flat primary-maroon brand band (Pantone 7421 C)
+   carrying cream typography above the original product assets. No cards, no
+   heavy borders, no gradients: the five items share a single baseline and the
+   natural product colours carry the section on their own.
+   -------------------------------------------------------------------------- */
+.haircare-collection {
+  /* Primary brand maroon #651D32 (Pantone 7421 C). Flat - no gradient. */
+  background-color: #651D32;
+  color: var(--color-text-primary);
+}
+
+/* A touch more air than the default wrapper, for a premium band. */
+.haircare-collection .section-wrapper {
+  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+}
+
+/* Heading block - reuses the shared .section-header component and only
+   recolours it for the maroon brand surface, inside this section. */
+.haircare-collection .section-header {
+  border-bottom-color: color-mix(in srgb, var(--color-accent-gold) 30%, transparent);
+}
+
+.haircare-collection .section-sub {
+  color: var(--color-accent-gold);
+}
+
+.haircare-collection .section-title {
+  color: var(--color-text-primary);
+}
+
+.collection-note {
+  margin-top: var(--space-5);
+  max-width: 52ch;
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-relaxed);
+  color: color-mix(in srgb, var(--color-text-primary) 82%, transparent);
+}
+
+/* The rail wraps the lineup so it can become a swipeable row on phones. */
+.haircare-collection .collection-rail:focus-visible {
+  outline-color: var(--focus-outline-color);
+  outline-offset: calc(-1 * var(--focus-outline-width));
+}
+
+/* Desktop: five products on one baseline, edge to edge. */
+.collection-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: clamp(var(--space-6), 2.6vw, var(--space-12));
+  row-gap: var(--space-10);
+  list-style: none;
+}
+
+.collection-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+.collection-index {
+  margin-bottom: var(--space-5);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  color: var(--color-accent-gold);
+}
+
+/* Every product keeps its own proportions (object-fit: contain) and stands on
+   one shared baseline, so a wide, short jar and a tall, narrow tube both read
+   naturally rather than being forced into identical frames. */
+.collection-media {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: clamp(150px, 16vw, 240px);
+  margin-bottom: var(--space-6);
+  transition: transform var(--motion-duration-fast) var(--motion-ease-luxury);
+}
+
+.collection-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.35));
+  transition: transform var(--motion-duration-slow) var(--motion-ease-luxury);
+}
+
+.collection-name {
+  font-size: clamp(var(--font-size-sm), 1.05vw, var(--font-size-md));
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.collection-desc {
+  margin-top: var(--space-3);
+  max-width: 30ch;
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-relaxed);
+  color: color-mix(in srgb, var(--color-text-primary) 74%, transparent);
+}
+
+/* Interaction - the product lifts and eases up slightly. No zoom, no bounce. */
+.collection-item:hover .collection-media,
+.collection-item:focus-within .collection-media {
+  transform: translateY(-6px);
+}
+
+.collection-item:hover .collection-img {
+  transform: scale(1.035);
+}
+
+/* Scroll reveal - progressive enhancement, only active while the page script
+   is running. The heading leads, then the five products cascade left to right. */
+.haircare-collection.is-animated .collection-head,
+.haircare-collection.is-animated .collection-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-luxury),
+              transform var(--motion-duration-slow) var(--motion-ease-luxury);
+}
+
+.haircare-collection.is-animated.is-inview .collection-head,
+.haircare-collection.is-animated.is-inview .collection-item {
+  opacity: 1;
+  transform: none;
+}
+
+.haircare-collection.is-animated.is-inview .collection-item:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.haircare-collection.is-animated.is-inview .collection-item:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+.haircare-collection.is-animated.is-inview .collection-item:nth-child(4) {
+  transition-delay: 270ms;
+}
+
+.haircare-collection.is-animated.is-inview .collection-item:nth-child(5) {
+  transition-delay: 360ms;
+}
+
+/* Tablet - keep the single row, just tighter. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .collection-list {
+    column-gap: clamp(var(--space-5), 2vw, var(--space-8));
+  }
+
+  .collection-media {
+    height: clamp(140px, 22vw, 200px);
+  }
+}
+
+/* Mobile - a swipeable rail so the five products never become impossibly tiny.
+   The scrollbar chrome is hidden and the next item peeks, so it reads as
+   horizontally explorable without extra copy. */
+@media (max-width: 767px) {
+  .collection-rail {
+    margin-inline: calc(-1 * var(--space-7));
+    padding-inline: var(--space-7);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .collection-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .collection-list {
+    display: flex;
+    width: max-content;
+    gap: var(--space-8);
+  }
+
+  .collection-item {
+    width: min(66vw, 250px);
+    scroll-snap-align: center;
+  }
+
+  .collection-media {
+    height: clamp(180px, 52vw, 260px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haircare-collection.is-animated .collection-head,
+  .haircare-collection.is-animated .collection-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .collection-media,
+  .collection-img {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Section 3 - Hair Concerns
+   Editorial concern list on the established maroon brand surface: numbered
+   concern rows separated by subtle champagne hairlines, square concern
+   photography presented 1:1 with no distortion, and a secondary
+   problem-to-product line. Same component language as Section 2
+   (numbered gold index, hairline dividers, luxury easing).
+   -------------------------------------------------------------------------- */
+.haircare-concerns {
+  color: var(--color-text-primary);
+}
+
+.concerns-note {
+  margin-top: var(--space-5);
+  max-width: 52ch;
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-relaxed);
+  color: color-mix(in srgb, var(--color-text-primary) 82%, transparent);
+}
+
+/* Compact horizontal directory rows: number, concern copy, small concern
+   visual, then a secondary product reference. Approximate desktop zones are
+   number 8%, concern text 43%, image 19%, product 30%. */
+.concern-list {
+  margin-top: clamp(var(--space-10), 5vw, var(--space-16));
+  list-style: none;
+}
+
+.concern-row {
+  display: grid;
+  grid-template-columns: minmax(34px, 7%) minmax(0, 1.42fr) clamp(140px, 16.5vw, 190px) minmax(170px, 0.86fr);
+  column-gap: clamp(var(--space-6), 2.4vw, var(--space-10));
+  align-items: center;
+  padding-block: clamp(var(--space-8), 3.4vw, var(--space-12));
+}
+
+.concern-row + .concern-row {
+  border-top: 1px solid color-mix(in srgb, var(--color-accent-gold) 30%, transparent);
+}
+
+.concern-row:first-child {
+  padding-top: var(--space-4);
+}
+
+.concern-index {
+  align-self: start;
+  justify-self: start;
+  margin: 0;
+  padding-top: 2px;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  color: var(--color-accent-gold);
+}
+
+.concern-title {
+  margin: 0;
+  font-size: clamp(var(--font-size-md), 1.5vw, var(--font-size-xl));
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+.concern-desc {
+  margin: var(--space-3) 0 0;
+  max-width: 44ch;
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-relaxed);
+  color: color-mix(in srgb, var(--color-text-secondary) 88%, transparent);
+}
+
+/* Small supporting concern visual: capped at 190px wide and 140px tall. The
+   square sources are shown at a restful 3:2 crop that keeps hair and faces in
+   frame without stretching. */
+.concern-media {
+  width: min(100%, 190px);
+  margin: 0;
+  aspect-ratio: 3 / 2;
+  max-height: 140px;
+  justify-self: center;
+  overflow: hidden;
+  border-radius: var(--radius-xs);
+}
+
+.concern-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  transition: transform var(--motion-duration-slow) var(--motion-ease-luxury);
+}
+
+/* Secondary product reference: compact 58px thumbnail, name and quiet arrow. */
+.concern-product {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  min-width: 0;
+  margin: 0;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.concern-product-thumb {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+}
+
+.concern-product-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.3));
+}
+
+.concern-product-label {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.concern-arrow {
+  flex: 0 0 auto;
+  color: var(--color-accent-gold);
+  transition: color var(--motion-duration-instant) ease;
+}
+
+/* Interactions: the concern visual eases up slightly; the secondary product
+   line warms to gold. */
+.concern-row:hover .concern-img,
+.concern-row:focus-within .concern-img {
+  transform: scale(1.04);
+}
+
+.concern-row:hover .concern-product {
+  color: var(--color-text-primary);
+}
+
+.concern-row:hover .concern-arrow {
+  color: var(--color-accent-gold-light);
+}
+
+/* Scroll reveal mirrors Section 2 exactly (progressive enhancement). */
+.haircare-concerns.is-animated .concerns-head,
+.haircare-concerns.is-animated .concern-row {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-luxury),
+              transform var(--motion-duration-slow) var(--motion-ease-luxury);
+}
+
+.haircare-concerns.is-animated.is-inview .concerns-head,
+.haircare-concerns.is-animated.is-inview .concern-row {
+  opacity: 1;
+  transform: none;
+}
+
+.haircare-concerns.is-animated.is-inview .concern-row:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.haircare-concerns.is-animated.is-inview .concern-row:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+.haircare-concerns.is-animated.is-inview .concern-row:nth-child(4) {
+  transition-delay: 270ms;
+}
+
+/* Compact horizontal rows persist through tablet and mobile. Rows stay rows:
+   the columns narrow, thumbs shrink, and columns never stack into cards.
+   Spacing and proportions follow the existing fluid token scale. */
+@media (max-width: 1023px) {
+  .concern-row {
+    grid-template-columns: minmax(30px, 7%) minmax(0, 1fr) clamp(120px, 24vw, 170px) auto;
+    column-gap: var(--space-6);
+    padding-block: var(--space-8);
+  }
+
+  .concern-media {
+    width: min(100%, 170px);
+  }
+
+  .concern-title {
+    font-size: clamp(var(--font-size-sm), 2.4vw, var(--font-size-md));
+  }
+
+  .concern-desc {
+    font-size: var(--font-size-xs);
+  }
+
+  .concern-product-label {
+    display: none;
+  }
+
+  .concern-product {
+    gap: var(--space-2);
+  }
+
+  .concern-product-thumb {
+    width: 46px;
+    height: 46px;
+  }
+}

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Laman Web Rasmi Inai Republic - Koleksi inai kuku mewah, mesra wuduk & sah solat. Diinspirasikan oleh seni botani moden bertaraf antarabangsa.">
+  <meta name="theme-color" content="#61162d">
+  <title>INAI REPUBLIC | Official Haute Storefront</title>
+
+  <!-- Typography: Montserrat Family (Inai Republic Preference) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/live-popup.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Link (WCAG 2.2 AA) -->
+  <a href="#main-content" class="skip-to-content" id="skip-link">Langkau ke kandungan utama</a>
+
+  <!-- Site Header & Luxury Navigation -->
+  <header class="site-header" id="site-header">
+    <div class="header-container">
+      <!-- Left Navigation -->
+      <nav class="nav-left" aria-label="Navigasi Utama">
+        <button class="icon-btn mobile-toggle" id="mobile-menu-btn" aria-label="Buka Menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#" class="nav-link active">Utama</a></li>
+          <li class="nav-item-has-dropdown" id="koleksi-dropdown">
+            <a href="#katalog" class="nav-link dropdown-toggle" id="koleksi-toggle" aria-haspopup="true" aria-expanded="false">Koleksi
+              <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="koleksi-toggle">
+              <li><a href="henna-hair-colour.html" class="dropdown-link">Henna Hair Colour</a></li>
+              <li><a href="henna-hair-care.html" class="dropdown-link">Henna Hair Care</a></li>
+              <li><a href="nail-henna.html" class="dropdown-link">Nail Henna</a></li>
+              <li><a href="henna-soap.html" class="dropdown-link">Henna Soap</a></li>
+            </ul>
+          </li>
+          <li><a href="shop.html" class="nav-link nav-shop-btn">SHOP</a></li>
+          <li><a href="#sains-wuduk" class="nav-link">Blog</a></li>
+          <li><a href="#maison" class="nav-link">Hubungi Kami</a></li>
+        </ul>
+      </nav>
+
+      <!-- Center Haute Brand Logo -->
+      <div class="brand-logo-wrap">
+        <a href="#" class="brand-logo" aria-label="Inai Republic Laman Utama">
+          <img src="https://inairepublic.com/wp-content/uploads/2023/11/logo-inai_d2-02.png" alt="Inai Republic Official Logo" style="height: 38px; width: auto; object-fit: contain; filter: brightness(1.2);">
+        </a>
+      </div>
+
+      <!-- Right Action Icons -->
+      <div class="header-actions">
+        <button class="icon-btn" id="search-btn" aria-label="Cari Produk">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="icon-btn" id="cart-toggle-btn" aria-label="Troli Beli-belah" aria-haspopup="dialog">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-counter" id="cart-counter" aria-live="polite">2</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+
+    <!-- 1. Hero Campaign Section (YSL Haute Editorial) -->
+    <section class="hero-section" aria-label="Kempen Terkini">
+      <div class="hero-background">
+        <img src="https://inairepublic.com/wp-content/uploads/2026/09/banner-google-form-tajaan-umrah-scaled.png" alt="Kempen editorial Inai Republic - Tajaan Umrah" class="hero-bg-img" fetchpriority="high">
+      </div>
+      <div class="hero-container">
+        <span class="hero-tag">TAJAAN PENUH INAI REPUBLIC</span>
+        <h1 class="hero-title">UMRAH BERSAMA<br>YANG TERSAYANG</h1>
+        <p class="hero-subtitle">
+          Beli Produk Inai Republic dan lengkapkan penyertaan anda untuk berpeluang memenangi <strong>PAKEJ UMRAH UNTUK 2 ORANG</strong>.
+        </p>
+        <div class="hero-actions">
+          <a href="#katalog" class="btn btn-primary">BELI SEKARANG</a>
+          <a href="https://qrfy.io/eoMQUcw6Sl" class="btn btn-secondary" target="_blank" rel="noopener">DAFTAR SEKARANG</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Trust & Lab Certifications Bar -->
+    <section class="trust-bar cert-section" aria-label="Pensijilan dan Kepercayaan Jenama">
+      <div class="cert-section-header">
+        <span class="cert-eyebrow">DISAHKAN & DIPERCAYAI</span>
+        <h2 class="cert-heading">PENSIJILAN & PENGIKTIRAFAN KAMI</h2>
+        <p class="cert-subheading">Setiap produk disemak, diuji dan disahkan oleh badan bertauliah bagi menjamin kualiti, keselamatan dan pematuhan.</p>
+      </div>
+      <div class="trust-grid cert-grid">
+        <div class="cert-item">
+          <div class="cert-logo-frame">
+            <img src="https://inairepublic.com/wp-content/uploads/2025/05/8-2-e1747444937549.png" alt="Pensijilan HALVEC" class="cert-logo" loading="lazy">
+          </div>
+          <span class="cert-label">HALVEC</span>
+          <p class="cert-desc">Halal verification and consultation services to support compliance with halal requirements.</p>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-logo-frame">
+            <img src="https://inairepublic.com/wp-content/uploads/2025/05/6-2-e1747444732673.png" alt="Pensijilan Nexus Analytics" class="cert-logo" loading="lazy">
+          </div>
+          <span class="cert-label">NEXUS ANALYTICS</span>
+          <p class="cert-desc">Analytical testing and laboratory services supporting product quality and safety verification.</p>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-logo-frame">
+            <img src="https://inairepublic.com/wp-content/uploads/2025/05/7-2-e1747445074933.png" alt="Pensijilan SIRIM QAS" class="cert-logo" loading="lazy">
+          </div>
+          <span class="cert-label">SIRIM QAS</span>
+          <p class="cert-desc">Certification and conformity assessment services supporting recognised quality standards.</p>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-logo-frame">
+            <img src="https://inairepublic.com/wp-content/uploads/2026/09/CERTIFICATE-SIRIM-2.png" alt="Pensijilan SIRIM" class="cert-logo" loading="lazy">
+          </div>
+          <span class="cert-label">SIRIM</span>
+          <p class="cert-desc">Standards and quality organisation supporting product quality, safety and compliance.</p>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-logo-frame">
+            <img src="https://inairepublic.com/wp-content/uploads/2023/11/logo-02.webp" alt="Diluluskan oleh KKM" class="cert-logo" loading="lazy">
+          </div>
+          <span class="cert-label">APPROVED BY KKM</span>
+          <p class="cert-desc">Product compliance and approval under Malaysia's Ministry of Health requirements.</p>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-logo-frame">
+            <img src="https://inairepublic.com/wp-content/uploads/2023/11/logo-01.webp" alt="Diperakui oleh UMT" class="cert-logo" loading="lazy">
+          </div>
+          <span class="cert-label">UMT CERTIFIED</span>
+          <p class="cert-desc">Certified through Universiti Malaysia Terengganu, supporting product credibility through academic and scientific expertise.</p>
+        </div>
+      </div>
+
+      <!-- Awards & recognition marquee: loops right-to-left -->
+      <div class="awards-marquee" aria-label="Anugerah dan pengiktirafan jenama">
+        <p class="awards-marquee-title">ANUGERAH &amp; PENGIKTIRAFAN</p>
+        <div class="awards-marquee-viewport">
+          <div class="awards-marquee-track">
+            <div class="award-item">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-9.webp" alt="Anugerah Inai Republic" class="award-logo" loading="lazy">
+            </div>
+            <div class="award-item">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Superbrand.png" alt="Anugerah Superbrand" class="award-logo" loading="lazy">
+            </div>
+            <div class="award-item">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-10.webp" alt="Anugerah Inai Republic" class="award-logo" loading="lazy">
+            </div>
+            <div class="award-item">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-11.webp" alt="Anugerah Inai Republic" class="award-logo" loading="lazy">
+            </div>
+            <div class="award-item">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-12.webp" alt="Anugerah Inai Republic" class="award-logo" loading="lazy">
+            </div>
+            <div class="award-item">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-13.webp" alt="Anugerah Inai Republic" class="award-logo" loading="lazy">
+            </div>
+            <!-- Duplicate set for a seamless infinite loop (hidden from assistive tech) -->
+            <div class="award-item" aria-hidden="true">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-9.webp" alt="" class="award-logo" loading="lazy" tabindex="-1">
+            </div>
+            <div class="award-item" aria-hidden="true">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Superbrand.png" alt="" class="award-logo" loading="lazy" tabindex="-1">
+            </div>
+            <div class="award-item" aria-hidden="true">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-10.webp" alt="" class="award-logo" loading="lazy" tabindex="-1">
+            </div>
+            <div class="award-item" aria-hidden="true">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-11.webp" alt="" class="award-logo" loading="lazy" tabindex="-1">
+            </div>
+            <div class="award-item" aria-hidden="true">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-12.webp" alt="" class="award-logo" loading="lazy" tabindex="-1">
+            </div>
+            <div class="award-item" aria-hidden="true">
+              <img src="https://inairepublic.com/wp-content/uploads/2023/11/Frame-13.webp" alt="" class="award-logo" loading="lazy" tabindex="-1">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Home Category Showcase (links to dedicated category pages) -->
+    <section class="section-wrapper" id="katalog" aria-labelledby="katalog-heading">
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="section-sub">INAI REPUBLIC COLLECTION</span>
+          <h2 class="section-title" id="katalog-heading">PRODUCT CATEGORY</h2>
+        </div>
+      </div>
+
+      <div class="category-grid">
+        <!-- Category 1: Henna Hair Colour -->
+        <a href="henna-hair-colour.html" class="category-card" aria-label="Lihat koleksi Henna Hair Colour">
+          <div class="category-card-media">
+            <img src="https://inairepublic.com/wp-content/uploads/2026/09/WEBSITE-PRODUCT-CATEGORY-HHC-scaled.png" alt="Kategori Henna Hair Colour Inai Republic" class="category-card-img" loading="lazy" decoding="async">
+          </div>
+          <div class="category-card-body">
+            <span class="category-card-index">KATEGORI 01</span>
+            <h3 class="category-card-title">Henna Hair Colour</h3>
+            <p class="category-card-desc">
+              Pewarna rambut botani berasaskan inai asli. Tona pekat berdimensi, telus air, sah solat dan mesra wuduk.
+            </p>
+            <span class="category-card-cta">LIHAT KOLEKSI</span>
+          </div>
+        </a>
+
+        <!-- Category 2: Henna Hair Care -->
+        <a href="henna-hair-care.html" class="category-card" aria-label="Lihat koleksi Henna Hair Care">
+          <div class="category-card-media">
+            <img src="https://inairepublic.com/wp-content/uploads/2026/09/WEBSITE-PRODUCT-CATEGORY-henna-hair-care-scaled.png" alt="Kategori Henna Hair Care Inai Republic" class="category-card-img" loading="lazy" decoding="async">
+          </div>
+          <div class="category-card-body">
+            <span class="category-card-index">KATEGORI 02</span>
+            <h3 class="category-card-title">Henna Hair Care</h3>
+            <p class="category-card-desc">
+              Ritual penjagaan rambut lengkap — syampu, perapi, hair mask dan elixir diperkaya minyak argan serta rosemary.
+            </p>
+            <span class="category-card-cta">LIHAT KOLEKSI</span>
+          </div>
+        </a>
+
+        <!-- Category 3: Nail Henna -->
+        <a href="nail-henna.html" class="category-card" aria-label="Lihat koleksi Nail Henna">
+          <div class="category-card-media">
+            <img src="https://inairepublic.com/wp-content/uploads/2026/09/WEBSITE-PRODUCT-CATEGORY-NAIL-HENNA-scaled.png" alt="Kategori Nail Henna Inai Republic" class="category-card-img" loading="lazy" decoding="async">
+          </div>
+          <div class="category-card-body">
+            <span class="category-card-index">KATEGORI 03</span>
+            <h3 class="category-card-title">Nail Henna</h3>
+            <p class="category-card-desc">
+              Inai kuku botani mewah untuk kuku merah berkilat persis kaca. Tahan lama tanpa merosakkan permukaan kuku.
+            </p>
+            <span class="category-card-cta">LIHAT KOLEKSI</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 4. Inai Republic Shade Studio (Live Camera Hair Colour Simulation) -->
+    <section class="shade-studio-section" id="shade-studio" aria-labelledby="studio-heading">
+      <div class="studio-grid">
+        <!-- Live camera simulation preview -->
+        <div class="studio-preview-card">
+          <span class="hero-tag">PREVIU KAMERA</span>
+
+          <div class="studio-stage" id="studio-stage">
+            <video id="studio-video" class="studio-video" playsinline muted autoplay></video>
+            <canvas id="studio-canvas" class="studio-canvas" width="640" height="480" role="img"
+              aria-label="Previu simulasi digital warna inai pada rambut anda"></canvas>
+
+            <div class="studio-stage-placeholder" id="studio-placeholder">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+              <p class="studio-placeholder-title" id="studio-placeholder-title">PREVIU BELUM DIMULAKAN</p>
+              <p class="studio-placeholder-text" id="studio-placeholder-text">Klik "MULA KAMERA" untuk melihat simulasi warna pada rambut anda. Kamera ditolak atau tiada kamera? Guna "MUAT NAIK GAMBAR".</p>
+            </div>
+
+            <span class="studio-badge-sim">SIMULASI</span>
+            <span class="studio-spinner" id="studio-spinner" aria-hidden="true" hidden></span>
+            <p class="studio-status" id="studio-status" role="status" aria-live="polite" hidden></p>
+          </div>
+
+          <p class="studio-disclaimer">Simulasi digital. Hasil sebenar bergantung pada warna asal rambut, tekstur dan cahaya.</p>
+          <p class="studio-privacy">Kamera diproses dalam peranti anda — tiada gambar dihantar ke server.</p>
+
+          <div class="studio-info">
+            <h3 class="studio-shade-name" id="studio-shade-name">PERSIAN RED</h3>
+            <p class="studio-shade-desc" id="studio-shade-desc">Tona merah delima pekat &amp; berkilau bak permata. Pilihan paling viral dan diminati ramai di seluruh Malaysia.</p>
+          </div>
+
+          <button class="btn btn-henna" id="studio-add-btn" type="button">TAMBAH WARNA INI KE TROLI</button>
+        </div>
+
+        <!-- Camera Controls + Shade Selector -->
+        <div class="studio-controls">
+          <div>
+            <span class="hero-tag">PILIHAN TONA RASMI</span>
+            <h2 class="section-title" id="studio-heading">INAI REPUBLIC SHADE STUDIO</h2>
+            <p class="studio-lead">
+              Pilih rona rasmi Inai Republic, kemudian buka kamera untuk melihat simulasi pigmentasi botani pada rambut anda secara langsung.
+            </p>
+          </div>
+
+          <div class="studio-camera-controls">
+            <h4 class="control-group-title">KAWALAN PREVIU KAMERA:</h4>
+            <div class="studio-btn-row">
+              <button class="studio-btn studio-btn-primary" id="studio-start-btn" type="button" aria-pressed="false">MULA KAMERA</button>
+              <button class="studio-btn" id="studio-upload-btn" type="button">MUAT NAIK GAMBAR</button>
+              <button class="studio-btn" id="studio-capture-btn" type="button" disabled>TANGKAP GAMBAR</button>
+              <button class="studio-btn" id="studio-switch-btn" type="button" hidden>TUKAR KAMERA</button>
+            </div>
+            <input type="file" id="studio-file-input" class="studio-file-input" accept="image/*" hidden>
+
+            <div class="studio-slider-row">
+              <label class="studio-slider-label" for="studio-strength">KEKUATAN</label>
+              <input class="studio-slider" id="studio-strength" type="range" min="0" max="100" step="1" value="80">
+              <output class="studio-slider-value" id="studio-strength-value" for="studio-strength">80%</output>
+            </div>
+
+            <p class="studio-perf-note" id="studio-perf-note" role="status" aria-live="polite" hidden></p>
+          </div>
+
+          <div>
+            <h4 class="control-group-title">PILIH TONA INAI BOTANI:</h4>
+            <div class="shade-selector-list shade-grid" role="radiogroup" aria-label="Pilihan Tona Warna Inai">
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="coco-black" data-shade="Coco Black" data-hex="#222222" data-desc="Hitam arang botanikal pekat yang memberi kontras dramatik dan berani."
+                style="--shade: #222222;"
+                role="radio" aria-checked="false" title="Coco Black — untuk tutup uban, nampak natural. Hasil bergantung pada warna asal rambut." aria-label="Coco Black — untuk tutup uban, nampak natural. Hasil bergantung pada warna asal rambut.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/coco-black.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Coco Black">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Coco Black</span>
+                  <span class="shade-meta-tone">Pure Botanical Charcoal</span>
+                  <span class="shade-badge-uban">TUTUP UBAN</span>
+                  <span class="shade-badge-note">Nampak natural</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="chocolate-brown" data-shade="Chocolate Brown" data-hex="#271F1F" data-desc="Coklat pekat semula jadi yang manis dan seimbang untuk semua tona kulit wanita Asia."
+                style="--shade: #271F1F;"
+                role="radio" aria-checked="false" title="Chocolate Brown — untuk tutup uban, nampak soft. Hasil bergantung pada warna asal rambut." aria-label="Chocolate Brown — untuk tutup uban, nampak soft. Hasil bergantung pada warna asal rambut.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/chocolate-brown.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Chocolate Brown">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Chocolate Brown</span>
+                  <span class="shade-meta-tone">Classic Rich Brown</span>
+                  <span class="shade-badge-uban">TUTUP UBAN</span>
+                  <span class="shade-badge-note">Nampak soft</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="royal-chestnut" data-shade="Royal Chestnut" data-hex="#402C28" data-desc="Chestnut perang kemerahan yang mewah dan berkelas untuk penampilan anggun."
+                style="--shade: #402C28;"
+                role="radio" aria-checked="false" title="Royal Chestnut — Deep Royal Chestnut. Pilih untuk previu kamera." aria-label="Royal Chestnut — Deep Royal Chestnut. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/royal-chestnut.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Royal Chestnut">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Royal Chestnut</span>
+                  <span class="shade-meta-tone">Deep Royal Chestnut</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="ash-brown" data-shade="Ash Brown" data-hex="#42332B" data-desc="Perang keabu-abuan yang neutral dan kemas untuk gaya harian moden."
+                style="--shade: #42332B;"
+                role="radio" aria-checked="false" title="Ash Brown — Neutral Ash Tone. Pilih untuk previu kamera." aria-label="Ash Brown — Neutral Ash Tone. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/ash-brown.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Ash Brown">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Ash Brown</span>
+                  <span class="shade-meta-tone">Neutral Ash Tone</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="mocha-milk-tea" data-shade="Mocha Milk Tea" data-hex="#442F25" data-desc="Perang mocha susu yang lembut, menenangkan dan tidak keterlaluan."
+                style="--shade: #442F25;"
+                role="radio" aria-checked="false" title="Mocha Milk Tea — Creamy Mocha Latte. Pilih untuk previu kamera." aria-label="Mocha Milk Tea — Creamy Mocha Latte. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/mocha-milk-tea.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Mocha Milk Tea">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Mocha Milk Tea</span>
+                  <span class="shade-meta-tone">Creamy Mocha Latte</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="hazelnut" data-shade="Hazelnut" data-hex="#6F4B2F" data-desc="Sentuhan perang hazel hangat yang manis, sofistikated dan sesuai untuk pemakaian harian santai."
+                style="--shade: #6F4B2F;"
+                role="radio" aria-checked="false" title="Hazelnut — Soft Warm Hazel. Pilih untuk previu kamera." aria-label="Hazelnut — Soft Warm Hazel. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/hazelnut.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Hazelnut">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Hazelnut</span>
+                  <span class="shade-meta-tone">Soft Warm Hazel</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="honey-brown" data-shade="Honey Brown" data-hex="#693F26" data-desc="Perang madu bercahaya yang memberi kehangatan pada wajah tanpa keterlaluan."
+                style="--shade: #693F26;"
+                role="radio" aria-checked="false" title="Honey Brown — Warm Honey Amber. Pilih untuk previu kamera." aria-label="Honey Brown — Warm Honey Amber. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/honey-brown.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Honey Brown">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Honey Brown</span>
+                  <span class="shade-meta-tone">Warm Honey Amber</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="caramel-gold" data-shade="Caramel Gold" data-hex="#7E572A" data-desc="Kilauan rona emas karamel hangat dengan pesona berseri dan eksklusif."
+                style="--shade: #7E572A;"
+                role="radio" aria-checked="false" title="Caramel Gold — Warm Golden Caramel. Pilih untuk previu kamera." aria-label="Caramel Gold — Warm Golden Caramel. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/caramel-gold.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Caramel Gold">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Caramel Gold</span>
+                  <span class="shade-meta-tone">Warm Golden Caramel</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="ash-grey" data-shade="Ash Grey" data-hex="#646463" data-desc="Kelabu sejuk tanpa hue — pilihan berani untuk gaya fesyen moden."
+                style="--shade: #646463;"
+                role="radio" aria-checked="false" title="Ash Grey — Cool Ash Grey. Pilih untuk previu kamera." aria-label="Ash Grey — Cool Ash Grey. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/ash-grey.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Ash Grey">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Ash Grey</span>
+                  <span class="shade-meta-tone">Cool Ash Grey</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card active" type="button"
+                data-id="persian-red" data-shade="Persian Red" data-hex="#482023" data-desc="Tona merah delima pekat &amp; berkilau bak permata. Pilihan paling viral dan diminati ramai di seluruh Malaysia."
+                style="--shade: #482023;"
+                role="radio" aria-checked="true" title="Persian Red — Signature Delima Merah. Pilih untuk previu kamera." aria-label="Persian Red — Signature Delima Merah. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/persian-red.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Persian Red">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Persian Red</span>
+                  <span class="shade-meta-tone">Signature Delima Merah</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="burgundy" data-shade="Burgundy" data-hex="#332031" data-desc="Rona merah anggur mewah berdarjat tinggi, anggun dan memikat untuk majlis formal."
+                style="--shade: #332031;"
+                role="radio" aria-checked="false" title="Burgundy — Royal Deep Wine. Pilih untuk previu kamera." aria-label="Burgundy — Royal Deep Wine. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/burgundy.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Burgundy">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Burgundy</span>
+                  <span class="shade-meta-tone">Royal Deep Wine</span>
+                </span>
+              </button>
+
+              <button class="shade-select-btn shade-card" type="button"
+                data-id="olive-jade" data-shade="Olive Jade" data-hex="#303428" data-desc="Hijau zaitun botani yang unik, sejuk pada mata dan berani."
+                style="--shade: #303428;"
+                role="radio" aria-checked="false" title="Olive Jade — Botanical Olive Jade. Pilih untuk previu kamera." aria-label="Olive Jade — Botanical Olive Jade. Pilih untuk previu kamera.">
+                <span class="shade-swatch" aria-hidden="true">
+                  <img class="shade-swatch-img" src="assets/shades/olive-jade.webp" width="120" height="120" loading="lazy" decoding="async" alt="Sampel tona Olive Jade">
+                </span>
+                <span class="shade-colorbar" aria-hidden="true"></span>
+                <span class="shade-meta">
+                  <span class="shade-meta-name">Olive Jade</span>
+                  <span class="shade-meta-tone">Botanical Olive Jade</span>
+                </span>
+              </button>
+            </div>
+            <p class="studio-note-required">Hasil bergantung pada warna asal rambut dan tekstur.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Editorial Story & Halal Science Section -->
+    <section class="editorial-story-section" id="sains-wuduk" aria-labelledby="sains-wuduk-title">
+      <div class="editorial-layout">
+        <div class="editorial-media-card">
+          <img src="https://inairepublic.com/wp-content/uploads/2025/05/photo_6147422103226401940_y-e1748590390685.jpg" alt="Ujian makmal klinikal ketelapan air Inai Republic" style="width: 100%; height: 500px; object-fit: cover;">
+        </div>
+        <div class="editorial-copy">
+          <span class="editorial-tag">INOVASI KECANTIKAN HALAL</span>
+          <h2 class="editorial-headline" id="sains-wuduk-title">SAINS KETELAPAN AIR & KESUCIAN IBADAH</h2>
+          <p class="editorial-lead">
+            Inai Republic memecahkan tradisi dengan menggabungkan ekstrak inai botani tradisional bersama teknologi molekul telap air mikro.
+          </p>
+          <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); line-height: 1.7;">
+            Tidak seperti pengilat kuku kimia biasa yang membentuk lapisan plastik penghalang air (impermeable barrier), formula inai kami meresap ke dalam keratin kuku tanpa menghalang aliran air wuduk ke permukaan kuku asli.
+          </p>
+
+          <div class="science-points">
+            <div class="science-point-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <div>
+                <h5>Lulus Ujian Makmal Kimia SIRIM / KKM</h5>
+                <p>Formula berdaftar secara rasmi di bawah Bahagian Regulatori Farmasi Negara (NPRA).</p>
+              </div>
+            </div>
+
+            <div class="science-point-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <div>
+                <h5>Bebas Bahan Kimia Merbahaya</h5>
+                <p>0% Paraben, 0% Ammonia, dan bebas bahan perosak struktur kuku (anti-brittle).</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: var(--space-4);">
+            <a href="#katalog" class="btn btn-secondary">LIHAT LAPORAN UJIAN MAKMAL</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Slide-Over Cart Drawer (WCAG Accessible Dialog) -->
+  <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true">
+    <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title">
+      <div class="cart-header">
+        <h3 id="cart-drawer-title">
+          TROLI MEMBELI-BELAH (<span id="cart-items-count">2</span>)
+        </h3>
+        <button class="icon-btn" id="cart-close-btn" aria-label="Tutup Troli">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="cart-items-body" id="cart-items-container">
+        <!-- Item 1 -->
+        <div class="cart-item" data-id="p1">
+          <img src="https://inairepublic.com/wp-content/uploads/2026/06/5-300x300.png" alt="Signature Henna Hair Colour 300ml" class="cart-item-img">
+          <div class="cart-item-info">
+            <div class="cart-item-title">Signature Henna Hair Colour 300ml</div>
+            <div class="cart-item-shade">Coco Black • 300ml Jumbo</div>
+            <div class="cart-item-price">RM 65.00</div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="cart-qty-ctrl">
+                <button class="qty-btn" data-action="decrease" aria-label="Kurangkan kuantiti">-</button>
+                <span class="qty-display">1</span>
+                <button class="qty-btn" data-action="increase" aria-label="Tambah kuantiti">+</button>
+              </div>
+              <button class="cart-remove-btn" data-action="remove">Padam</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="cart-item" data-id="p2">
+          <img src="https://inairepublic.com/wp-content/uploads/2023/11/couple-edition-inai-republic-1-300x300.jpg" alt="Inai Kuku Couple Edition" class="cart-item-img">
+          <div class="cart-item-info">
+            <div class="cart-item-title">Inai Kuku Couple Edition</div>
+            <div class="cart-item-shade">Percuma Buffer & Serum Kuku</div>
+            <div class="cart-item-price">RM 39.00</div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="cart-qty-ctrl">
+                <button class="qty-btn" data-action="decrease" aria-label="Kurangkan kuantiti">-</button>
+                <span class="qty-display">1</span>
+                <button class="qty-btn" data-action="increase" aria-label="Tambah kuantiti">+</button>
+              </div>
+              <button class="cart-remove-btn" data-action="remove">Padam</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-subtotal-row">
+          <span>JUMLAH KESELURUHAN</span>
+          <span class="cart-subtotal-price" id="cart-total-display">RM 104.00</span>
+        </div>
+        <p class="cart-shipping-note">
+          ✓ Anda layak menerima <strong>Penghantaran Percuma</strong> ke seluruh negara!
+        </p>
+        <button class="btn btn-primary" style="width: 100%;" id="checkout-btn">
+          TERUSKAN KE PEMBAYARAN (CHECKOUT)
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Minimalist Luxury Footer (YSL Standard) -->
+  <footer class="site-footer" id="maison">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="brand-logo" style="align-items: flex-start; text-align: left;">
+            INAI REPUBLIC
+            <span class="sub-tag">HAUTE BOTANIQUE MALAYSIA</span>
+          </div>
+          <p>
+            Menerajui revolusi inai moden bertaraf antarabangsa. Menggabungkan kemewahan estetik, ketelusan sains makmal, dan pematuhan hukum syarak.
+          </p>
+          <form class="footer-newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); alert('Terima kasih kerana menyertai senarai VIP Inai Republic.');">
+            <label for="newsletter-email" class="sr-only">Alamat E-mel</label>
+            <div class="footer-input-group">
+              <input type="email" id="newsletter-email" class="footer-input" placeholder="MASUKKAN E-MEL VIP ANDA" required>
+              <button type="submit" class="footer-submit-btn">LANGGAN</button>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">KOLEKSI</h4>
+          <ul class="footer-links-list">
+            <li><a href="#katalog" class="footer-link">Signature Nail Henna</a></li>
+            <li><a href="#katalog" class="footer-link">L'Huile & Care Kit</a></li>
+            <li><a href="#katalog" class="footer-link">The Bridal Coffret</a></li>
+            <li><a href="#shade-studio" class="footer-link">Shade Studio</a></li>
+            <li><a href="#katalog" class="footer-link">Edisi Khas Syawal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">MAISON</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Kisah Pengasas Syasya Rosly</a></li>
+            <li><a href="#sains-wuduk" class="footer-link">Kajian Ketelapan Air</a></li>
+            <li><a href="#" class="footer-link">Laporan Makmal NPRA</a></li>
+            <li><a href="#" class="footer-link">Boutique & Butik Rakan</a></li>
+            <li><a href="#" class="footer-link">Peluang Ejen & Stokis</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">PERKHIDMATAN PELANGGAN</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Jejak Pesanan (Tracking)</a></li>
+            <li><a href="#" class="footer-link">Dasar Penghantaran & Pulangan</a></li>
+            <li><a href="#" class="footer-link">Panduan Pemakaian Inai</a></li>
+            <li><a href="#" class="footer-link">Soalan Lazim (FAQ Sah Solat)</a></li>
+            <li><a href="#" class="footer-link">Hubungi Khidmat Pelanggan VIP</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          <p>© 2026 INAI REPUBLIC ENTERPRISE. HAK CIPTA TERPELIHARA.</p>
+          <div style="margin-top: 10px;">
+            <img src="https://inairepublic.com/wp-content/uploads/2023/11/bank.png" alt="Rakan Perbankan & Pembayaran Sah" style="max-width: 260px; height: auto; opacity: 0.85;">
+          </div>
+        </div>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-link">Dasar Privasi</a>
+          <a href="#" class="footer-link">Terma & Syarat</a>
+          <a href="#" class="footer-link">WCAG 2.2 AA Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       Floating TikTok Live Video Popup (9:16 Vertical, Draggable)
+       ===================================================================== -->
+  <aside class="live-popup-wrapper" id="tiktok-live-popup" role="region" aria-label="Siaran Langsung Inai Republic Live">
+    <!-- 60-Second Countdown Progress Bar -->
+    <div class="live-countdown-container" title="Tempoh Siaran Langsung (1 Minit)">
+      <div class="live-countdown-bar" id="live-countdown-bar"></div>
+    </div>
+
+    <!-- Live Background Video (9:16) -->
+    <video id="live-video-player" class="live-video-element" playsinline loop muted preload="auto">
+      <source src="assets/videos/live.mp4" type="video/mp4">
+      Pelayar anda tidak menyokong tag video HTML5.
+    </video>
+
+    <!-- Top Drag & Host Header Overlay -->
+    <div class="live-drag-header" id="live-drag-header" title="Seret untuk alihkan kedudukan popup">
+      <div class="live-drag-pill-wrap">
+        <span class="live-drag-pill"></span>
+      </div>
+
+      <div class="live-top-bar">
+        <!-- Host Profile Card -->
+        <div class="live-host-info">
+          <div class="live-host-avatar">IR</div>
+          <div class="live-host-meta">
+            <span class="live-host-name">Inai Republic HQ</span>
+            <span class="live-viewers-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span id="live-viewers-count-text">1.6k</span>
+            </span>
+          </div>
+          <button type="button" class="live-follow-btn" id="live-follow-btn" aria-label="Ikuti Host">+ Ikuti</button>
+        </div>
+
+        <!-- Top Right Control Buttons -->
+        <div class="live-top-actions">
+          <button type="button" class="live-action-btn" id="live-sound-btn" aria-label="Buka Suara" title="Buka / Tutup Audio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          </button>
+          <button type="button" class="live-action-btn" id="live-minimize-btn" aria-label="Kecilkan Popup" title="Kecilkan Video">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+          <button type="button" class="live-action-btn" id="live-close-btn" aria-label="Tutup Popup" title="Tutup">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Badge Pill -->
+      <div class="live-badge-pill">
+        <span class="live-pulse-dot"></span>
+        <span>LIVE</span>
+      </div>
+    </div>
+
+    <!-- Interactive Unmute Callout -->
+    <div class="live-unmute-callout" id="live-unmute-callout" title="Klik untuk dengar audio siaran langsung">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      </svg>
+      <span>Ketuk untuk Audio 🔊</span>
+    </div>
+
+    <!-- Floating Hearts Canvas Container -->
+    <div class="live-hearts-canvas" id="live-hearts-canvas" aria-hidden="true"></div>
+
+    <!-- Bottom Overlay: Comments, Beg Kuning Showcase, Reaction Controls -->
+    <div class="live-bottom-overlay">
+      <!-- Simulated Live Chat Messages -->
+      <div class="live-chat-stream" id="live-chat-stream">
+        <div class="live-chat-bubble">
+          <span class="live-chat-author">Nurul:</span>
+          <span class="live-chat-text">Merah baldu Ruby Red ni paling hot seller! 🔥</span>
+        </div>
+      </div>
+
+      <!-- TikTok Beg Kuning (Showcase Product) -->
+      <div class="live-beg-kuning-card" id="live-beg-kuning-card">
+        <div class="live-product-preview">
+          <span class="live-bag-tag">🛍️ #1</span>
+          <div class="live-product-details">
+            <span class="live-product-title">Henna Hair Colour 300ml</span>
+            <span class="live-product-price">RM 65.00</span>
+          </div>
+        </div>
+        <button type="button" class="live-buy-btn" id="live-buy-product-btn">BELI</button>
+      </div>
+
+      <!-- Bottom Toolbar: Chat Input Placeholder & Heart Reaction -->
+      <div class="live-bottom-toolbar">
+        <div class="live-comment-input-fake" id="live-fake-input">
+          <span>Tulis komen di sini...</span>
+        </div>
+        <div class="live-reaction-stack">
+          <button type="button" class="live-heart-btn" id="live-heart-btn" aria-label="Beri Hati">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span class="live-likes-counter" id="live-likes-counter">1.4k</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Minimized Floating Bubble Button (Docked Bottom Right) -->
+  <div class="live-minimized-bubble hidden" id="live-mini-bubble" role="button" tabindex="0" aria-label="Buka Semula Siaran Langsung" title="Buka Semula Live Video">
+    <div class="live-mini-avatar">IR</div>
+    <div class="live-mini-text-group">
+      <span class="live-mini-label">
+        <span class="live-pulse-dot" style="background:#ff2a54;"></span>
+        LIVE
+      </span>
+      <span class="live-mini-tag">Tonton Sekarang</span>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript Logic -->
+  <script src="js/app.js"></script>
+  <script src="js/live-popup.js"></script>
+  <script type="module" src="scripts/shade-studio.js"></script>
+</body>
+</html>

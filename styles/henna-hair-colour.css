@@ -263,3 +263,551 @@
     column-gap: clamp(var(--space-6), 2.6vw, var(--space-10));
   }
 }
+
+/* --------------------------------------------------------------------------
+   5. Section 04 - Formula 5 Dalam 1
+   Editorial benefits band, deliberately built from the treatments already used
+   by Section 02 so the page keeps one single type scale: .sizes-eyebrow for the
+   micro caption, .sizes-title for the heading, .sizes-note for the supporting
+   line and .category-card-index / .category-card-desc for the numbered entries.
+   Bottom group is a five-track grid that fills the whole container; each track
+   after the first carries the hairline divider on its leading edge, with the
+   column gap and the item padding built from the same clamp so the hairline
+   always keeps equal clearance either side of it at any width.
+   The section is static, exactly like Sections 01-02: the project has no
+   scroll-reveal system, and no new animation style is introduced here.
+   -------------------------------------------------------------------------- */
+
+/* Section hook - the shared .section-wrapper keeps the container width, the
+   centring and the gutters identical to Sections 01-03, so all this adds is the
+   narrow-track safety net: a long Malay word breaks inside its column instead of
+   pushing past the hairline divider or the container edge. */
+.formula-benefits {
+  position: relative;
+  overflow-wrap: break-word;
+}
+
+/* Top group - eyebrow, heading, subtext. Capped so the heading keeps the
+   reference's two-line measure while the banner is stacked. */
+.formula-intro {
+  max-width: min(100%, 620px);
+  margin-bottom: clamp(var(--space-12), 6vw, var(--space-20));
+}
+
+.formula-eyebrow {
+  display: block;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: var(--space-3);
+}
+
+.formula-title {
+  font-size: clamp(22px, 2.9vw, 42px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+}
+
+.formula-note {
+  margin-top: var(--space-6);
+  font-size: var(--font-size-md);
+  line-height: var(--font-line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+/* Bottom group - the five benefits. Mobile first: stacked in one column, where
+   the divider that separates the columns on desktop becomes a hairline lying
+   flat between the entries, so the rhythm never breaks on small screens.
+   The grid reset is needed because the global reset only zeroes margins and
+   padding, not list markers. */
+.formula-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  list-style: none;
+}
+
+.formula-item {
+  padding-block: clamp(var(--space-7), 4vw, var(--space-10));
+}
+
+.formula-item:first-child {
+  padding-block-start: 0;
+}
+
+.formula-item:last-child {
+  padding-block-end: 0;
+}
+
+.formula-item + .formula-item {
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+/* Entry number - .category-card-index treatment. */
+.formula-index {
+  display: block;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: clamp(var(--space-5), 1.6vw, var(--space-6));
+}
+
+.formula-heading {
+  font-size: clamp(15px, 1.32vw, 19px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-normal);
+  line-height: 1.25;
+  color: var(--color-text-primary);
+  margin-bottom: clamp(var(--space-4), 1vw, var(--space-5));
+}
+
+/* Entry copy - .category-card-desc treatment, scaled with the viewport instead
+   of being shrunk to squeeze into a column. */
+.formula-text {
+  font-size: clamp(var(--font-size-xs), 1vw, var(--font-size-sm));
+  line-height: var(--font-line-height-relaxed);
+  color: var(--color-text-muted);
+}
+
+/* 768px and up: the entries share rows and the divider turns upright. Only the
+   tracks that actually begin a row stay flush with the container edge, so in a
+   three-track grid that is entry 01 and entry 04 - every other entry keeps its
+   hairline, and no stray divider is ever left hanging at the edge. */
+@media (min-width: 768px) {
+  .formula-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: clamp(var(--space-6), 2.6vw, var(--space-10));
+    row-gap: clamp(var(--space-10), 4vw, var(--space-16));
+  }
+
+  .formula-item {
+    padding-block: 0;
+    padding-inline-start: clamp(var(--space-6), 2.6vw, var(--space-10));
+    border-left: 1px solid var(--color-border-subtle);
+  }
+
+  .formula-item + .formula-item {
+    border-top: 0;
+  }
+
+  .formula-item:nth-child(3n + 1) {
+    padding-inline-start: 0;
+    border-left: 0;
+  }
+}
+
+/* 1024px and up: the reference band - all five benefits on one row, filling the
+   container edge to edge. Because entry 04 lost its hairline to the three-track
+   rule above, it is restored here, and only entry 01 stays flush. */
+@media (min-width: 1024px) {
+  .formula-list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    row-gap: 0;
+  }
+
+  .formula-item:nth-child(3n + 1) {
+    padding-inline-start: clamp(var(--space-6), 2.6vw, var(--space-10));
+    border-left: 1px solid var(--color-border-subtle);
+  }
+
+  .formula-item:first-child {
+    padding-inline-start: 0;
+    border-left: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Section 05 - Our Ingredients (7 Ramuan Aktif Terpilih)
+   ONE supplied composition, shown whole and unaltered: the seven ingredient
+   visuals, their numbering, their names and the dark maroon treatment are all
+   already inside the artwork, so this block deliberately builds NO ingredient
+   columns, NO cards, NO scrim, NO gradient and NO overlay. The only thing added
+   on top is the heading block, which is positioned inside the empty maroon area
+   the image already provides.
+
+   Pixel measurement of the 2048x682 asset (ratio 3.0029) shows that empty area
+   runs to x = 682px, i.e. exactly 33.3% of the width (one third), with a flat
+   base of rgb(75,14,22) and luma stdev of 1-2 - a genuinely empty panel. The
+   copy is therefore placed in a 33.3% wide box, inset from both its edges, and
+   is never allowed to cross that boundary onto the photography.
+   -------------------------------------------------------------------------- */
+
+/* Section shell - full bleed on the brand maroon so the band reads as its own
+   editorial moment against the page. */
+.ingredients {
+  background-color: var(--color-surface-base);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* Narrow screens only: the band keeps a readable width and the visitor slides
+   through it. The region is focusable so the band is reachable by keyboard. */
+.ingredients-scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-default) transparent;
+}
+
+.ingredients-scroller:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: calc(-1 * var(--focus-outline-width));
+}
+
+/* The composition. aspect-ratio is the asset's own 2048/682, so the image is
+   never stretched or distorted; max-width stops it being upscaled past native
+   size, and min-width holds the artwork readable on a phone. */
+.ingredients-band {
+  position: relative;
+  width: 100%;
+  min-width: 1200px;
+  max-width: 2048px;
+  margin-inline: auto;
+  aspect-ratio: 2048 / 682;
+}
+
+.ingredients-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* The heading block, sitting inside the image's own empty maroon area. It is
+   33.3% wide to match that area exactly, so the copy can never overlap the
+   ingredient photography, and the side insets keep it off both edges. */
+.ingredients-copy {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: clamp(var(--space-7), 2.4vw, var(--space-10));
+  padding-block: clamp(var(--space-6), 3vw, var(--space-10)) clamp(var(--space-10), 5vw, var(--space-20));
+}
+
+/* Type. All Montserrat, from the page type system, matching the treatments already
+   used in Section 04: an elegant gold eyebrow, a bold editorial headline and a
+   regular supporting line. No serif is introduced. */
+.ingredients-eyebrow {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: clamp(var(--space-5), 1.4vw, var(--space-7));
+}
+
+.ingredients-title {
+  font-size: clamp(20px, 2.55vw, 44px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.04;
+  color: var(--color-text-primary);
+  /* Balances the run onto "7 RAMUAN" / "AKTIF TERPILIH" at every width. */
+  text-wrap: balance;
+}
+
+.ingredients-note {
+  margin-top: clamp(var(--space-5), 1.3vw, var(--space-9));
+  font-size: clamp(var(--font-size-xs), 0.66vw, var(--font-size-sm));
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  /* Sentence case, set full-width so it lands on exactly two lines. */
+  text-transform: none;
+  text-wrap: balance;
+}
+
+/* 1024px and up: the whole composition is visible at once, so the scroller is
+   retired and the band simply fills the viewport width. */
+@media (min-width: 1024px) {
+  .ingredients-scroller {
+    overflow-x: visible;
+  }
+
+  .ingredients-band {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ingredients-scroller {
+    scroll-behavior: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Section 06 - Cara Penggunaan (How To Use)
+   One horizontal editorial timeline per size: each size is a SINGLE continuous
+   row of circular step visuals joined by clean arrow separators, with the step
+   number and a compact description sitting directly under each visual. Nothing
+   is boxed - no card chrome, no bordered grid and no vertical stack on desktop.
+   Type reuses the page scale already set by Sections 02/04, so this section
+   stays inside the same Montserrat system (no serif is introduced).
+   Mobile keeps the same single row but turns it into a controlled horizontal
+   scroller instead of crushing six columns into the viewport.
+   -------------------------------------------------------------------------- */
+
+.routine {
+  position: relative;
+  overflow-wrap: break-word;
+}
+
+/* Top group - eyebrow, heading, supporting line. Mirrors .formula-intro. */
+.routine-intro {
+  max-width: min(100%, 620px);
+  margin-bottom: clamp(var(--space-12), 6vw, var(--space-20));
+}
+
+.routine-eyebrow {
+  display: block;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: var(--space-3);
+}
+
+.routine-title {
+  font-size: clamp(22px, 2.9vw, 42px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+}
+
+.routine-note {
+  margin-top: var(--space-6);
+  font-size: var(--font-size-md);
+  line-height: var(--font-line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+/* Flow group - one per size (200ml / 300ml). */
+.routine-flow + .routine-flow {
+  margin-top: clamp(var(--space-16), 7vw, var(--space-24));
+}
+
+/* Size marker that opens each flow, sitting on the hairline rule that runs the
+   full width so the row of steps reads as one editorial strip. */
+.routine-flow-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border-subtle);
+  margin-bottom: clamp(var(--space-10), 5vw, var(--space-16));
+}
+
+.routine-flow-label {
+  font-size: clamp(18px, 1.62vw, 23px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.routine-flow-caption {
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Scroller - on phones the single row is reachable by swiping; the region is
+   focusable so the row is reachable by keyboard as well. */
+.routine-scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-default) transparent;
+}
+
+.routine-scroller:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: calc(-1 * var(--focus-outline-width));
+}
+
+/* The continuous row. Mobile first: fixed-width steps keep their readable size
+   and slide, rather than six columns being squeezed into the viewport. */
+.routine-track {
+  --step-size: clamp(88px, 9vw, 124px);
+  --step-gap: clamp(var(--space-8), 3.4vw, var(--space-12));
+  display: flex;
+  align-items: flex-start;
+  gap: var(--step-gap);
+  width: max-content;
+  list-style: none;
+}
+
+.routine-step {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(150px, 42vw, 188px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Circular visual - the reference's cropped presentation. */
+.routine-step-media {
+  display: block;
+  width: var(--step-size);
+  height: var(--step-size);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  background-color: var(--color-surface-card);
+}
+
+.routine-step-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* Step number - .category-card-index treatment, sitting directly under the
+   circle. */
+.routine-step-index {
+  margin-top: clamp(var(--space-6), 1.8vw, var(--space-8));
+  font-size: clamp(var(--font-size-sm), 1.15vw, var(--font-size-lg));
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  line-height: 1;
+  color: var(--color-accent-gold);
+}
+
+/* Compact step copy - held to the column width so no long paragraph ever spans
+   the section. */
+.routine-step-text {
+  margin-top: clamp(var(--space-4), 1vw, var(--space-5));
+  font-size: clamp(var(--font-size-xs), 0.9vw, var(--font-size-sm));
+  line-height: var(--font-line-height-relaxed);
+  color: var(--color-text-muted);
+}
+
+/* The must-see reminders. A subtle gold hairline and a faint gold wash make
+   them noticeable, but this is a premium flag - never a warning box. */
+.routine-step-flag {
+  margin-top: clamp(var(--space-4), 1vw, var(--space-5));
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  background-color: rgba(197, 168, 128, 0.08); /* --color-accent-gold @ 8% */
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--color-accent-gold-light);
+}
+
+/* Arrow separators - drawn by each step, centred in the gap that follows it and
+   aligned with the circle, then dropped on the last step so the row closes
+   cleanly. */
+.routine-step::after {
+  content: "\2192";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  height: var(--step-size);
+  display: flex;
+  align-items: center;
+  transform: translateX(calc(var(--step-gap) / 2 - 50%));
+  font-size: clamp(var(--font-size-md), 1.3vw, var(--font-size-xl));
+  font-weight: var(--font-weight-light);
+  line-height: 1;
+  color: var(--color-accent-gold);
+  pointer-events: none;
+}
+
+.routine-step:last-child::after {
+  content: none;
+}
+
+/* 1024px and up: the whole row is visible at once, so the scroller is retired
+   and the steps spread evenly edge to edge. */
+@media (min-width: 1024px) {
+  .routine-scroller {
+    overflow-x: visible;
+  }
+
+  .routine-track {
+    width: auto;
+  }
+
+  .routine-step {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+/* Safety reminder - retained after both flows. One centred note: the main
+   suitability line, a smaller patch-test banner and the full PERHATIAN
+   paragraph. */
+.routine-safety {
+  max-width: 820px;
+  margin: clamp(var(--space-16), 8vw, var(--space-24)) auto 0;
+  padding-top: clamp(var(--space-12), 6vw, var(--space-20));
+  border-top: 1px solid var(--color-border-subtle);
+  text-align: center;
+}
+
+.routine-safety-lead {
+  font-size: clamp(var(--font-size-md), 1.9vw, var(--font-size-2xl));
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+.routine-safety-reminder {
+  display: inline-block;
+  margin-top: clamp(var(--space-6), 2.4vw, var(--space-8));
+  padding: var(--space-4) var(--space-8);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  background-color: rgba(197, 168, 128, 0.08); /* --color-accent-gold @ 8% */
+  font-size: clamp(var(--font-size-2xs), 1vw, var(--font-size-xs));
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold-light);
+}
+
+.routine-safety-note {
+  margin-top: clamp(var(--space-8), 3vw, var(--space-10));
+  font-size: clamp(var(--font-size-xs), 1vw, var(--font-size-sm));
+  line-height: var(--font-line-height-relaxed);
+  color: var(--color-text-muted);
+}
+
+.routine-safety-note-label {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  color: var(--color-accent-gold);
+}
+
