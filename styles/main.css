@@ -1075,6 +1075,82 @@ a {
   border-bottom-color: var(--color-accent-gold-light);
 }
 
+/* -----------------------------------------------------------------------------
+   9c. Home Featured Category — Henna Hair Colour editorial banner
+   ONE large visual: the approved HHC artwork supplies the whole composition
+   (products on the right, empty negative space on the left). The heading,
+   supporting copy and the two CTAs sit together as one compact group inside
+   that left negative space — no section heading, no text panel, no overlay or
+   gradient on the image, no extra decorative elements.
+   Parked category cards stay in index.html as HTML comments, and
+   .category-grid / .category-card above remain ready for reactivation.
+   Reuses existing tokens, .btn buttons and typography scale only.
+   -------------------------------------------------------------------------- */
+.category-featured {
+  position: relative;
+  display: grid;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+}
+
+/* Image and copy share one grid cell: the image alone defines the banner
+   height, so the section never stacks vertically. */
+.category-featured-media {
+  grid-area: 1 / 1;
+  width: 100%;
+  background-color: var(--color-surface-elevated);
+}
+
+/* Natural aspect ratio is preserved: never stretched or distorted. */
+.category-featured-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Text group — one compact block, vertically centred in the left negative
+   space, kept inside the left portion so it never reaches the products. */
+.category-featured-copy {
+  grid-area: 1 / 1;
+  z-index: 1;
+  justify-self: start;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+  max-width: min(46%, 640px);
+  padding-left: clamp(var(--space-8), 5vw, var(--space-16));
+  text-align: left;
+}
+
+.category-featured-title {
+  font-size: clamp(26px, 3vw, 44px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+.category-featured-desc {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: var(--font-line-height-relaxed);
+  max-width: 34ch;
+}
+
+.category-featured-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin-top: var(--space-2);
+}
+
 .product-card {
   background-color: var(--color-surface-card);
   border: 1px solid var(--color-border-subtle);
@@ -1717,6 +1793,31 @@ a {
   }
 }
 
+/* Henna Hair Colour banner — phones. The approved artwork is ultrawide
+   (1961x802), so at narrow widths its natural height can no longer hold the
+   text group. The media box gains a minimum height and the image cover-crops
+   anchored to its LEFT edge: the empty negative space stays behind the text,
+   the nearest HHC products stay visible, and object-fit keeps the natural
+   aspect ratio (never stretched or distorted). */
+@media (max-width: 620px) {
+  .category-featured-media {
+    position: relative;
+    min-height: 236px;
+  }
+  .category-featured-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+  }
+  .category-featured-copy {
+    max-width: min(80%, 380px);
+    padding-left: var(--space-6);
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --header-height: 60px;
@@ -1743,6 +1844,8 @@ a {
   .category-card-body {
     padding: var(--space-7) var(--space-6) var(--space-8);
   }
+  /* Henna Hair Colour banner keeps the 9c overlay rules at tablet widths;
+     phone-specific rules live in the 620px tier of section 14. */
   .trust-grid {
     grid-template-columns: 1fr;
   }

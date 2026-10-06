@@ -384,14 +384,14 @@
     transition: none;
   }
 }
-
 /* --------------------------------------------------------------------------
    7. Section 3 - Hair Concerns
-   Editorial concern list on the established maroon brand surface: numbered
-   concern rows separated by subtle champagne hairlines, square concern
-   photography presented 1:1 with no distortion, and a secondary
-   problem-to-product line. Same component language as Section 2
-   (numbered gold index, hairline dividers, luxury easing).
+   Four-column editorial directory. All four concerns sit side by side on
+   desktop - image, concern title, description, then a quiet product
+   reference - so a visitor can compare every hair need in a single view
+   instead of scrolling four stacked rows. Equal columns, one shared image
+   size, champagne hairlines between columns, and the same numbered gold index
+   language as Section 2, on the established maroon brand surface.
    -------------------------------------------------------------------------- */
 .haircare-concerns {
   color: var(--color-text-primary);
@@ -405,35 +405,36 @@
   color: color-mix(in srgb, var(--color-text-primary) 82%, transparent);
 }
 
-/* Compact horizontal directory rows: number, concern copy, small concern
-   visual, then a secondary product reference. Approximate desktop zones are
-   number 8%, concern text 43%, image 19%, product 30%. */
+/* Four equal columns, side by side. The gutter lives in the cell padding so a
+   hairline divider can sit exactly midway between two concerns. */
 .concern-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   margin-top: clamp(var(--space-10), 5vw, var(--space-16));
   list-style: none;
 }
 
 .concern-row {
-  display: grid;
-  grid-template-columns: minmax(34px, 7%) minmax(0, 1.42fr) clamp(140px, 16.5vw, 190px) minmax(170px, 0.86fr);
-  column-gap: clamp(var(--space-6), 2.4vw, var(--space-10));
-  align-items: center;
-  padding-block: clamp(var(--space-8), 3.4vw, var(--space-12));
-}
-
-.concern-row + .concern-row {
-  border-top: 1px solid color-mix(in srgb, var(--color-accent-gold) 30%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding-inline: clamp(var(--space-7), 2.2vw, var(--space-12));
 }
 
 .concern-row:first-child {
-  padding-top: var(--space-4);
+  padding-inline-start: 0;
+}
+
+/* The same quiet champagne hairline this section already used between its
+   concern rows, turned on its side to separate columns rather than stack
+   them. No card borders, no boxes. */
+.concern-row + .concern-row {
+  border-left: 1px solid color-mix(in srgb, var(--color-accent-gold) 30%, transparent);
 }
 
 .concern-index {
-  align-self: start;
-  justify-self: start;
-  margin: 0;
-  padding-top: 2px;
+  margin: 0 0 var(--space-5);
   font-size: var(--font-size-2xs);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--font-letter-spacing-caps);
@@ -442,32 +443,30 @@
 
 .concern-title {
   margin: 0;
-  font-size: clamp(var(--font-size-md), 1.5vw, var(--font-size-xl));
+  font-size: clamp(var(--font-size-md), 1.05vw, var(--font-size-lg));
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--font-letter-spacing-wide);
-  line-height: 1.25;
+  line-height: 1.3;
   text-transform: uppercase;
   color: var(--color-text-primary);
   text-wrap: balance;
 }
 
 .concern-desc {
-  margin: var(--space-3) 0 0;
-  max-width: 44ch;
+  margin: var(--space-4) 0 0;
   font-size: var(--font-size-sm);
   line-height: var(--font-line-height-relaxed);
   color: color-mix(in srgb, var(--color-text-secondary) 88%, transparent);
 }
 
-/* Small supporting concern visual: capped at 190px wide and 140px tall. The
-   square sources are shown at a restful 3:2 crop that keeps hair and faces in
-   frame without stretching. */
+/* One shared image size across all four columns: full column width, a single
+   4:3 ratio and a 200px cap, so no image can grow larger than another and the
+   subjects are never cropped tighter than the approved 3:2 framing. */
 .concern-media {
-  width: min(100%, 190px);
-  margin: 0;
-  aspect-ratio: 3 / 2;
-  max-height: 140px;
-  justify-self: center;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 0 var(--space-7);
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--radius-xs);
 }
@@ -481,11 +480,11 @@
   transition: transform var(--motion-duration-slow) var(--motion-ease-luxury);
 }
 
-/* Secondary product reference: compact 58px thumbnail, name and quiet arrow. */
+/* Secondary product reference, kept subordinate to the concern title: a small
+   consistent thumbnail, the product name and a quiet gold arrow. */
 .concern-product {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: var(--space-3);
   min-width: 0;
   margin: 0;
@@ -502,8 +501,8 @@
   display: inline-flex;
   align-items: flex-end;
   justify-content: center;
-  width: 58px;
-  height: 58px;
+  width: 52px;
+  height: 52px;
 }
 
 .concern-product-img {
@@ -527,22 +526,26 @@
   transition: color var(--motion-duration-instant) ease;
 }
 
-/* Interactions: the concern visual eases up slightly; the secondary product
-   line warms to gold. */
+/* Interactions: the concern visual eases up slightly; the product line and
+   its arrow warm to gold. */
 .concern-row:hover .concern-img,
 .concern-row:focus-within .concern-img {
   transform: scale(1.04);
 }
 
-.concern-row:hover .concern-product {
+.concern-row:hover .concern-product,
+.concern-row:focus-within .concern-product {
   color: var(--color-text-primary);
 }
 
-.concern-row:hover .concern-arrow {
+.concern-row:hover .concern-arrow,
+.concern-row:focus-within .concern-arrow {
   color: var(--color-accent-gold-light);
 }
 
-/* Scroll reveal mirrors Section 2 exactly (progressive enhancement). */
+/* Scroll reveal mirrors Section 2 exactly (progressive enhancement). The four
+   columns now cascade left to right in a single row rather than one by one
+   down the page. */
 .haircare-concerns.is-animated .concerns-head,
 .haircare-concerns.is-animated .concern-row {
   opacity: 0;
@@ -569,38 +572,403 @@
   transition-delay: 270ms;
 }
 
-/* Compact horizontal rows persist through tablet and mobile. Rows stay rows:
-   the columns narrow, thumbs shrink, and columns never stack into cards.
-   Spacing and proportions follow the existing fluid token scale. */
-@media (max-width: 1023px) {
-  .concern-row {
-    grid-template-columns: minmax(30px, 7%) minmax(0, 1fr) clamp(120px, 24vw, 170px) auto;
-    column-gap: var(--space-6);
-    padding-block: var(--space-8);
+@media (prefers-reduced-motion: reduce) {
+  .haircare-concerns.is-animated .concerns-head,
+  .haircare-concerns.is-animated .concern-row {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
-  .concern-media {
-    width: min(100%, 170px);
+  .concern-media,
+  .concern-img {
+    transition: none;
+  }
+}
+
+/* Tablet and large phone - the four columns pair into two rows of two. Only
+   the right-hand column of each pair keeps its hairline, so the dividers
+   still read as separators between columns and not as stray edges. */
+@media (max-width: 1023px) {
+  .concern-list {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: clamp(var(--space-10), 5vw, var(--space-12));
+  }
+
+  .concern-row:nth-child(odd) {
+    padding-inline-start: 0;
+    border-left: 0;
+  }
+
+  .concern-row:nth-child(even) {
+    border-left: 1px solid color-mix(in srgb, var(--color-accent-gold) 30%, transparent);
   }
 
   .concern-title {
-    font-size: clamp(var(--font-size-sm), 2.4vw, var(--font-size-md));
+    font-size: clamp(var(--font-size-sm), 2.4vw, var(--font-size-lg));
   }
 
   .concern-desc {
     font-size: var(--font-size-xs);
   }
 
-  .concern-product-label {
-    display: none;
-  }
-
-  .concern-product {
-    gap: var(--space-2);
-  }
-
   .concern-product-thumb {
-    width: 46px;
-    height: 46px;
+    width: 44px;
+    height: 44px;
   }
 }
+
+/* Phone - one compact concern per row. No dividers, and the image is capped
+   so four stacked concerns stay short instead of turning into a long scroll
+   of oversized pictures. */
+@media (max-width: 639px) {
+  .concern-list {
+    grid-template-columns: 1fr;
+    row-gap: clamp(var(--space-8), 6vw, var(--space-10));
+  }
+
+  .concern-row {
+    padding-inline: 0;
+    border-left: 0;
+  }
+
+  .concern-row + .concern-row {
+    border-left: 0;
+  }
+
+  .concern-row:nth-child(even) {
+    border-left: 0;
+  }
+
+  .concern-media {
+    max-width: 100%;
+  }
+
+  .concern-title {
+    font-size: var(--font-size-md);
+  }
+
+  .concern-desc {
+    font-size: var(--font-size-xs);
+  }
+}
+/* --------------------------------------------------------------------------
+   8. Section 4 - Hair Care Routine
+   Three editorial care pathways, not an ecommerce grid. Each pathway leads
+   with its own approved lifestyle photograph - all three are natively 1254x1254
+   square, so a square frame and object-fit: contain present each one whole,
+   uncropped and undistorted. Products follow beneath on one shared, capped
+   baseline band, sized by equal visual HEIGHT rather than equal width so each
+   pack keeps its natural proportion: the 1024x1536 bottles stay narrow and tall
+   while the 1716x1888 keratin mask stays wider and squatter. Nothing is ever
+   regenerated, recoloured or cropped. Flat brand maroon, champagne hairlines,
+   no cards and no commerce chrome - the products sit on the surface, not
+   inside boxes.
+   -------------------------------------------------------------------------- */
+.haircare-routine {
+  /* Primary brand maroon #651D32 (Pantone 7421 C) - the page's own surface
+     token, named explicitly here. Flat: no gradient, no new palette. */
+  background-color: var(--color-surface-base);
+  color: var(--color-text-primary);
+
+  /* One product band for the whole section. The arrow and every responsive
+     override read this single value, so the band and its centring can never
+     drift out of step. Kept modest so the pack supports the lifestyle image
+     above it rather than competing with it. */
+  --routine-product-band: clamp(96px, 8.5vw, 118px);
+}
+
+/* Header - centred on this section, so it drops the shared component's
+   left-aligned baseline rule and its flex row rather than fighting them. */
+.haircare-routine .section-header {
+  display: block;
+  text-align: center;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.haircare-routine .section-sub {
+  color: var(--color-accent-gold);
+}
+
+.haircare-routine .section-title {
+  color: var(--color-text-primary);
+}
+
+.routine-note {
+  margin: var(--space-5) auto 0;
+  max-width: 56ch;
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-relaxed);
+  color: color-mix(in srgb, var(--color-text-primary) 82%, transparent);
+}
+
+/* Rail - the same swipeable-region contract as the existing .routine-scroller:
+   phones pan, the region stays keyboard reachable, and desktop retires it. */
+.routine-scroller {
+  margin-top: clamp(var(--space-10), 5vw, var(--space-16));
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-default) transparent;
+}
+
+.routine-scroller:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: calc(-1 * var(--focus-outline-width));
+}
+
+/* Three equal pathways, side by side. minmax(0, 1fr) keeps a long product
+   name from ever forcing the grid wider than the section. */
+.routine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(var(--space-6), 2.4vw, var(--space-12));
+}
+
+.routine-path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding-inline: clamp(var(--space-5), 1.8vw, var(--space-10));
+  scroll-snap-align: start;
+}
+/* The quiet champagne hairline Section 3 already uses between its concerns,
+   standing upright to separate pathways rather than stack them. */
+.routine-path + .routine-path {
+  border-left: 1px solid color-mix(in srgb, var(--color-accent-gold) 30%, transparent);
+}
+
+.routine-path-index {
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  color: var(--color-accent-gold);
+}
+
+.routine-path-title {
+  margin: 0;
+  font-size: clamp(var(--font-size-md), 1.35vw, var(--font-size-lg));
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+.routine-path-desc {
+  margin: var(--space-4) 0 0;
+  max-width: 32ch;
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-relaxed);
+  color: color-mix(in srgb, var(--color-text-secondary) 88%, transparent);
+}
+/* The approved lifestyle visual. Each pathway has its own photograph and all
+   three are natively 1254x1254 square, so a square frame matches the artwork's
+   own proportions exactly: contain therefore shows the whole frame with no crop,
+   no stretch and no drift between columns. The frame is capped so the artwork
+   stays an editorial accent rather than the section's whole mass. */
+.routine-path-media {
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 1 / 1;
+  margin-top: clamp(var(--space-7), 2.4vw, var(--space-10));
+  overflow: hidden;
+}
+
+.routine-path-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* contain, not cover: the frame is already the image's own 1:1 ratio, so the
+     full photograph is visible and nothing is trimmed. */
+  object-fit: contain;
+  object-position: 50% 50%;
+}
+
+/* Product flow - two products and the arrow between them, laid on the maroon
+   with no card, border, price, rating or button. The row is pushed to the
+   bottom of the pathway so all three columns close on the same line even when
+   one description runs longer than its neighbours. */
+.routine-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-4);
+  width: 100%;
+  margin-top: auto;
+  padding-top: clamp(var(--space-7), 2vw, var(--space-10));
+}
+
+.routine-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+/* One shared product-display band across all three columns. flex-end means every
+   pack lands on the same baseline, and a single height for all five products
+   means their VISUAL heights match - not their widths. That distinction is what
+   keeps them balanced: the bottles are 1024x1536 (tall and narrow) while the
+   keratin mask is 1716x1888 (wider and squatter), so equal widths would make the
+   mask far taller than the bottles. Matching height lets each pack keep its own
+   natural proportion and its own natural width. */
+.routine-product-media {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  /* Deliberately modest: the product is a supporting element, not the hero.
+     The max-height is a hard ceiling so a pack can never outgrow the band. */
+  height: var(--routine-product-band);
+  max-height: 115px;
+  margin-bottom: var(--space-4);
+}
+
+.routine-product-img {
+  display: block;
+  /* Equal visual HEIGHT, natural width - never a forced equal width. */
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  /* contain, never cover: each pack keeps its whole silhouette and its
+     original trim, exactly as Section 2 presents the same products. */
+  object-fit: contain;
+}
+
+.routine-product-name {
+  margin: 0;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+.routine-product-desc {
+  margin: var(--space-3) 0 0;
+  max-width: 26ch;
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-relaxed);
+  color: color-mix(in srgb, var(--color-text-secondary) 82%, transparent);
+}
+
+/* The arrow between the two products - the same quiet champagne arrow Section
+   3 already uses. It stays centred on the product band by offsetting itself by
+   half that band, read from the shared variable. */
+.routine-arrow {
+  align-self: center;
+  margin-top: calc(var(--routine-product-band) / 2 - 0.5em);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-light);
+  line-height: 1;
+  color: var(--color-accent-gold);
+}
+
+/* Scroll reveal - the same progressive-enhancement contract Sections 2 and 3
+   already use. The hidden state only exists once the page script has added
+   .is-animated, so with scripting off the section is simply visible. The
+   heading leads, then the three pathways ease up in turn. */
+.haircare-routine.is-animated .routine-head,
+.haircare-routine.is-animated .routine-path {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-luxury),
+              transform var(--motion-duration-slow) var(--motion-ease-luxury);
+}
+
+.haircare-routine.is-animated.is-inview .routine-head,
+.haircare-routine.is-animated.is-inview .routine-path {
+  opacity: 1;
+  transform: none;
+}
+
+.haircare-routine.is-animated.is-inview .routine-path:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.haircare-routine.is-animated.is-inview .routine-path:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+/* Tablet and up - all three pathways stand side by side at once, so the rail
+   retires and nothing needs to pan. */
+@media (min-width: 768px) {
+  .routine-scroller {
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+}
+
+/* Tablet - keep the three columns, but tighten the product band so the packs
+   scale with the narrower column instead of crowding the copy beneath them.
+   The band shrinks through the shared variable, so the arrow follows. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .routine-path-media {
+    max-width: 210px;
+  }
+
+  .haircare-routine {
+    --routine-product-band: clamp(88px, 11vw, 106px);
+  }
+
+  .routine-product-media {
+    max-height: 106px;
+  }
+}
+
+/* Phone - one readable pathway per snap panel. Three columns of this copy
+   would shrink the text to nothing, so the rail slides instead. The upright
+   hairline steps aside now that the pathways read as separate panels. */
+@media (max-width: 767px) {
+  .routine-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 320px);
+    column-gap: clamp(var(--space-6), 5vw, var(--space-10));
+  }
+
+  .routine-path {
+    padding-inline: 0;
+    scroll-snap-align: center;
+  }
+
+  .routine-path + .routine-path {
+    border-left: 0;
+  }
+
+  .routine-path-media {
+    max-width: 210px;
+  }
+
+  /* One pathway fills the snap panel, so the band can breathe a little more
+     than on a three-up desktop row - but it stays capped so the pack never
+     becomes the thing you look at first. */
+  .haircare-routine {
+    --routine-product-band: clamp(100px, 28vw, 126px);
+  }
+
+  .routine-product-media {
+    max-height: 126px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haircare-routine.is-animated .routine-head,
+  .haircare-routine.is-animated .routine-path {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+

@@ -1,15 +1,14 @@
 /* ==========================================================================
    INAI REPUBLIC x SAINT LAURENT DESIGN SYSTEM
    Henna Hair Care - js/henna-hair-care.js
-   Page-scoped scroll-reveal for the Henna Hair Care sections (Collection and
-   Hair Concerns).
+   Page-scoped scroll-reveal for the Henna Hair Care sections (Collection, Hair Concerns and Hair Care Routine).
    Progressive enhancement only: if this file never runs, every section stays
    fully visible - it never hides content on its own. The motion itself is
    defined in styles/henna-hair-care.css and respects prefers-reduced-motion.
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll(".haircare-collection, .haircare-concerns");
+  const sections = document.querySelectorAll(".haircare-collection, .haircare-concerns, .haircare-routine");
   if (!sections.length) {
     return;
   }

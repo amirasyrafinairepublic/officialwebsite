@@ -48,9 +48,10 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="koleksi-toggle">
               <li><a href="henna-hair-colour.html" class="dropdown-link">Henna Hair Colour</a></li>
-              <li><a href="henna-hair-care.html" class="dropdown-link">Henna Hair Care</a></li>
-              <li><a href="nail-henna.html" class="dropdown-link">Nail Henna</a></li>
-              <li><a href="henna-soap.html" class="dropdown-link">Henna Soap</a></li>
+              <!-- TEMPORARILY PARKED (do not delete): Henna Hair Care + Nail Henna + Henna Soap are hidden from the Koleksi menu until reactivated. Uncomment to restore. -->
+              <!-- <li><a href="henna-hair-care.html" class="dropdown-link">Henna Hair Care</a></li> -->
+              <!-- <li><a href="nail-henna.html" class="dropdown-link">Nail Henna</a></li> -->
+              <!-- <li><a href="henna-soap.html" class="dropdown-link">Henna Soap</a></li> -->
             </ul>
           </li>
           <li><a href="shop.html" class="nav-link nav-shop-btn">SHOP</a></li>
@@ -211,61 +212,63 @@
       </div>
     </section>
 
-    <!-- 3. Home Category Showcase (links to dedicated category pages) -->
+    <!-- 3. Featured Editorial Banner — Henna Hair Colour (the only featured category) -->
     <section class="section-wrapper" id="katalog" aria-labelledby="katalog-heading">
-      <div class="section-header">
-        <div class="section-header-content">
-          <span class="section-sub">INAI REPUBLIC COLLECTION</span>
-          <h2 class="section-title" id="katalog-heading">PRODUCT CATEGORY</h2>
+      <!-- Currently ONLY Henna Hair Colour is featured. Henna Hair Care and
+           Nail Henna are TEMPORARILY PARKED (kept below as HTML comments,
+           do not delete). To reactivate them later: uncomment each parked
+           card and wrap the cards in <div class="category-grid"> ... </div> -->
+      <div class="category-featured">
+        <!-- Approved HHC artwork: supplies the whole composition (products on
+             the right, empty negative space on the left). Untouched. -->
+        <div class="category-featured-media">
+          <img src="https://inairepublic.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-28-2026-10_03_11-AM.png" width="1961" height="802" alt="Henna Hair Colour Inai Republic" class="category-featured-img" loading="lazy" decoding="async">
+        </div>
+
+        <!-- One compact text group, overlaid inside the image's left negative space -->
+        <div class="category-featured-copy">
+          <h2 class="category-featured-title" id="katalog-heading">HENNA HAIR COLOUR</h2>
+          <p class="category-featured-desc">Inai pewarna rambut telus air.</p>
+          <div class="category-featured-actions">
+            <a href="henna-hair-colour.html" class="btn btn-primary">EXPLORE MORE</a>
+            <a href="#colour-studio" class="btn btn-secondary">EXPLORE COLOURS</a>
+          </div>
         </div>
       </div>
 
-      <div class="category-grid">
-        <!-- Category 1: Henna Hair Colour -->
-        <a href="henna-hair-colour.html" class="category-card" aria-label="Lihat koleksi Henna Hair Colour">
-          <div class="category-card-media">
-            <img src="https://inairepublic.com/wp-content/uploads/2026/09/WEBSITE-PRODUCT-CATEGORY-HHC-scaled.png" alt="Kategori Henna Hair Colour Inai Republic" class="category-card-img" loading="lazy" decoding="async">
-          </div>
-          <div class="category-card-body">
-            <span class="category-card-index">KATEGORI 01</span>
-            <h3 class="category-card-title">Henna Hair Colour</h3>
-            <p class="category-card-desc">
-              Pewarna rambut botani berasaskan inai asli. Tona pekat berdimensi, telus air, sah solat dan mesra wuduk.
-            </p>
-            <span class="category-card-cta">LIHAT KOLEKSI</span>
-          </div>
-        </a>
+      <!-- TEMPORARILY PARKED CATEGORY CARD (do not delete): Henna Hair Care.
+           Reactivate by uncommenting and wrapping the parked cards in
+           <div class="category-grid"> ... </div> -->
+      <!-- <a href="henna-hair-care.html" class="category-card" aria-label="Lihat koleksi Henna Hair Care">
+        <div class="category-card-media">
+          <img src="https://inairepublic.com/wp-content/uploads/2026/09/WEBSITE-PRODUCT-CATEGORY-henna-hair-care-scaled.png" alt="Kategori Henna Hair Care Inai Republic" class="category-card-img" loading="lazy" decoding="async">
+        </div>
+        <div class="category-card-body">
+          <span class="category-card-index">KATEGORI 02</span>
+          <h3 class="category-card-title">Henna Hair Care</h3>
+          <p class="category-card-desc">
+            Ritual penjagaan rambut lengkap — syampu, perapi, hair mask dan elixir diperkaya minyak argan serta rosemary.
+          </p>
+          <span class="category-card-cta">LIHAT KOLEKSI</span>
+        </div>
+      </a> -->
 
-        <!-- Category 2: Henna Hair Care -->
-        <a href="henna-hair-care.html" class="category-card" aria-label="Lihat koleksi Henna Hair Care">
-          <div class="category-card-media">
-            <img src="https://inairepublic.com/wp-content/uploads/2026/09/WEBSITE-PRODUCT-CATEGORY-henna-hair-care-scaled.png" alt="Kategori Henna Hair Care Inai Republic" class="category-card-img" loading="lazy" decoding="async">
-          </div>
-          <div class="category-card-body">
-            <span class="category-card-index">KATEGORI 02</span>
-            <h3 class="category-card-title">Henna Hair Care</h3>
-            <p class="category-card-desc">
-              Ritual penjagaan rambut lengkap — syampu, perapi, hair mask dan elixir diperkaya minyak argan serta rosemary.
-            </p>
-            <span class="category-card-cta">LIHAT KOLEKSI</span>
-          </div>
-        </a>
-
-        <!-- Category 3: Nail Henna -->
-        <a href="nail-henna.html" class="category-card" aria-label="Lihat koleksi Nail Henna">
-          <div class="category-card-media">
-            <img src="https://inairepublic.com/wp-content/uploads/2026/09/WEBSITE-PRODUCT-CATEGORY-NAIL-HENNA-scaled.png" alt="Kategori Nail Henna Inai Republic" class="category-card-img" loading="lazy" decoding="async">
-          </div>
-          <div class="category-card-body">
-            <span class="category-card-index">KATEGORI 03</span>
-            <h3 class="category-card-title">Nail Henna</h3>
-            <p class="category-card-desc">
-              Inai kuku botani mewah untuk kuku merah berkilat persis kaca. Tahan lama tanpa merosakkan permukaan kuku.
-            </p>
-            <span class="category-card-cta">LIHAT KOLEKSI</span>
-          </div>
-        </a>
-      </div>
+      <!-- TEMPORARILY PARKED CATEGORY CARD (do not delete): Nail Henna.
+           Reactivate by uncommenting and wrapping the parked cards in
+           <div class="category-grid"> ... </div> -->
+      <!-- <a href="nail-henna.html" class="category-card" aria-label="Lihat koleksi Nail Henna">
+        <div class="category-card-media">
+          <img src="https://inairepublic.com/wp-content/uploads/2026/09/WEBSITE-PRODUCT-CATEGORY-NAIL-HENNA-scaled.png" alt="Kategori Nail Henna Inai Republic" class="category-card-img" loading="lazy" decoding="async">
+        </div>
+        <div class="category-card-body">
+          <span class="category-card-index">KATEGORI 03</span>
+          <h3 class="category-card-title">Nail Henna</h3>
+          <p class="category-card-desc">
+            Inai kuku botani mewah untuk kuku merah berkilat persis kaca. Tahan lama tanpa merosakkan permukaan kuku.
+          </p>
+          <span class="category-card-cta">LIHAT KOLEKSI</span>
+        </div>
+      </a> -->
     </section>
 
     <!-- 4. Colour Studio (12 Tona Rasmi — Colour-First Shade Explorer) -->
@@ -541,9 +544,10 @@
           <h4 class="footer-col-title">KOLEKSI</h4>
           <ul class="footer-links-list">
             <li><a href="henna-hair-colour.html" class="footer-link">Henna Hair Colour</a></li>
-            <li><a href="henna-hair-care.html" class="footer-link">Henna Hair Care</a></li>
-            <li><a href="nail-henna.html" class="footer-link">Nail Henna</a></li>
-            <li><a href="henna-soap.html" class="footer-link">Henna Soap</a></li>
+            <!-- TEMPORARILY PARKED (do not delete): Henna Hair Care + Nail Henna + Henna Soap are hidden from the footer until reactivated. Uncomment to restore. -->
+            <!-- <li><a href="henna-hair-care.html" class="footer-link">Henna Hair Care</a></li> -->
+            <!-- <li><a href="nail-henna.html" class="footer-link">Nail Henna</a></li> -->
+            <!-- <li><a href="henna-soap.html" class="footer-link">Henna Soap</a></li> -->
           </ul>
         </div>
 
