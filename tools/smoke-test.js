@@ -613,6 +613,113 @@ const EXPECT = [
     merged.qty === 5, "qty " + merged.qty + " (" + typeof merged.qty + ")");
 })();
 
+/* ---------- TEST 10: js/app.js persistent store (survives a refresh) ----- */
+(function () {
+  const storage = { data: {} };
+  const fakeStorage = {
+    getItem: function (k) {
+      return Object.prototype.hasOwnProperty.call(storage.data, k) ? storage.data[k] : null;
+    },
+    setItem: function (k, v) { storage.data[k] = String(v); },
+    removeItem: function (k) { delete storage.data[k]; }
+  };
+
+  function bootApp() {
+    const doc = new Doc();
+    ["cart-items-container", "cart-counter", "cart-items-count", "cart-total-display",
+      "checkout-btn", "cart-backdrop", "cart-toggle-btn", "cart-close-btn", "koleksi-dropdown"]
+      .forEach((id) => {
+        const node = doc.createElement("div");
+        node.setAttribute("id", id);
+        doc.body.appendChild(node);
+      });
+    const win = {
+      document: doc,
+      location: { search: "" },
+      localStorage: fakeStorage,
+      scrollY: 0,
+      addEventListener: function () { /* scroll listener recorded no-op */ }
+    };
+    const ctx = vm.createContext({
+      window: win,
+      document: doc,
+      URLSearchParams: URLSearchParams,
+      encodeURIComponent: encodeURIComponent,
+      console: console,
+      alert: function () {}
+    });
+    vm.runInContext(fs.readFileSync("js/app.js", "utf8"), ctx, { filename: "js/app.js" });
+    doc.fire("DOMContentLoaded");
+    return { doc: doc, win: win, api: win.__iniarepublicCart };
+  }
+
+  const total = (page) => page.doc.getElementById("cart-total-display").textContent;
+
+  const page1 = bootApp();
+  check("app.js exposes the persistent cart store",
+    !!(page1.api && page1.api.state && page1.api.addItem && page1.api.lineKey));
+  check("fresh cart starts empty", page1.api.state.cart.length === 0);
+  check("empty cart disables checkout",
+    page1.doc.getElementById("checkout-btn").disabled === true);
+
+  page1.api.addItem({ id: "p1", name: "Henna Hair Colour 200ml", shade: "Colour: Coco Black", price: 49, qty: 2 });
+  check("quick add writes exactly one line", page1.api.state.cart.length === 1);
+  check("line receives a deterministic key",
+    page1.api.state.cart[0].lineKey === "p1::null", page1.api.state.cart[0].lineKey);
+  check("badge and drawer count show 2 items",
+    page1.doc.getElementById("cart-counter").textContent === "2" &&
+    page1.doc.getElementById("cart-items-count").textContent === "2",
+    page1.doc.getElementById("cart-counter").textContent);
+  check("subtotal renders guarded maths", total(page1) === "RM 98.00", total(page1));
+  check("filled cart enables checkout",
+    page1.doc.getElementById("checkout-btn").disabled === false);
+  check("cart is persisted to localStorage",
+    JSON.parse(storage.data.inaiRepublicCart || "[]").length === 1);
+
+  page1.api.addItem({ id: "p1", name: "Henna Hair Colour 200ml", shade: "Colour: Coco Black", price: 49, qty: "3" });
+  check("string qty merges into the same line",
+    page1.api.state.cart.length === 1 && page1.api.state.cart[0].qty === 5,
+    "len " + page1.api.state.cart.length + " qty " + (page1.api.state.cart[0] || {}).qty);
+  check("string qty cannot corrupt the subtotal", total(page1) === "RM 245.00", total(page1));
+
+  page1.api.addItem({
+    id: "p1",
+    name: "Henna Hair Colour 200ml",
+    shade: "Colour: Honey Brown",
+    price: 49,
+    config: { selectedColour: { id: "honey-brown", name: "Honey Brown" } }
+  });
+  check("a different variant stays a separate line", page1.api.state.cart.length === 2,
+    "len " + page1.api.state.cart.length);
+
+  /* Simulated refresh — a brand-new page load sharing the same localStorage. */
+  const page2 = bootApp();
+  check("cart survives a page refresh", page2.api.state.cart.length === 2,
+    "len " + page2.api.state.cart.length);
+  check("rehydrated lines keep keys and quantities",
+    page2.api.state.cart[0].lineKey === "p1::null" && page2.api.state.cart[0].qty === 5 &&
+    typeof page2.api.state.cart[1].lineKey === "string",
+    page2.api.state.cart.map((i) => i.lineKey + " x" + i.qty).join(" | "));
+  check("badge is repainted from storage on load",
+    page2.doc.getElementById("cart-counter").textContent === "6",
+    page2.doc.getElementById("cart-counter").textContent);
+  check("subtotal is repainted from storage on load", total(page2) === "RM 294.00", total(page2));
+
+  /* Legacy payloads: parked demo lines are purged and string quantities are
+     coerced so the drawer can never render NaN. */
+  storage.data.inaiRepublicCart = JSON.stringify([
+    { id: "demo-signature-hhc", name: "Signature Henna Hair Colour 300ml", price: 89, qty: 1 },
+    { id: "p1", name: "Henna Hair Colour 200ml", shade: "Colour: Coco Black", price: 49, qty: "2" }
+  ]);
+  const page3 = bootApp();
+  check("parked demo cart lines are purged on load",
+    page3.api.state.cart.length === 1 && page3.api.state.cart[0].id === "p1",
+    "len " + page3.api.state.cart.length);
+  check("legacy line without config still receives a key",
+    page3.api.state.cart[0].lineKey === "p1::null", page3.api.state.cart[0].lineKey);
+  check("legacy string qty still totals correctly", total(page3) === "RM 98.00", total(page3));
+})();
+
 /* ---------- Summary ------------------------------------------------------ */
 lines.push("");
 lines.push("TOTAL: " + passed + " passed, " + failed + " failed");

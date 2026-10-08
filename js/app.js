@@ -125,12 +125,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <div>
             <div class="cart-item-title">${item.name}</div>
             <div class="cart-item-shade">${item.shade}</div>
-            <div class="cart-item-price">RM ${(item.price * item.qty).toFixed(2)}</div>
+            <div class="cart-item-price">RM ${(Number(item.price || 0) * Number(item.qty || 0)).toFixed(2)}</div>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
             <div class="cart-qty-ctrl">
               <button class="qty-btn" data-action="decrease" data-line-key="${encodeURIComponent(item.lineKey)}" aria-label="Kurangkan kuantiti">-</button>
-              <span class="qty-display">${item.qty}</span>
+              <span class="qty-display">${Number(item.qty || 0)}</span>
               <button class="qty-btn" data-action="increase" data-line-key="${encodeURIComponent(item.lineKey)}" aria-label="Tambah kuantiti">+</button>
             </div>
             <button class="cart-remove-btn" data-action="remove" data-line-key="${encodeURIComponent(item.lineKey)}">Padam</button>

@@ -155,5 +155,24 @@ PASS: second line holds Honey Brown
 PASS: every cart line carries a line key
 PASS: cart re-rendered once per mutation
 PASS: string qty payload merges numerically
+PASS: app.js exposes the persistent cart store
+PASS: fresh cart starts empty
+PASS: empty cart disables checkout
+PASS: quick add writes exactly one line
+PASS: line receives a deterministic key
+PASS: badge and drawer count show 2 items
+PASS: subtotal renders guarded maths
+PASS: filled cart enables checkout
+PASS: cart is persisted to localStorage
+PASS: string qty merges into the same line
+PASS: string qty cannot corrupt the subtotal
+PASS: a different variant stays a separate line
+PASS: cart survives a page refresh
+PASS: rehydrated lines keep keys and quantities
+PASS: badge is repainted from storage on load
+PASS: subtotal is repainted from storage on load
+PASS: parked demo cart lines are purged on load
+PASS: legacy line without config still receives a key
+PASS: legacy string qty still totals correctly
 
-TOTAL: 157 passed, 0 failed
+TOTAL: 176 passed, 0 failed
