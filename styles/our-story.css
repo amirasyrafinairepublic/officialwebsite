@@ -1,0 +1,483 @@
+/* ==========================================================================
+   INAI REPUBLIC x SAINT LAURENT DESIGN SYSTEM
+   Our Story - Hero (Editorial Banner) + Editorial Band (Sections 2 and 3)
+   Page-scoped stylesheet. Loaded only by our-story.html and only adds layout
+   for this page's hero and its two editorial sections; no shared class from
+   main.css, footer.css or any other page stylesheet is redefined.
+   Reuses: .breadcrumb, .hero-tag, .hero-title, .hero-subtitle plus the colour,
+   spacing, motion and type tokens.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Hero Shell
+   -------------------------------------------------------------------------- */
+.story-hero {
+  position: relative;
+  background-color: var(--color-surface-base);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.story-hero-frame {
+  position: relative;
+  width: 100%;
+}
+
+/* Approved artwork 1672 x 941 (16:9). It is kept at its intrinsic ratio and
+   never cropped or stretched, so Madam, Sir and the trophy stay exactly as
+   approved at every screen width. */
+.story-hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Legibility scrim. It only deepens the empty burgundy negative space on the
+   left of the artwork and fades out before Madam, Sir and the trophy begin. It
+   stays hidden while the copy is stacked below the artwork, because no text
+   sits over the image at those widths. */
+.story-hero-scrim {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Copy Block (stacked layout: copy under the artwork)
+   -------------------------------------------------------------------------- */
+.story-hero-copy {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-7);
+}
+
+/* --------------------------------------------------------------------------
+   3. Type Lockup
+   ABOUT (eyebrow) - INAI REPUBLIC (heading) - BEAUTY ROOTED IN CONFIDENCE
+   (supporting heading) - body copy. Montserrat only, project tokens only.
+   -------------------------------------------------------------------------- */
+.story-hero .hero-title {
+  font-size: clamp(38px, 6vw, 64px);
+}
+
+/* Supporting heading - the step between the display heading and the body copy.
+   It reuses the heading's text-shadow treatment so all hero copy reads as one
+   crafted overlay. */
+.story-hero-subheading {
+  margin-bottom: var(--space-6);
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-wide);
+  line-height: var(--font-line-height-normal);
+  color: var(--color-text-primary);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+/* --------------------------------------------------------------------------
+   4. Desktop & Large Tablet - copy overlaid on the artwork's empty left space
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .story-hero-scrim {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    /* rgba values equal --color-surface-muted (#3c0919) at decreasing opacity.
+       It stops at 44% of the artwork's width - the exact point where Madam's
+       hand and the trophy begin - so no subject is ever covered. */
+    background: linear-gradient(
+      90deg,
+      rgba(60, 9, 25, 0.84) 0%,
+      rgba(60, 9, 25, 0.66) 16%,
+      rgba(60, 9, 25, 0.38) 28%,
+      rgba(60, 9, 25, 0.12) 37%,
+      rgba(60, 9, 25, 0) 44%
+    );
+  }
+
+  /* The copy sits in the artwork's clean burgundy negative space: inset from
+     the left edge, centred vertically, and held well clear of Madam, Sir and
+     the trophy at every desktop width. */
+  .story-hero-copy {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-inline-start: clamp(var(--space-7), 7vw, 168px);
+    padding-inline-end: var(--space-7);
+    padding-block: var(--space-12);
+  }
+
+  /* Keeps every line of copy inside the artwork's empty left margin, so the
+     subjects, the trophy and the velvet drape always stay unobstructed. */
+  .story-hero-copy > * {
+    max-width: min(30vw, 460px);
+  }
+
+  /* Scaled to the overlay column rather than the full viewport, so the
+     two-line lockup always sits beside the artwork. */
+  .story-hero .hero-title {
+    font-size: clamp(34px, 4.2vw, 62px);
+  }
+
+  /* Slightly larger than the stacked layout's body size so the paragraph stays
+     comfortable to read inside the narrower overlay column. */
+  .story-hero-copy .hero-subtitle {
+    font-size: clamp(14px, 1.05vw, 17px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Restrained Entrance Motion
+   A soft fade on the artwork, then a gentle rise for the copy - the same
+   motion language as the other category heroes, nothing more.
+   -------------------------------------------------------------------------- */
+@keyframes story-hero-img-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes story-hero-copy-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.story-hero-img {
+  animation: story-hero-img-in var(--motion-duration-slow) var(--motion-ease-luxury) both;
+}
+
+.story-hero-copy .breadcrumb {
+  animation: story-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) both;
+}
+
+.story-hero-copy .hero-tag {
+  animation: story-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) 60ms both;
+}
+
+.story-hero .hero-title {
+  animation: story-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) 120ms both;
+}
+
+.story-hero-subheading {
+  animation: story-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) 180ms both;
+}
+
+.story-hero-copy .hero-subtitle {
+  animation: story-hero-copy-in var(--motion-duration-slow) var(--motion-ease-luxury) 240ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-hero-img,
+  .story-hero-copy .breadcrumb,
+  .story-hero-copy .hero-tag,
+  .story-hero .hero-title,
+  .story-hero-subheading,
+  .story-hero-copy .hero-subtitle {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Editorial Band - Section 2 (Our Story) and Section 3 (Our Commitment)
+   One continuous full-bleed band built on the approved "Natural Henna
+   Skincare" artwork (1442 x 1091). That artwork was composed with three open
+   areas, so at desktop widths the Section 2 copy, the Vision / Mission panel
+   and the Section 3 copy each land on clean, uncluttered space, and the
+   photograph is never cropped into, recoloured or drawn over.
+   Palette: brand maroon type on light surfaces derived from the existing
+   --color-surface-light, --color-accent-gold-light and --color-accent-rose
+   tokens - no new colour, font or shadow is introduced.
+   -------------------------------------------------------------------------- */
+.story-band {
+  position: relative;
+  overflow: hidden;
+  /* Warm cream derived from brand tokens, the same technique already used by
+     colour-studio.css. It is the surface behind the copy below 1024px and the
+     placeholder surface while the artwork loads. */
+  background-color: color-mix(in srgb, var(--color-surface-light) 92%, var(--color-accent-gold-light) 8%);
+}
+
+/* Below 1024px the artwork leads the band as a natural banner strip. The crop
+   is held to the upper band of the picture (bowl, leaves and open cream) so the
+   panel zone painted into the artwork itself can never appear without its text,
+   and the copy always sits on the clean cream surface. */
+.story-band-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1442 / 460;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.story-chapter {
+  position: relative;
+  z-index: 2;
+}
+
+.story-container {
+  width: min(100% - 40px, var(--container-max-width));
+  margin-inline: auto;
+}
+
+.story-chapter--vision {
+  padding-block: clamp(46px, 6vw, 92px) clamp(20px, 2.4vw, 32px);
+}
+
+.story-chapter--commitment {
+  padding-block: clamp(20px, 2.4vw, 32px) clamp(58px, 7vw, 112px);
+}
+
+/* --- Copy block: rule + label, heading, paragraph --- */
+.story-intro {
+  max-width: 640px;
+}
+
+.story-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin: 0 0 var(--space-6);
+  color: var(--color-accent-henna);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+.story-label-rule {
+  display: block;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-accent-maroon);
+}
+
+.story-heading {
+  margin: 0 0 var(--space-6);
+  color: var(--color-surface-base);
+  font-size: clamp(26px, 3.1vw, 44px);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.story-paragraph {
+  margin: 0;
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-md);
+  line-height: 1.85;
+}
+
+/* --------------------------------------------------------------------------
+   7. Vision / Mission Panel
+   The approved artwork already carries a painted panel (card, two icon chips,
+   hairline and diamond) in its middle band, so this card is deliberately
+   opaque and is laid straight over it: the real panel supplies the Montserrat
+   text and the SVG icons, the artwork stays photography only.
+   -------------------------------------------------------------------------- */
+.story-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 40px);
+  margin-top: clamp(24px, 3vw, 40px);
+  padding: clamp(24px, 2.8vw, 40px) clamp(22px, 3vw, 44px);
+  /* Opaque warm white derived from brand tokens (no raw colour, nothing of the
+     painted panel can show through). */
+  background-color: color-mix(in srgb, var(--color-surface-light) 97%, var(--color-accent-gold-light) 3%);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-subtle);
+}
+
+.story-panel-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(18px, 2vw, 26px);
+  align-items: center;
+}
+
+.story-panel-icon {
+  display: grid;
+  place-items: center;
+  width: clamp(64px, 6vw, 88px);
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--color-accent-gold);
+  border-radius: var(--radius-pill);
+  background-color: color-mix(in srgb, var(--color-accent-rose) 16%, var(--color-surface-light));
+  color: var(--color-accent-maroon);
+}
+
+.story-panel-icon svg {
+  width: 42%;
+  height: auto;
+}
+
+.story-panel-copy {
+  min-width: 0;
+  /* Keeps Vision and Mission to an easy reading measure even on very wide
+     screens, where the panel spans nearly the whole viewport. */
+  max-width: 640px;
+}
+
+.story-panel-title {
+  margin: 0 0 var(--space-3);
+  color: var(--color-surface-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+.story-panel-text {
+  margin: 0;
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-sm);
+  line-height: 1.85;
+}
+
+/* Hairline with a small gold diamond: horizontal while the two items stack,
+   and a vertical divider between the two columns on desktop. */
+.story-panel-divider {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-accent-gold);
+}
+
+.story-panel-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  background-color: var(--color-accent-gold);
+  transform: rotate(45deg);
+}
+
+/* --------------------------------------------------------------------------
+   8. Desktop - the artwork is shown whole and top aligned, and the real panel
+   is laid straight over the panel that is painted into the artwork itself.
+
+   Measured on the approved 1442 x 1091 artwork, the painted panel occupies
+   x 4.3% - 96.4% and y 42.6% - 64.6%. Because the picture is fitted to the
+   viewport width, that zone always lands at 32.25vw - 48.9vw from the top of
+   the band, so the real panel is placed at 30vw with a 23vw minimum height:
+   roughly 2vw of clearance above and 4vw below, which keeps the painted card,
+   its icon chips and its diamond fully covered at any width. Everything that
+   sits on the picture is placed in viewport-width units for the same reason.
+
+   The overlay starts at 1280px. Below that the artwork's open columns are too
+   narrow for the copy to clear the panel, so the page falls back to the
+   stacked tablet and mobile layout instead of colliding with it.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1280px) {
+  .story-band {
+    /* Creates the stacking context that keeps the picture behind the copy and
+       keeps the band at the artwork's own ratio (1091 / 1442). A user who
+       forces a much larger text size can still grow the band, and the picture
+       then simply crops at the bottom instead of leaving a gap. */
+    z-index: 0;
+    min-height: 75.66vw;
+  }
+
+  .story-band-media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* Chapters and containers stop being containing blocks, so the copy and the
+     panel can be anchored to the band itself. */
+  .story-chapter,
+  .story-container {
+    position: static;
+  }
+
+  /* Section 2 copy - the artwork's open top left area. */
+  .story-intro {
+    position: absolute;
+    top: 3vw;
+    left: 2.5vw;
+    width: min(44vw, 640px);
+  }
+
+  /* Section 3 copy - the artwork's open bottom right area, held clear of the
+     panel above it. */
+  .story-intro--commitment {
+    top: 55.5vw;
+    left: auto;
+    right: 2.5vw;
+  }
+
+  /* The real Vision / Mission panel, laid over the painted one. */
+  .story-panel {
+    position: absolute;
+    top: 30vw;
+    left: 1.25vw;
+    right: 1.25vw;
+    min-height: 23vw;
+    margin-top: 0;
+    align-content: center;
+    grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+    gap: clamp(28px, 3.4vw, 56px);
+  }
+
+  .story-panel-divider {
+    align-self: stretch;
+    width: 1px;
+    height: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Restrained Entrance Motion
+   The same motion language as the hero: the artwork fades in, then the copy
+   and the panel rise softly into place.
+   -------------------------------------------------------------------------- */
+@keyframes story-band-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes story-rise-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.story-band-media {
+  animation: story-band-in var(--motion-duration-slow) var(--motion-ease-luxury) both;
+}
+
+.story-intro {
+  animation: story-rise-in var(--motion-duration-slow) var(--motion-ease-luxury) 80ms both;
+}
+
+.story-panel {
+  animation: story-rise-in var(--motion-duration-slow) var(--motion-ease-luxury) 140ms both;
+}
+
+.story-chapter--commitment .story-intro {
+  animation-delay: 160ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-band-media,
+  .story-intro,
+  .story-panel {
+    animation: none;
+  }
+}
