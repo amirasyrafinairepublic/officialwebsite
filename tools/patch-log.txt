@@ -1,0 +1,21 @@
+OK: syntax valid: js/shop-data.js
+OK: syntax valid: js/shop.js
+OK: syntax valid: js/shop-selectors.js
+OK: syntax valid: js/shop-cart.js
+OK: syntax valid: js/shop-catalog.js
+OK: syntax valid: js/shop-detail.js
+OK: syntax valid: js/app.js
+OK: balanced braces: styles/shop.css (57/57)
+OK: balanced braces: styles/product.css (70/70)
+OK: footer.css link present
+OK: direct Shop catalogue shell present
+OK: All Products header present
+OK: Shop back arrow points directly to homepage
+OK: functional filter sidebar present
+OK: #product-grid container present
+OK: Shop marketing hero removed
+OK: app.js script present
+OK: shop.css linked on product page
+OK: product.css linked on product page
+OK: product detail shell present
+OK: shop-detail.js wired on product.html

@@ -1,0 +1,501 @@
+/* ==========================================================================
+   INAI REPUBLIC — PRODUCT DETAIL (product.html)
+   Layout, gallery, circular Colour Studio swatches, combo rows, quantity,
+   CTAs, validation and product information. Tokens only; loaded after
+   styles/shop.css. No gradients, no glassmorphism, no decorative noise.
+   ========================================================================== */
+
+/* --- Back to Shop + breadcrumb ----------------------------------------- */
+.pd-back-to-shop {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: var(--space-6);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+.pd-back-to-shop:hover,
+.pd-back-to-shop:focus-visible {
+  color: var(--color-accent-gold-light);
+}
+
+.pd-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.pd-breadcrumb a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.pd-breadcrumb a:hover {
+  color: var(--color-accent-gold);
+}
+
+.pd-breadcrumb span[aria-current] {
+  color: var(--color-text-secondary);
+}
+
+/* --- Layout: gallery left / product info right ------------------------- */
+.pd-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-16);
+  align-items: start;
+}
+
+/* --- Gallery ----------------------------------------------------------- */
+.pd-gallery {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-7));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pd-gallery-stage {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--color-surface-light);
+  border: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.pd-gallery-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0;
+  transition: opacity var(--motion-duration-instant) var(--motion-ease-smooth);
+}
+
+.pd-gallery-nav {
+  position: absolute;
+  inset: 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.pd-gallery-arrow {
+  pointer-events: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xl);
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color var(--motion-duration-instant) var(--motion-ease-smooth),
+    color var(--motion-duration-instant) var(--motion-ease-smooth);
+}
+
+.pd-gallery-arrow:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold-light);
+}
+
+.pd-gallery-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.pd-gallery-thumb {
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  background: var(--color-surface-light);
+  border: 1px solid var(--color-border-subtle);
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.pd-gallery-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0;
+}
+
+.pd-gallery-thumb.is-active {
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 0 1px var(--color-accent-gold);
+}
+
+/* --- Info column ------------------------------------------------------- */
+.pd-meta {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.pd-title {
+  margin: 0 0 var(--space-5);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.pd-info-col .sd-price-sale {
+  font-size: var(--font-size-2xl);
+}
+
+.pd-info-col .sd-price-original {
+  font-size: var(--font-size-sm);
+}
+
+/* --- Colour selector --------------------------------------------------- */
+.sd-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.sd-selector-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.sd-selector-label {
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.sd-selector-hint {
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.sd-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+/* Circular hair-texture swatch — Colour Studio asset in a ring frame. */
+.sd-swatch {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-light);
+  cursor: pointer;
+  transition:
+    transform var(--motion-duration-instant) var(--motion-ease-smooth),
+    border-color var(--motion-duration-instant) var(--motion-ease-smooth);
+}
+
+.sd-swatch-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-pill);
+}
+
+.sd-swatch:hover {
+  border-color: var(--color-accent-gold-light);
+  transform: scale(1.06);
+}
+
+/* Selected: clear champagne-gold outer ring + slight scale increase. */
+.sd-swatch.is-selected {
+  z-index: 1;
+  border-color: var(--color-accent-gold);
+  transform: scale(1.12);
+  box-shadow:
+    0 0 0 2px var(--color-surface-base),
+    0 0 0 3.5px var(--color-accent-gold);
+}
+
+.sd-selected {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.sd-selected-label {
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.sd-selected-name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* Subtle validation — champagne gold, never aggressive red. */
+.sd-validation {
+  display: none;
+  margin: 0;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-accent-gold-light);
+}
+
+.sd-validation.is-visible {
+  display: block;
+}
+
+/* --- Combo / mix rows (independent selection per bottle) --------------- */
+.sd-selector--combo {
+  gap: var(--space-6);
+}
+
+.sd-combo-row {
+  margin: 0;
+  padding: 0 0 var(--space-6);
+  border: 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.sd-combo-row:last-of-type {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.sd-combo-legend {
+  padding: 0;
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* --- Quantity ----------------------------------------------------------- */
+.sd-qty {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+.sd-qty-label {
+  margin-right: var(--space-2);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.sd-qty-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border-default);
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color var(--motion-duration-instant) var(--motion-ease-smooth),
+    color var(--motion-duration-instant) var(--motion-ease-smooth);
+}
+
+.sd-qty-btn:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold-light);
+}
+
+.sd-qty-value {
+  min-width: 40px;
+  text-align: center;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* --- CTAs: Add to Cart + Buy Now ---------------------------------------- */
+.pd-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.sd-btn--primary {
+  background: var(--color-accent-henna);
+  border-color: var(--color-accent-henna);
+  color: var(--color-text-primary);
+}
+
+.sd-btn--primary:hover {
+  background: var(--color-accent-henna-hover);
+  border-color: var(--color-accent-henna-hover);
+}
+
+.sd-btn--dark {
+  background: var(--color-surface-muted);
+  border-color: var(--color-border-default);
+  color: var(--color-text-primary);
+}
+
+.sd-btn--dark:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold-light);
+}
+
+.pd-cta-note {
+  min-height: 1.2em;
+  margin: var(--space-3) 0 0;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-accent-gold);
+}
+
+/* --- Product information ------------------------------------------------ */
+.pd-info {
+  margin-top: var(--space-10);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.pd-info-title {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.pd-info-desc {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-relaxed);
+  color: var(--color-text-muted);
+}
+
+.pd-specs {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  row-gap: var(--space-4);
+  margin: var(--space-6) 0 0;
+}
+
+.pd-specs dt {
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.pd-specs dd {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.pd-loading {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* --- Responsive: tablet + mobile ---------------------------------------- */
+@media (max-width: 1024px) {
+  .pd-layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: var(--space-10);
+  }
+
+  .pd-gallery-thumb {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pd-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .pd-gallery {
+    position: static;
+  }
+
+  .pd-gallery-thumb {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Comfortable tap targets; combo rows stay clearly separated. */
+  .sd-swatch {
+    width: 52px;
+    height: 52px;
+  }
+
+  .sd-strip {
+    gap: var(--space-3);
+  }
+
+  .sd-qty-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .pd-specs {
+    grid-template-columns: 110px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .sd-combo-row .sd-strip {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: var(--space-2);
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-swatch,
+  .pd-gallery-img,
+  .pd-gallery-arrow,
+  .sd-btn,
+  .sd-qty-btn {
+    transition: none;
+  }
+}

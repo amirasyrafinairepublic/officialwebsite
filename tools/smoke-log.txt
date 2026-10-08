@@ -1,0 +1,159 @@
+PASS: catalog renders 7 product cards
+PASS: card 1 title: Henna Hair Colour 200ml
+PASS: card 1 sale RM 49.00
+PASS: card 1 original RM 69.00
+PASS: card 1 shows 12 Colours
+PASS: card 1 links to product detail
+PASS: card 1 has product image
+PASS: card 2 title: Henna Hair Colour 300ml
+PASS: card 2 sale RM 65.00
+PASS: card 2 original RM 120.00
+PASS: card 2 shows 6 Colours
+PASS: card 2 links to product detail
+PASS: card 2 has product image
+PASS: card 3 title: Henna Hair Colour 300ml (Tutup Uban)
+PASS: card 3 sale RM 65.00
+PASS: card 3 original RM 120.00
+PASS: card 3 shows 2 Colours
+PASS: card 3 links to product detail
+PASS: card 3 has product image
+PASS: card 4 title: Combo 2x Henna Hair Colour 200ml
+PASS: card 4 sale RM 98.00
+PASS: card 4 original RM 138.00
+PASS: card 4 shows 12 Colours
+PASS: card 4 links to product detail
+PASS: card 4 has product image
+PASS: card 5 title: Combo 3x Henna Hair Colour 200ml
+PASS: card 5 sale RM 135.00
+PASS: card 5 original RM 207.00
+PASS: card 5 shows 12 Colours
+PASS: card 5 links to product detail
+PASS: card 5 has product image
+PASS: card 6 title: Combo Jumbo Henna Hair Colour 300ml
+PASS: card 6 sale RM 114.00
+PASS: card 6 original RM 190.00
+PASS: card 6 shows 8 Colours
+PASS: card 6 links to product detail
+PASS: card 6 has product image
+PASS: card 7 title: Mix Jumbo Henna Hair Colour 200ml & 300ml
+PASS: card 7 sale RM 110.00
+PASS: card 7 original RM 189.00
+PASS: card 7 shows 12 Colours
+PASS: card 7 links to product detail
+PASS: card 7 has product image
+PASS: catalogue source contains 7 products
+PASS: detail renders content
+PASS: p1 detail title
+PASS: p1 detail sale price RM 49.00
+PASS: p1 detail original price RM 69.00
+PASS: p1 shows 12 colour swatches
+PASS: p1 uses single selector (no combo rows)
+PASS: p1 selected colour empty initially
+PASS: ADD TO CART button present
+PASS: BUY NOW button present
+PASS: single validation message text
+PASS: validation visibly marked
+PASS: incomplete selection blocked from cart
+PASS: coco-black swatch exists
+PASS: selected name shows Coco Black
+PASS: swatch gets selected state + aria
+PASS: other swatch stays unselected
+PASS: validation clears on selection
+PASS: item added to cart after selection
+PASS: cart item id
+PASS: cart item name
+PASS: cart item shade shows colour
+PASS: cart item preserves selectedColour config
+PASS: cart item price
+PASS: cart item original price
+PASS: cart item size
+PASS: cart item qty
+PASS: cart drawer re-rendered
+PASS: add-to-cart confirmation note
+PASS: quantity + button present
+PASS: quantity increments to 3
+PASS: re-add merges quantity into same cart item
+PASS: buy now adds configured item
+PASS: buy now opens the cart drawer
+PASS: buy now blocked without colour
+PASS: buy now shows validation
+PASS: p1 gallery includes cover, information and 12 colour posters
+PASS: thumbnail click swaps main image
+PASS: clicked thumbnail becomes active
+PASS: gallery next arrow present
+PASS: Hazelnut selection jumps gallery to Hazelnut poster
+PASS: Burgundy selection jumps gallery to Burgundy poster
+PASS: Ash Grey selection jumps gallery to Ash Grey poster
+PASS: gallery next arrow wraps through full poster gallery
+PASS: p4 has 2 combo rows
+PASS: p4 legends are Colour 1 / Colour 2
+PASS: combo validation message text
+PASS: incomplete combo blocked
+PASS: p4 has 2 independent swatch strips
+PASS: row 1 selected
+PASS: row 2 allows duplicate colour
+PASS: combo item added with duplicates
+PASS: combo config preserves Bottle 1 and Bottle 2
+PASS: row 2 independent change
+PASS: row 1 unchanged
+PASS: changed combo config creates a second variant line
+PASS: original variant line keeps its colour and qty
+PASS: second variant line stores the changed colour
+PASS: variant lines carry distinct line keys
+PASS: p5 has 3 combo rows
+PASS: p5 legends Colour 1..3
+PASS: p5 shade lists 3 colours (with duplicate)
+PASS: p5 config preserves all three bottles
+PASS: p6 has exactly 2 combo rows
+PASS: p6 each row shows 8 colours
+PASS: p6 cart shade
+PASS: p7 has 2 rows
+PASS: p7 legends 200ml / 300ml
+PASS: mix validation message text
+PASS: incomplete mix blocked
+PASS: p7 has separate 200ml/300ml strips
+PASS: one-row-only mix still blocked
+PASS: mix shade shows both sizes
+PASS: mix config preserves separate selected200mlColour / selected300mlColour
+PASS: 300ml mix palette excludes unavailable 200ml-only shades
+PASS: p1 detail title
+PASS: p1 detail prices 49/69
+PASS: p1 palette size 12
+PASS: p1 document title updated
+PASS: p2 detail title
+PASS: p2 detail prices 65/120
+PASS: p2 palette size 6
+PASS: p2 document title updated
+PASS: p3 detail title
+PASS: p3 detail prices 65/120
+PASS: p3 palette size 2
+PASS: p3 document title updated
+PASS: p4 detail title
+PASS: p4 detail prices 98/138
+PASS: p4 palette size 12
+PASS: p4 document title updated
+PASS: p5 detail title
+PASS: p5 detail prices 135/207
+PASS: p5 palette size 12
+PASS: p5 document title updated
+PASS: p6 detail title
+PASS: p6 detail prices 114/190
+PASS: p6 palette size 8
+PASS: p6 document title updated
+PASS: p7 detail title
+PASS: p7 detail prices 110/189
+PASS: p7 palette size 12
+PASS: p7 document title updated
+PASS: p2 (300ml) excludes coco-black
+PASS: p3 (Tutup Uban) shows exactly Coco Black + Chocolate Brown
+PASS: unknown id falls back to first product
+PASS: identical variant re-add stays on one line
+PASS: line key is stable across an identical re-add
+PASS: different colour adds a second line (no overwrite)
+PASS: first line still keeps Coco Black
+PASS: second line holds Honey Brown
+PASS: every cart line carries a line key
+PASS: cart re-rendered once per mutation
+PASS: string qty payload merges numerically
+
+TOTAL: 157 passed, 0 failed

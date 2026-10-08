@@ -8,26 +8,48 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ------------------------------------------------------------------------
      1. State Management
      ------------------------------------------------------------------------ */
-  const state = {
-    cart: [
-      {
-        id: "p1",
-        name: "Signature Henna Hair Colour 300ml",
-        shade: "Coco Black • 300ml Jumbo",
-        price: 65.0,
-        qty: 1,
-        img: "https://inairepublic.com/wp-content/uploads/2026/06/5-300x300.png"
-      },
-      {
-        id: "p2",
-        name: "Inai Kuku Couple Edition",
-        shade: "Percuma Buffer & Serum Kuku",
-        price: 39.0,
-        qty: 1,
-        img: "https://inairepublic.com/wp-content/uploads/2023/11/couple-edition-inai-republic-1-300x300.jpg"
+  const CART_STORAGE_KEY = "inaiRepublicCart";
+  const CART_MIGRATION_KEY = "inaiRepublicCartDemoCleanupV1";
+  const STALE_DEMO_IDS = new Set(["demo-signature-hhc", "demo-couple-edition"]);
+
+  function readCart() {
+    try {
+      const stored = window.localStorage.getItem(CART_STORAGE_KEY);
+      const parsed = stored ? JSON.parse(stored) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function lineKey(item) {
+    if (item && item.lineKey) return item.lineKey;
+    return String(item && item.id ? item.id : "item") + "::" + JSON.stringify(item && item.config ? item.config : null);
+  }
+
+  function saveCart() {
+    try {
+      window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(state.cart));
+    } catch (error) {
+      // Continue with the in-memory cart if browser storage is unavailable.
+    }
+  }
+
+  function cleanStaleDemoLines(items) {
+    const cleaned = items.filter(item => item && !STALE_DEMO_IDS.has(item.id));
+    try {
+      if (!window.localStorage.getItem(CART_MIGRATION_KEY) || cleaned.length !== items.length) {
+        window.localStorage.setItem(CART_MIGRATION_KEY, "done");
       }
-    ]
-  };
+    } catch (error) {
+      // The cleaned result is still used for this page session.
+    }
+    return cleaned;
+  }
+
+  const state = { cart: cleanStaleDemoLines(readCart()) };
+  state.cart.forEach(item => { item.lineKey = lineKey(item); });
+  saveCart();
 
   /* ------------------------------------------------------------------------
      2. DOM Elements
@@ -67,8 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
      4. Cart Logic & Render
      ------------------------------------------------------------------------ */
   function renderCart() {
-    const totalItems = state.cart.reduce((sum, item) => sum + item.qty, 0);
-    const totalPrice = state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const totalItems = state.cart.reduce((sum, item) => sum + Number(item.qty || 0), 0);
+    const totalPrice = state.cart.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.qty || 0), 0);
 
     // Update Badges & Counters
     if (cartCounter) cartCounter.textContent = totalItems;
@@ -97,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (checkoutBtn) checkoutBtn.disabled = false;
 
     cartItemsContainer.innerHTML = state.cart.map(item => `
-      <div class="cart-item" data-id="${item.id}">
+      <div class="cart-item" data-line-key="${encodeURIComponent(item.lineKey)}">
         <img src="${item.img}" alt="${item.name}" class="cart-item-img">
         <div class="cart-item-info">
           <div>
@@ -107,11 +129,11 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
             <div class="cart-qty-ctrl">
-              <button class="qty-btn" data-action="decrease" data-id="${item.id}" aria-label="Kurangkan kuantiti">-</button>
+              <button class="qty-btn" data-action="decrease" data-line-key="${encodeURIComponent(item.lineKey)}" aria-label="Kurangkan kuantiti">-</button>
               <span class="qty-display">${item.qty}</span>
-              <button class="qty-btn" data-action="increase" data-id="${item.id}" aria-label="Tambah kuantiti">+</button>
+              <button class="qty-btn" data-action="increase" data-line-key="${encodeURIComponent(item.lineKey)}" aria-label="Tambah kuantiti">+</button>
             </div>
-            <button class="cart-remove-btn" data-action="remove" data-id="${item.id}">Padam</button>
+            <button class="cart-remove-btn" data-action="remove" data-line-key="${encodeURIComponent(item.lineKey)}">Padam</button>
           </div>
         </div>
       </div>
@@ -137,14 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Legacy product-card quick adds are routed through the same persistent
+  // line-key cart store so variants and navigation remain consistent.
   function addToCart(product) {
-    const existing = state.cart.find(item => item.id === product.id);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      state.cart.push({ ...product, qty: 1 });
-    }
-    renderCart();
+    addPersistentItem(product);
     openCart();
   }
 
@@ -168,24 +186,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // Delegation for Cart actions (Increase, Decrease, Remove)
   if (cartItemsContainer) {
     cartItemsContainer.addEventListener("click", (e) => {
-      const target = e.target;
-      const action = target.getAttribute("data-action");
-      const id = target.getAttribute("data-id");
-      if (!action || !id) return;
+      const actionButton = e.target && typeof e.target.closest === "function"
+        ? e.target.closest("[data-action]")
+        : null;
+      const action = actionButton ? actionButton.getAttribute("data-action") : null;
+      const row = actionButton ? actionButton.closest("[data-line-key]") : null;
+      if (!action || !row) return;
+      const directKey = actionButton.getAttribute("data-line-key");
+      const key = decodeURIComponent(directKey || row.getAttribute("data-line-key") || "");
 
-      const item = state.cart.find(i => i.id === id);
+      const item = state.cart.find(i => i.lineKey === key);
       if (!item) return;
 
       if (action === "increase") {
-        item.qty += 1;
+        item.qty = Number(item.qty || 0) + 1;
       } else if (action === "decrease") {
-        item.qty -= 1;
+        item.qty = Number(item.qty || 0) - 1;
         if (item.qty <= 0) {
-          state.cart = state.cart.filter(i => i.id !== id);
+          state.cart = state.cart.filter(i => i.lineKey !== key);
         }
       } else if (action === "remove") {
-        state.cart = state.cart.filter(i => i.id !== id);
+        state.cart = state.cart.filter(i => i.lineKey !== key);
       }
+      saveCart();
       renderCart();
     });
   }
@@ -248,7 +271,41 @@ document.addEventListener("DOMContentLoaded", () => {
      7. Shade Studio bridge — scripts/shade-studio.js memanggil hook ini
         untuk menambah tona yang sedang dipilih ke dalam troli.
      ------------------------------------------------------------------------ */
-  window.inaiRepublicAddToCart = addToCart;
+  function addPersistentItem(item) {
+    if (!item) return false;
+    const next = { ...item, qty: Number(item.qty || 1) };
+    next.lineKey = lineKey(next);
+    const existing = state.cart.find(entry => entry.lineKey === next.lineKey);
+    if (existing) {
+      const mergedQty = Number(existing.qty || 0) + next.qty;
+      Object.assign(existing, next);
+      existing.qty = mergedQty;
+      existing.lineKey = next.lineKey;
+    } else {
+      state.cart.push(next);
+    }
+    saveCart();
+    renderCart();
+    return true;
+  }
+
+  window.inaiRepublicAddToCart = addPersistentItem;
+
+  /* Shop system bridge — js/shop-cart.js pushes configured items into this
+     same cart drawer so the colour configuration is preserved site-wide. */
+  window.__iniarepublicCart = {
+    state: state,
+    addItem: addPersistentItem,
+    lineKey: lineKey,
+    persist: function () {
+      saveCart();
+      renderCart();
+    },
+    renderCart: renderCart,
+    openCart: function () {
+      if (cartBackdrop && !cartBackdrop.classList.contains("open")) openCart();
+    }
+  };
 
   /* ------------------------------------------------------------------------
      8. Category Navigation Tabs

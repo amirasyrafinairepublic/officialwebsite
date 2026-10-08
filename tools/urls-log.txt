@@ -1,0 +1,27 @@
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-COCO-BLACK.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-ROYAL-CHESTNUT.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-CHOCOLATE-BROWN.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-MOCHA-MILK-TEA.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-HAZELNUT.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-HONEY-BROWN.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-CARAMEL-GOLD.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-OLIVE-JADE.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-BURGUNDY.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-PERSIAN-RED.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-ASH-BROWN.png
+OK https://inairepublic.com/wp-content/uploads/2026/09/NEW-ASH-GREY.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/BM-HOW-TO-USE-1.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/SHOWCASE-RETAIL-NEW-COLOUR-MOCHA-MILK-TEA-INGREDIENTS-2.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/hhc-300ml-1.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/tutup-uban-hhc-300ml-malay-scaled.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/BM-HOW-TO-USE-300ML.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/BM-WHATS-INSIDE-THE-BOX-1.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/kombo-3x-hhc-200ml.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/BM-BLEACH-LEVEL-1.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/TUTUP-UBAN.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/kombo-jumbo.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/mix-jumbo.png
+OK https://inairepublic.com/wp-content/uploads/2026/10/kombo-2x-hhc-200ml.png
+ERR https://inairepublic.com/wp-content/uploads/2026/10/hhc-200ml-sca.png (TimeoutError)
+
+TOTAL: 25 unique URLs, failures: 1

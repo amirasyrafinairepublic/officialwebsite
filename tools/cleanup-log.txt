@@ -1,0 +1,11 @@
+NOT-FOUND tools/versions.txt
+NOT-FOUND tools/t-node.txt
+NOT-FOUND tools/t-py.txt
+NOT-FOUND tools/patch-shop.py
+NOT-FOUND tools/run-out.txt
+NOT-FOUND tools/root-list.txt
+NOT-FOUND tools/git-status.txt
+DELETED tools/smoke-exit.txt
+NOT-FOUND tools-del.txt
+DEL-ERR deletelog.txt (EBUSY: resource busy or locked, unlink 'C:\Users\User\Desktop\WEBSITE SYSTEM\deletelog.txt')
+DEL-ERR dl.txt (EBUSY: resource busy or locked, unlink 'C:\Users\User\Desktop\WEBSITE SYSTEM\dl.txt')

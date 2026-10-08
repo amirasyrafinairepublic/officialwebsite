@@ -1,0 +1,213 @@
+/* ==========================================================================
+   INAI REPUBLIC — CONSOLIDATED CERTIFICATES
+   Reuses global tokens, internal-page type scale and certificate presentation.
+   ========================================================================== */
+
+.certificates-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.certificates-nav a {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+.certificates-nav a:hover,
+.certificates-nav a:focus-visible {
+  color: var(--color-accent-gold-light);
+}
+
+.certificate-section {
+  scroll-margin-top: calc(var(--header-height) + var(--space-8));
+}
+
+.certificate-section + .certificate-section {
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.certificate-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.7fr);
+  gap: clamp(var(--space-10), 7vw, var(--space-24));
+  align-items: center;
+}
+
+.certificate-layout--reverse .certificate-copy {
+  order: 2;
+}
+
+.certificate-layout--reverse .certificate-document {
+  order: 1;
+}
+
+.certificate-eyebrow {
+  margin: 0 0 var(--space-5);
+  color: var(--color-accent-gold);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+.certificate-title {
+  margin: 0 0 var(--space-6);
+  color: var(--color-text-primary);
+  font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-4xl));
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.04em;
+  line-height: var(--font-line-height-tight);
+  text-transform: uppercase;
+}
+
+.certificate-copy .ir-page-lede {
+  margin-bottom: var(--space-6);
+}
+
+.certificate-document {
+  margin: 0;
+}
+
+.certificate-document-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.certificate-image-button {
+  display: block;
+  width: 100%;
+  padding: clamp(var(--space-4), 2vw, var(--space-7));
+  background: var(--color-surface-light);
+  border: 1px solid var(--color-accent-gold);
+  box-shadow: var(--shadow-subtle);
+  cursor: zoom-in;
+}
+
+.certificate-image-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.certificate-image-button:hover,
+.certificate-image-button:focus-visible {
+  border-color: var(--color-accent-gold-light);
+}
+
+.certificate-document figcaption,
+.certificate-document-caption {
+  margin-top: var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-2xs);
+  letter-spacing: 0.12em;
+  line-height: var(--font-line-height-relaxed);
+  text-transform: uppercase;
+}
+
+.certificate-modal[hidden] {
+  display: none;
+}
+
+.certificate-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-toast);
+  display: grid;
+  place-items: center;
+  padding: var(--space-7);
+}
+
+.certificate-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.certificate-modal-dialog {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 960px);
+  max-height: calc(100vh - var(--space-16));
+  padding: var(--space-7);
+  background: var(--color-surface-light);
+  border: 1px solid var(--color-accent-gold);
+  box-shadow: var(--shadow-elevated);
+}
+
+.certificate-modal-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - var(--space-24));
+  object-fit: contain;
+}
+
+.certificate-modal-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xl);
+  line-height: 1;
+}
+
+.certificate-modal-close:hover,
+.certificate-modal-close:focus-visible {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold-light);
+}
+
+body.certificate-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .certificate-layout,
+  .certificate-layout--reverse {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .certificate-layout--reverse .certificate-copy,
+  .certificate-layout--reverse .certificate-document {
+    order: initial;
+  }
+
+  .certificate-document-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .certificate-modal {
+    padding: var(--space-4);
+  }
+
+  .certificate-modal-dialog {
+    max-height: calc(100vh - var(--space-8));
+    padding: var(--space-6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .certificate-image-button,
+  .certificate-modal-close {
+    transition: none;
+  }
+}
