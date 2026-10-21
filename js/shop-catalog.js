@@ -1,6 +1,6 @@
 /* ==========================================================================
    INAI REPUBLIC — SHOP CATALOG RENDER (shop.html)
-   Fills the product grid from js/shop-data.js — the 7-product catalogue.
+   Fills the product grid from js/shop-data.js — the product catalogue.
    ========================================================================== */
 (function () {
   "use strict";
@@ -20,7 +20,7 @@
 
     function render() {
       var items = SHOP.products.filter(function (product) {
-        return !category || category.value === "all" || product.configType === category.value;
+        return !category || category.value === "all" || product.category === category.value;
       });
       if (sort) {
         items.sort(function (a, b) {

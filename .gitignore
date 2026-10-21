@@ -14,6 +14,10 @@ desktop.ini
 # Logs
 *.log
 
+# Scratch files created during image / URL troubleshooting
+tools/_*
+_listing.txt
+
 # Large video files — store via Git LFS or CDN instead
 # Uncomment below if you don't want to track the video in git
 # assets/videos/*.mp4

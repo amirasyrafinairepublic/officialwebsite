@@ -58,16 +58,22 @@
     right.appendChild(ui.el("h1", { className: "pd-title", text: product.title }));
     right.appendChild(ui.buildPrice(product));
 
-    /* Colour selector: single vs combo / mix rows. */
+    /* Colour selector: single vs combo / mix rows. Products without colour
+       variants (configType "simple") reuse the same template minus the
+       selector step. */
     function handleColourPick(colourId) {
       clearValidation();
       gallery.showColour(colourId);
     }
-    var selector = product.configType === "single"
-      ? SHOP.selectors.buildSingle(product, handleColourPick)
-      : SHOP.selectors.buildCombo(product, handleColourPick);
-    right.appendChild(selector);
-    var validation = selector.querySelector(".sd-validation");
+    var selector = null;
+    var validation = null;
+    if (product.configType !== "simple") {
+      selector = product.configType === "single"
+        ? SHOP.selectors.buildSingle(product, handleColourPick)
+        : SHOP.selectors.buildCombo(product, handleColourPick);
+      right.appendChild(selector);
+      validation = selector.querySelector(".sd-validation");
+    }
 
     function clearValidation() {
       if (validation) {
@@ -92,18 +98,20 @@
     /* Product information */
     var info = ui.el("section", { className: "pd-info", "aria-label": "Maklumat produk" });
     info.appendChild(ui.el("h2", { className: "pd-info-title", text: "Product Information" }));
-    info.appendChild(ui.el("p", { className: "pd-info-desc", text: product.description }));
+    if (product.description) {
+      info.appendChild(ui.el("p", { className: "pd-info-desc", text: product.description }));
+    }
     var specs = ui.el("dl", { className: "pd-specs" });
     function spec(term, value) {
       specs.appendChild(ui.el("dt", { text: term }));
       specs.appendChild(ui.el("dd", { text: value }));
     }
-    spec("Saiz", product.size);
+    if (product.size) spec("Saiz", product.size);
     if (product.configType === "mix") {
       spec("Konfigurasi", "2 botol bebas \u2014 200ml & 300ml");
     } else if (product.configType === "combo") {
       spec("Konfigurasi", product.numberOfSelections + " botol \u2014 pilihan warna bebas");
-    } else {
+    } else if (product.configType === "single") {
       spec("Pilihan warna", colours.length + " warna");
     }
     spec("Penghantaran", "Percuma ke seluruh negara");
@@ -122,6 +130,7 @@
         clearValidation();
         return true;
       }
+      if (!validation) return false;
       validation.textContent = SHOP.cart.validationMessage(product);
       validation.classList.add("is-visible");
       return false;

@@ -10,6 +10,8 @@
   if (!SHOP) return;
 
   function isComplete(product, cfg) {
+    if (!product) return false;
+    if (product.configType === "simple") return true;
     if (!cfg) return false;
     if (product.configType === "mix") return !!(cfg.a && cfg.b);
     if (product.configType === "combo") {
@@ -28,6 +30,7 @@
 
   /* Shade line shown in the cart drawer (matches drawer's split on " • "). */
   function configShade(product, cfg) {
+    if (product.configType === "simple") return product.categoryLabel || "";
     var colours = SHOP.resolveColours(product);
     function n(id, row) { return SHOP.ui.colourName(row ? SHOP.coloursForRow(product, row) : colours, id); }
     if (product.configType === "mix") {
@@ -45,6 +48,7 @@
 
   /* Structured configuration stored with the cart item. */
   function configPayload(product, cfg) {
+    if (product.configType === "simple") return {};
     var colours = SHOP.resolveColours(product);
     function pick(id, row) {
       var c = SHOP.ui.findColour(row ? SHOP.coloursForRow(product, row) : colours, id);

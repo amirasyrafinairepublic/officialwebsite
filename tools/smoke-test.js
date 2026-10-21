@@ -135,7 +135,7 @@ const ALL = ["js/shop-data.js", "js/shop.js", "js/shop-selectors.js", "js/shop-c
 const CATALOG_FILES = ALL.concat(["js/shop-catalog.js"]);
 const DETAIL_FILES = ALL.concat(["js/shop-detail.js"]);
 
-function makePage(search, files, withGrid) {
+function makePage(search, files, withGrid, categoryValue) {
   const doc = new Doc();
   const win = { document: doc, location: { search: search || "" } };
   const cart = {
@@ -183,6 +183,13 @@ function makePage(search, files, withGrid) {
     grid.setAttribute("id", "product-grid");
     katalog.appendChild(grid);
     doc.body.appendChild(katalog);
+    /* Optional Shop category <select> so the filters can be exercised. */
+    if (categoryValue !== undefined) {
+      const categories = doc.createElement("select");
+      categories.setAttribute("id", "shop-category-filter");
+      categories.value = categoryValue;
+      doc.body.appendChild(categories);
+    }
   } else {
     const shell = doc.createElement("div");
     shell.setAttribute("id", "product-detail");
@@ -228,14 +235,16 @@ const EXPECT = [
   { id: "p4", title: "Combo 2x Henna Hair Colour 200ml", sale: 98, orig: 138, colours: 12 },
   { id: "p5", title: "Combo 3x Henna Hair Colour 200ml", sale: 135, orig: 207, colours: 12 },
   { id: "p6", title: "Combo Jumbo Henna Hair Colour 300ml", sale: 114, orig: 190, colours: 8 },
-  { id: "p7", title: "Mix Jumbo Henna Hair Colour 200ml & 300ml", sale: 110, orig: 189, colours: 12 }
+  { id: "p7", title: "Mix Jumbo Henna Hair Colour 200ml & 300ml", sale: 110, orig: 189, colours: 12 },
+  { id: "p8", title: "3pcs Sachet Keratin Hair Mask", sale: 30, orig: 69, colours: 0 },
+  { id: "p9", title: "Hair Relaxer With Henna Extract", sale: 49, orig: 98, colours: 0 }
 ];
 
 /* ---------- TEST 1: catalog grid ---------------------------------------- */
 (function () {
   const page = makePage("", CATALOG_FILES, true);
   const cards = page.grid.querySelectorAll(".sd-card");
-  check("catalog renders 7 product cards", cards.length === 7, "got " + cards.length);
+  check("catalog renders 9 product cards", cards.length === 9, "got " + cards.length);
 
   cards.forEach((card, i) => {
     const e = EXPECT[i];
@@ -253,7 +262,7 @@ const EXPECT = [
       orig ? orig.textContent : "missing");
     const col = card.querySelector(".sd-card-colours");
     check("card " + (i + 1) + " shows " + e.colours + " Colours",
-      !!col && col.textContent === e.colours + " Colours",
+      e.colours === 0 ? !col : (!!col && col.textContent === e.colours + " Colours"),
       col ? col.textContent : "missing");
     const cta = card.querySelector(".sd-card-actions a");
     check("card " + (i + 1) + " links to product detail",
@@ -265,7 +274,7 @@ const EXPECT = [
       img ? img.getAttribute("src") : "missing");
   });
 
-  check("catalogue source contains 7 products", EXPECT.length === 7);
+  check("catalogue source contains 9 products", EXPECT.length === 9);
 })();
 
 /* ---------- TEST 2: single-product detail (p1) --------------------------- */
@@ -718,6 +727,133 @@ const EXPECT = [
   check("legacy line without config still receives a key",
     page3.api.state.cart[0].lineKey === "p1::null", page3.api.state.cart[0].lineKey);
   check("legacy string qty still totals correctly", total(page3) === "RM 98.00", total(page3));
+})();
+
+/* ---------- TEST 11: Henna Hair Care — variant-less "simple" products ---- */
+(function () {
+  /* p8 — Keratin Hair Mask: cover only, no colour selector, no gallery extras. */
+  const p8 = makePage("?product=p8", DETAIL_FILES, false);
+  const r8 = p8.doc.getElementById("product-detail");
+  check("p8 detail title", !!r8.querySelector(".pd-title") &&
+    r8.querySelector(".pd-title").textContent === "3pcs Sachet Keratin Hair Mask");
+  check("p8 reuses detail template without a colour selector",
+    !r8.querySelector(".sd-selector") && !r8.querySelector(".sd-strip"));
+  check("p8 shows size spec", r8.querySelector(".pd-specs").textContent.indexOf("3pcs Sachet") !== -1);
+  const p8stage = r8.querySelector(".pd-gallery-img");
+  check("p8 stage uses the supplied Keratin image",
+    !!p8stage && /Keratin-Hair-Mask-on-Stone\.png$/.test(p8stage.getAttribute("src")));
+  check("p8 has no extra gallery slides or arrows",
+    r8.querySelectorAll(".pd-gallery-thumb").length === 0 &&
+    r8.querySelectorAll(".pd-gallery-arrow").length === 0);
+  buttons(r8, "ADD TO CART")[0].click();
+  check("p8 adds to cart with no colour selection", p8.cart.state.cart.length === 1,
+    "cart len " + p8.cart.state.cart.length);
+  const i8 = p8.cart.state.cart[0] || {};
+  check("p8 cart line has an empty colour config",
+    !!i8.config && Object.keys(i8.config).length === 0);
+  check("p8 cart line carries the Henna Hair Care label", i8.shade === "Henna Hair Care", i8.shade);
+  check("p8 cart line price", i8.price === 30 && i8.originalPrice === 69);
+
+  /* p9 — Hair Relaxer: main image first, then the 7 supporting images in order. */
+  const p9 = makePage("?product=p9", DETAIL_FILES, false);
+  const r9 = p9.doc.getElementById("product-detail");
+  check("p9 detail title", !!r9.querySelector(".pd-title") &&
+    r9.querySelector(".pd-title").textContent === "Hair Relaxer With Henna Extract");
+  check("p9 reuses detail template without a colour selector",
+    !r9.querySelector(".sd-selector") && !r9.querySelector(".sd-strip"));
+  const p9thumbs = r9.querySelectorAll(".pd-gallery-thumb");
+  check("p9 gallery has 8 slides (cover + 7 supporting)", p9thumbs.length === 8,
+    "got " + p9thumbs.length);
+  const p9stage = r9.querySelector(".pd-gallery-img");
+  check("p9 gallery opens on the main image",
+    !!p9stage && /Satin-Hair-Cream-on-Warm-Stone\.png$/.test(p9stage.getAttribute("src")));
+  const expectedOrder = [
+    "Satin-Hair-Cream-on-Warm-Stone.png",
+    "satin-slide-2-scaled.png",
+    "satin-slide-3-scaled.png",
+    "satin-slide-4-scaled.png",
+    "satin-slide-5-scaled.png",
+    "satin-feedback-1.png",
+    "satin-feedback-2.png",
+    "satin-feedback-3.png"
+  ];
+  const thumbSrcs = p9thumbs.map((t) => t.querySelector("img").getAttribute("src"));
+  check("p9 thumbnails follow the supplied order",
+    expectedOrder.every((f, k) => thumbSrcs[k] && thumbSrcs[k].indexOf(f) !== -1),
+    thumbSrcs.join(" , "));
+  check("p9 gallery exposes prev/next arrows",
+    r9.querySelectorAll(".pd-gallery-arrow").length === 2);
+  p9thumbs[5].click();
+  check("p9 selecting a thumbnail swaps the stage image",
+    /satin-feedback-1\.png$/.test(r9.querySelector(".pd-gallery-img").getAttribute("src")));
+  buttons(r9, "ADD TO CART")[0].click();
+  check("p9 adds to cart with no colour selection", p9.cart.state.cart.length === 1);
+  check("p9 cart line carries the Henna Hair Care label",
+    (p9.cart.state.cart[0] || {}).shade === "Henna Hair Care");
+
+  /* Shop card thumbnails use the supplied covers. */
+  const cat = makePage("", CATALOG_FILES, true);
+  const cardImgs = cat.grid.querySelectorAll(".sd-card-img");
+  const byProduct = {};
+  cat.grid.querySelectorAll(".sd-card").forEach((card) => {
+    const cta = card.querySelector(".sd-card-actions a");
+    const id = (cta.getAttribute("href") || "").split("=")[1];
+    byProduct[id] = card.querySelector(".sd-card-img").getAttribute("src");
+  });
+  check("p8 card thumbnail uses the supplied Keratin cover",
+    /Keratin-Hair-Mask-on-Stone\.png$/.test(byProduct.p8 || ""), byProduct.p8);
+  check("p9 card thumbnail uses the supplied Satin cover",
+    /Satin-Hair-Cream-on-Warm-Stone\.png$/.test(byProduct.p9 || ""), byProduct.p9);
+  check("both Henna Hair Care cards render", !!byProduct.p8 && !!byProduct.p9);
+  check("catalogue has 9 card images total", cardImgs.length === 9, "got " + cardImgs.length);
+})();
+
+/* ---------- TEST 12: Shop category filters (dynamic, no page refresh) ----- */
+(function () {
+  const page = makePage("", CATALOG_FILES, true, "all");
+  const grid = page.grid;
+  const sel = page.doc.getElementById("shop-category-filter");
+
+  check("filter select is present", !!sel);
+  check("filter ALL PRODUCTS renders the full catalogue (9)",
+    grid.querySelectorAll(".sd-card").length === 9,
+    "got " + grid.querySelectorAll(".sd-card").length);
+
+  sel.value = "henna-hair-colour";
+  sel.dispatch("change");
+  check("filter HENNA HAIR COLOUR renders the 7 original products",
+    grid.querySelectorAll(".sd-card").length === 7,
+    "got " + grid.querySelectorAll(".sd-card").length);
+  const colourTitles = grid.querySelectorAll(".sd-card").map((c) => c.querySelector(".sd-card-title").textContent);
+  check("HENNA HAIR COLOUR excludes the two Henna Hair Care products",
+    colourTitles.indexOf("3pcs Sachet Keratin Hair Mask") === -1 &&
+    colourTitles.indexOf("Hair Relaxer With Henna Extract") === -1);
+
+  sel.value = "henna-hair-care";
+  sel.dispatch("change");
+  const careCards = grid.querySelectorAll(".sd-card");
+  check("filter HENNA HAIR CARE renders exactly the 2 new products",
+    careCards.length === 2, "got " + careCards.length);
+  check("HENNA HAIR CARE cards are the two new products, in catalogue order",
+    careCards.length === 2 &&
+    careCards[0].querySelector(".sd-card-title").textContent === "3pcs Sachet Keratin Hair Mask" &&
+    careCards[1].querySelector(".sd-card-title").textContent === "Hair Relaxer With Henna Extract");
+
+  sel.value = "all";
+  sel.dispatch("change");
+  check("switching back to ALL PRODUCTS restores 9 cards",
+    grid.querySelectorAll(".sd-card").length === 9,
+    "got " + grid.querySelectorAll(".sd-card").length);
+
+  /* Cards still link to their detail pages after filtering. */
+  sel.value = "henna-hair-care";
+  sel.dispatch("change");
+  const careLinks = grid.querySelectorAll(".sd-card-actions a").map((a) => a.getAttribute("href"));
+  check("filtered HENNA HAIR CARE cards still link to product detail",
+    careLinks.length === 2 &&
+    careLinks.indexOf("product.html?product=p8") !== -1 &&
+    careLinks.indexOf("product.html?product=p9") !== -1,
+    careLinks.join(","));
 })();
 
 /* ---------- Summary ------------------------------------------------------ */

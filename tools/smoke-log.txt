@@ -1,4 +1,4 @@
-PASS: catalog renders 7 product cards
+PASS: catalog renders 9 product cards
 PASS: card 1 title: Henna Hair Colour 200ml
 PASS: card 1 sale RM 49.00
 PASS: card 1 original RM 69.00
@@ -41,7 +41,19 @@ PASS: card 7 original RM 189.00
 PASS: card 7 shows 12 Colours
 PASS: card 7 links to product detail
 PASS: card 7 has product image
-PASS: catalogue source contains 7 products
+PASS: card 8 title: 3pcs Sachet Keratin Hair Mask
+PASS: card 8 sale RM 30.00
+PASS: card 8 original RM 69.00
+PASS: card 8 shows 0 Colours
+PASS: card 8 links to product detail
+PASS: card 8 has product image
+PASS: card 9 title: Hair Relaxer With Henna Extract
+PASS: card 9 sale RM 49.00
+PASS: card 9 original RM 98.00
+PASS: card 9 shows 0 Colours
+PASS: card 9 links to product detail
+PASS: card 9 has product image
+PASS: catalogue source contains 9 products
 PASS: detail renders content
 PASS: p1 detail title
 PASS: p1 detail sale price RM 49.00
@@ -144,6 +156,14 @@ PASS: p7 detail title
 PASS: p7 detail prices 110/189
 PASS: p7 palette size 12
 PASS: p7 document title updated
+PASS: p8 detail title
+PASS: p8 detail prices 30/69
+PASS: p8 palette size 0
+PASS: p8 document title updated
+PASS: p9 detail title
+PASS: p9 detail prices 49/98
+PASS: p9 palette size 0
+PASS: p9 document title updated
 PASS: p2 (300ml) excludes coco-black
 PASS: p3 (Tutup Uban) shows exactly Coco Black + Chocolate Brown
 PASS: unknown id falls back to first product
@@ -174,5 +194,35 @@ PASS: subtotal is repainted from storage on load
 PASS: parked demo cart lines are purged on load
 PASS: legacy line without config still receives a key
 PASS: legacy string qty still totals correctly
+PASS: p8 detail title
+PASS: p8 reuses detail template without a colour selector
+PASS: p8 shows size spec
+PASS: p8 stage uses the supplied Keratin image
+PASS: p8 has no extra gallery slides or arrows
+PASS: p8 adds to cart with no colour selection
+PASS: p8 cart line has an empty colour config
+PASS: p8 cart line carries the Henna Hair Care label
+PASS: p8 cart line price
+PASS: p9 detail title
+PASS: p9 reuses detail template without a colour selector
+PASS: p9 gallery has 8 slides (cover + 7 supporting)
+PASS: p9 gallery opens on the main image
+PASS: p9 thumbnails follow the supplied order
+PASS: p9 gallery exposes prev/next arrows
+PASS: p9 selecting a thumbnail swaps the stage image
+PASS: p9 adds to cart with no colour selection
+PASS: p9 cart line carries the Henna Hair Care label
+PASS: p8 card thumbnail uses the supplied Keratin cover
+PASS: p9 card thumbnail uses the supplied Satin cover
+PASS: both Henna Hair Care cards render
+PASS: catalogue has 9 card images total
+PASS: filter select is present
+PASS: filter ALL PRODUCTS renders the full catalogue (9)
+PASS: filter HENNA HAIR COLOUR renders the 7 original products
+PASS: HENNA HAIR COLOUR excludes the two Henna Hair Care products
+PASS: filter HENNA HAIR CARE renders exactly the 2 new products
+PASS: HENNA HAIR CARE cards are the two new products, in catalogue order
+PASS: switching back to ALL PRODUCTS restores 9 cards
+PASS: filtered HENNA HAIR CARE cards still link to product detail
 
-TOTAL: 176 passed, 0 failed
+TOTAL: 226 passed, 0 failed

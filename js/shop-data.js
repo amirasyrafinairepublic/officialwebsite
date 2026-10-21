@@ -94,6 +94,7 @@
   var SHOP_PRODUCTS = [
     {
       id: "p1",
+      category: "henna-hair-colour",
       title: "Henna Hair Colour 200ml",
       size: "200ml",
       description:
@@ -115,6 +116,7 @@
     },
     {
       id: "p2",
+      category: "henna-hair-colour",
       title: "Henna Hair Colour 300ml",
       size: "300ml",
       description:
@@ -140,6 +142,7 @@
     },
     {
       id: "p3",
+      category: "henna-hair-colour",
       title: "Henna Hair Colour 300ml (Tutup Uban)",
       size: "300ml",
       description:
@@ -162,6 +165,7 @@
     },
     {
       id: "p4",
+      category: "henna-hair-colour",
       title: "Combo 2x Henna Hair Colour 200ml",
       size: "200ml (2 x)",
       description:
@@ -183,6 +187,7 @@
     },
     {
       id: "p5",
+      category: "henna-hair-colour",
       title: "Combo 3x Henna Hair Colour 200ml",
       size: "200ml (3 x)",
       description:
@@ -204,6 +209,7 @@
     },
     {
       id: "p6",
+      category: "henna-hair-colour",
       title: "Combo Jumbo Henna Hair Colour 300ml",
       size: "300ml Jumbo (2 x)",
       description:
@@ -232,6 +238,7 @@
     },
     {
       id: "p7",
+      category: "henna-hair-colour",
       title: "Mix Jumbo Henna Hair Colour 200ml & 300ml",
       size: "200ml & 300ml",
       description:
@@ -263,6 +270,48 @@
         ]
       },
       meta: "MIX JUMBO • 200ML & 300ML"
+    },
+
+    /* --- Henna Hair Care (Shop-only, variant-less) -------------------------
+       These products have no colour variants: configType "simple" reuses the
+       shared product card, product-detail template and cart, minus the colour
+       selector step. Cover images are the supplied artwork, used verbatim. */
+    {
+      id: "p8",
+      title: "3pcs Sachet Keratin Hair Mask",
+      size: "3pcs Sachet",
+      category: "henna-hair-care",
+      categoryLabel: "Henna Hair Care",
+      price: 30.0,
+      originalPrice: 69.0,
+      cover: "https://inairepublic.com/wp-content/uploads/2026/10/Keratin-Hair-Mask-on-Stone.png",
+      infoSlides: [],
+      colours: [],
+      configType: "simple",
+      numberOfSelections: 0,
+      meta: "HENNA HAIR CARE"
+    },
+    {
+      id: "p9",
+      title: "Hair Relaxer With Henna Extract",
+      category: "henna-hair-care",
+      categoryLabel: "Henna Hair Care",
+      price: 49.0,
+      originalPrice: 98.0,
+      cover: "https://inairepublic.com/wp-content/uploads/2026/10/Satin-Hair-Cream-on-Warm-Stone.png",
+      infoSlides: [
+        "https://inairepublic.com/wp-content/uploads/2026/10/satin-slide-2-scaled.png",
+        "https://inairepublic.com/wp-content/uploads/2026/10/satin-slide-3-scaled.png",
+        "https://inairepublic.com/wp-content/uploads/2026/10/satin-slide-4-scaled.png",
+        "https://inairepublic.com/wp-content/uploads/2026/10/satin-slide-5-scaled.png",
+        "https://inairepublic.com/wp-content/uploads/2026/10/satin-feedback-1.png",
+        "https://inairepublic.com/wp-content/uploads/2026/10/satin-feedback-2.png",
+        "https://inairepublic.com/wp-content/uploads/2026/10/satin-feedback-3.png"
+      ],
+      colours: [],
+      configType: "simple",
+      numberOfSelections: 0,
+      meta: "HENNA HAIR CARE"
     },
   ];
 
