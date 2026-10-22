@@ -1818,7 +1818,7 @@ a {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   :root {
     --header-height: 60px;
   }
@@ -1833,6 +1833,26 @@ a {
   }
   .hero-tag {
     font-size: var(--font-size-sm);
+  }
+  .hero-section {
+    min-height: 60vh;
+  }
+  .hero-bg-img {
+    object-position: center top;
+  }
+  .hero-title {
+    max-width: 100%;
+  }
+  .hero-subtitle {
+    max-width: 100%;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
   }
   .product-grid {
     grid-template-columns: 1fr;
