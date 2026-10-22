@@ -1793,6 +1793,70 @@ a {
   }
 }
 
+/* Compact the certification band on tablets while preserving the six-card
+   desktop composition above this range. The award grid exposes every original
+   logo at once instead of relying on the desktop marquee's moving viewport. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .cert-section {
+    padding: var(--space-12) 0 var(--space-10);
+  }
+  .cert-section-header {
+    padding-bottom: var(--space-8);
+  }
+  .cert-grid {
+    gap: var(--space-5);
+  }
+  .cert-item {
+    padding: var(--space-6);
+  }
+  .cert-logo-frame {
+    height: 92px;
+    margin-bottom: var(--space-5);
+  }
+  .cert-logo {
+    max-height: 76px;
+  }
+  .awards-marquee {
+    margin-top: var(--space-10);
+  }
+  .awards-marquee-title {
+    margin-bottom: var(--space-5);
+  }
+  .awards-marquee-viewport {
+    padding: var(--space-5) 0;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .awards-marquee-track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+    width: 100%;
+    animation: none;
+  }
+  .award-item {
+    min-height: 68px;
+  }
+  .award-item[aria-hidden="true"] {
+    display: none;
+  }
+  .award-logo {
+    max-width: 100%;
+    max-height: 64px;
+  }
+}
+
+/* Desktop begins at 1024px for this section: retain its original six-card
+   presentation even though the site's broader responsive tier includes 1024px. */
+@media (min-width: 1024px) {
+  .cert-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .cert-logo-frame {
+    height: 120px;
+  }
+}
+
 /* Henna Hair Colour banner — phones. The approved artwork is ultrawide
    (1961x802), so at narrow widths its natural height can no longer hold the
    text group. The media box gains a minimum height and the image cover-crops
@@ -1829,30 +1893,123 @@ a {
     display: inline-flex;
   }
   .hero-container {
-    padding: var(--space-10) var(--space-6);
+    justify-content: flex-start;
+    min-height: 0;
+    padding: clamp(28px, 8vw, 40px) var(--space-6) var(--space-8);
   }
   .hero-tag {
-    font-size: var(--font-size-sm);
+    gap: var(--space-2);
+    font-size: 10px;
+    line-height: 1.35;
+    letter-spacing: 0.14em;
+    margin-bottom: var(--space-3);
   }
   .hero-section {
-    min-height: 60vh;
+    min-height: clamp(560px, 155vw, 660px);
   }
   .hero-bg-img {
     object-position: center top;
   }
   .hero-title {
-    max-width: 100%;
+    font-size: clamp(27px, 8.2vw, 34px);
+    letter-spacing: 0.055em;
+    line-height: 1.08;
+    max-width: min(100%, 350px);
+    margin-bottom: var(--space-4);
   }
   .hero-subtitle {
-    max-width: 100%;
+    font-size: 12px;
+    line-height: 1.55;
+    max-width: min(100%, 340px);
+    margin-bottom: var(--space-6);
   }
   .hero-actions {
+    gap: var(--space-3);
     flex-direction: column;
     align-items: stretch;
+    max-width: 280px;
   }
   .hero-actions .btn {
     width: 100%;
     justify-content: center;
+  }
+  .cert-section {
+    padding: var(--space-10) 0 var(--space-8);
+  }
+  .cert-section-header {
+    padding: 0 var(--space-6) var(--space-7);
+  }
+  .cert-eyebrow {
+    padding: 6px 14px;
+    margin-bottom: var(--space-4);
+  }
+  .cert-heading {
+    font-size: clamp(20px, 6vw, 26px);
+    letter-spacing: 0.055em;
+    line-height: 1.2;
+    margin-bottom: var(--space-3);
+  }
+  .cert-subheading {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .cert-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+    padding: 0 var(--space-6);
+  }
+  .cert-item {
+    padding: var(--space-5) var(--space-4) var(--space-6);
+  }
+  .cert-logo-frame {
+    height: 76px;
+    padding: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+  .cert-logo {
+    max-width: 100%;
+    max-height: 66px;
+  }
+  .cert-label {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    min-height: 2.5em;
+    margin-bottom: var(--space-2);
+  }
+  .cert-desc {
+    font-size: 10px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .awards-marquee {
+    margin-top: var(--space-8);
+    padding: 0 var(--space-6);
+  }
+  .awards-marquee-title {
+    margin-bottom: var(--space-4);
+  }
+  .awards-marquee-viewport {
+    padding: var(--space-4) 0;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .awards-marquee-track {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+    width: 100%;
+    animation: none;
+  }
+  .award-item {
+    min-height: 62px;
+  }
+  .award-item[aria-hidden="true"] {
+    display: none;
+  }
+  .award-logo {
+    max-width: 100%;
+    max-height: 58px;
   }
   .product-grid {
     grid-template-columns: 1fr;
