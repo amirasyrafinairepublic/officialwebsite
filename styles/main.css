@@ -2078,3 +2078,195 @@ a {
     text-align: center;
   }
 }
+
+/* --------------------------------------------------------------------------
+   15. Homepage Campaign & Trust Marquees
+   The markup contains one original sequence and one aria-hidden duplicate.
+   Matching sequence widths let each track move by exactly one sequence with no
+   blank interval or visible reset. These rules are intentionally homepage-
+   scoped through the unique marquee classes.
+   -------------------------------------------------------------------------- */
+.cert-marquee-viewport {
+  overflow: hidden;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: var(--space-5) 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.cert-marquee-track {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  animation: certs-scroll 42s linear infinite;
+  will-change: transform;
+}
+
+.cert-marquee-group {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.cert-marquee-track .cert-item {
+  flex: 0 0 236px;
+  min-height: 248px;
+  padding: var(--space-6);
+}
+
+.cert-marquee-track .cert-logo-frame {
+  height: 88px;
+  margin-bottom: var(--space-5);
+  padding: var(--space-3);
+}
+
+.cert-marquee-track .cert-logo {
+  max-width: 142px;
+  max-height: 72px;
+}
+
+.cert-marquee-track .cert-label {
+  min-height: 2.4em;
+}
+
+.cert-marquee-track:hover,
+.awards-marquee:hover .awards-marquee-track {
+  animation-play-state: paused;
+}
+
+.awards-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  width: max-content;
+  animation: awards-scroll 34s linear infinite;
+  will-change: transform;
+}
+
+.award-item[aria-hidden="true"] {
+  display: flex;
+}
+
+@keyframes certs-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-container {
+    padding-top: clamp(20px, 6vw, 28px);
+  }
+
+  .hero-title {
+    max-width: min(100%, 310px);
+  }
+
+  .hero-subtitle {
+    max-width: min(100%, 300px);
+  }
+
+  .hero-actions {
+    max-width: 250px;
+  }
+
+  .cert-marquee-viewport {
+    padding: var(--space-4) 0;
+  }
+
+  .cert-marquee-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    padding: 0;
+    animation: certs-scroll 36s linear infinite;
+  }
+
+  .cert-marquee-group {
+    display: flex;
+    gap: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .cert-marquee-track .cert-item {
+    flex-basis: 196px;
+    min-height: 218px;
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .cert-marquee-track .cert-logo-frame {
+    height: 66px;
+    margin-bottom: var(--space-4);
+    padding: var(--space-2);
+  }
+
+  .cert-marquee-track .cert-logo {
+    max-width: 118px;
+    max-height: 58px;
+  }
+
+  .cert-marquee-track .cert-label {
+    font-size: 10px;
+    margin-bottom: var(--space-2);
+  }
+
+  .cert-marquee-track .cert-desc {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .awards-marquee-track {
+    display: flex;
+    gap: var(--space-8);
+    width: max-content;
+    animation: awards-scroll-mobile 28s linear infinite;
+  }
+
+  .award-item {
+    min-height: 0;
+  }
+
+  .award-logo {
+    max-width: 130px;
+    max-height: 68px;
+  }
+}
+
+@keyframes awards-scroll-mobile {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - (var(--space-8) / 2)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cert-marquee-viewport,
+  .awards-marquee-viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scrollbar-width: thin;
+  }
+
+  .cert-marquee-track,
+  .awards-marquee-track {
+    animation: none;
+    transform: none;
+  }
+
+  .cert-marquee-group[aria-hidden="true"],
+  .award-item[aria-hidden="true"] {
+    display: none;
+  }
+}
